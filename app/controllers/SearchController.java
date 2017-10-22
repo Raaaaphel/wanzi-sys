@@ -76,4 +76,11 @@ public class SearchController extends Controller {
         List<AreaInfo> areaList = AreaInfo.searchArea(keyword);
 	    return ok(Json.toJson(areaList));
     }
+
+    public static Result findChildArea(){
+        Map<String, String[]> formData = request().body().asFormUrlEncoded();
+        String parentId = formData.get("parentId")[0];
+        List<AreaInfo> areaList = AreaInfo.findAreaByParentId(parentId);
+        return ok(Json.toJson(areaList));
+    }
 }

@@ -89,7 +89,6 @@ public class RegisterGuiderController extends Controller {
 
     /**
      * 保存导游照片信息
-     *
      * @return
      */
     public static Result onApplyPic() {
@@ -165,6 +164,8 @@ public class RegisterGuiderController extends Controller {
 
         return ok("{\"code\":1000}");
     }
+
+
 
 
 }

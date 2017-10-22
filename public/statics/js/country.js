@@ -267,48 +267,84 @@ city_states['Venezuela'] = '|Caracas|Amazonas|Anzoategui|Apure|Aragua|Barinas|Bo
 ////////////////////////////////////////////////////////////////////////////
 
 function setRegions() {
-    var htmls = "";
-
-    for (region in countries)
-        htmls += '<option value="' + region + '">' + region + '</option>';
-    $("#region_list").append(htmls);
+    var _data = new Object();
+    _data.parentId = "";
+    $.ajax({
+        url: '/service/getChildArea',
+        type: "POST",
+        dataType: "json",
+        data: _data,
+        cache: false,
+        async: true,
+        success: function (data) {
+            var html = "";
+            for (var i in data) {
+                html += '<option data-id="' + data[i].areaId + '" data-name="' + data[i].areaName + '">' + data[i].areaName + '</option>';
+            }
+            $("#region_list").append(html);
+        }
+    });
 }
 
 function set_country() {
-    var countryArr;
-    var region = $("#region_list").val();
-    if (countries[region]) {
-        var htmls = "";
-        countryArr = countries[region].split('|');
-        for (var i = 0; i < countryArr.length; i++) {
-            if (i == 0)
-                htmls += "<option disabled selected>Please Choose Country</option>";
-            else
-                htmls += "<option value='" + countryArr[i] + "'>" + countryArr[i] + "</option>";
+    var _data = new Object();
+    _data.parentId = $("#region_list").find("option:selected").attr("data-id");
+    $.ajax({
+        url: '/service/getChildArea',
+        type: "POST",
+        dataType: "json",
+        data: _data,
+        cache: false,
+        async: true,
+        success: function (data) {
+            var html = "";
+            for (var i in data) {
+                html += '<option data-id="' + data[i].areaId + '" data-name="' + data[i].areaName + '">' + data[i].areaName + '</option>';
+            }
+            if (html.length > 0) {
+                $("#country_list").append(html);
+                $("#country_list").css('display','inline');
+            }
         }
-        $("#country_list").empty().append(htmls);
-    }
-
+    });
 }
 
 function set_city_state() {
-    var city_stateArr;
-    var country = $("#country_list").val();
-    if (city_states[country]) {
-        var htmls = "";
-        city_stateArr = city_states[country].split('|');
-        for (var i = 0; i < city_stateArr.length; i++) {
-            if (i == 0)
-                htmls += "<option disabled selected>Please Choose City</option>";
-            else
-                htmls += "<option value='" + city_stateArr[i] + "'>" + city_stateArr[i] + "</option>";
+    var _data = new Object();
+    _data.parentId = $("#country_list").find("option:selected").attr("data-id");
+    $.ajax({
+        url: '/service/getChildArea',
+        type: "POST",
+        dataType: "json",
+        data: _data,
+        cache: false,
+        async: true,
+        success: function (data) {
+            var html = "";
+            for (var i in data) {
+                html += '<option data-id="' + data[i].areaId + '" data-name="' + data[i].areaName + '">' + data[i].areaName + '</option>';
+            }
+            if (html.length > 0) {
+                $("#city_list").append(html);
+                $("#city_list").css('display','inline');
+            }
         }
-        $("#city_list").empty().append(htmls);
-    }
+    });
 }
 
-    function setCityAndCountry() {
-        var cityAndCountry = $("#country_list").val() + "_" + $("#city_list").val();
-        $("#city_and_country").val(cityAndCountry);
+function setCityAndCountry() {
+    var regionName = $("#region_list").find("option:selected").attr("data-name");
+    var countryName = $("#country_list").find("option:selected").attr("data-name");
+    var cityName = $("#city_list").find("option:selected").attr("data-name");
+    var cityAndCountry = "";
+    if (typeof(regionName) != "undefined") {
+        cityAndCountry += regionName;
+        if (typeof(countryName) != "undefined") {
+            cityAndCountry = cityAndCountry + "_" + countryName;
+            if (typeof(cityName) != "undefined")
+                cityAndCountry = cityAndCountry + "_" + cityName;
+        }
     }
+    $("#city_and_country").val(cityAndCountry);
+}
 

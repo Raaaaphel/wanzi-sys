@@ -243,8 +243,7 @@
         $('#search').bind('input propertychange', function() {
             if ($(this).val()) {
                 $('.search-history').hide();
-                if (getSearch($(this).val())) {
-                    getSearch2($(this).val());
+                if (getSearch2($(this).val())) {
                     $('.searching-area').show();
                 } else {
                     $(this).attr('data-id','');

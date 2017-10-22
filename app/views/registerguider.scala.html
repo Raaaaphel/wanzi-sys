@@ -31,7 +31,7 @@
         </div>
         <div class="r">
                 <!--<form action="" id="main-form"> -->
-            @form(action = routes.RegisterGuiderController.onRegisterGuider(), '_id -> "main-form") {
+            @form(action = routes.RegisterGuiderController.onRegisterGuider(), 'id -> "main-form") {
                 <div class="top">
                     <div class="applys_com">
                         <div class="applys_name">* 真实姓名<span class="mark"></span><p class="prompt">走走旅游是一个以真实身份为基础<br>
@@ -60,9 +60,9 @@
                     </div>
                     <div class="applys_com applys_add">
                         <div class="applys_name" style="margin: 0 0 10px;">* 目前居住国家和城市</div>
-                        <select id="region_list" class="form-control" style="display: inline" onchange="set_country()"><option disabled selected>Please Choose Region</option></select>
-                        <select id="country_list" class="form-control" onchange="set_city_state()" style="display: inline"></select>
-                        <select id="city_list" class="form-control" onchange="setCityAndCountry()" style="display: inline"></select>
+                        <select id="region_list" class="form-control" style="display: inline" onchange="set_country()"><option disabled selected>请选择...</option></select>
+                        <select id="country_list" class="form-control" onchange="set_city_state()" style="display: none"></select>
+                        <select id="city_list" class="form-control" style="display: none"></select>
                         <script>setRegions();</script>
                         <input style="display:none;" id="city_and_country" name="city_and_country">
                     </div>
@@ -251,7 +251,7 @@
                     </div>
                 </div>
                 <div class="bottom">
-                    <p class="submit_ser"><button class="ser_btn" type="submit">下一步</button></p>
+                    <p class="submit_ser"><button class="ser_btn" type="button" onclick="submitForm()">下一步</button></p>
                 </div>
             }
                 <!--	</form> -->
@@ -278,8 +278,11 @@
 
 
     <script>
+        function submitForm() {
+            setCityAndCountry();
+            $("#main-form").submit();
+        }
             $(document).ready(function () {
-
                 auto('.applys_year', 0.5);
                 auto('.car_year', 1);
 

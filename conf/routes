@@ -34,7 +34,8 @@ POST        /applys/setApplysService        controllers.RegisterGuiderController
 #GET 	/public/getSearch       controllers.SearchController.getSearch()
 #POST	/public/getSearch		controllers.SearchController.getSearch()
 
-POST         /service/getSearch             controllers.SearchController.searchArea()
+POST        /service/getSearch              controllers.SearchController.searchArea()
+POST        /service/getChildArea           controllers.SearchController.findChildArea()
 POST        /public/getSearch               controllers.Assets.at(path="/public/", file="getSearch.json")
 POST        /service/getServiceList         controllers.Assets.at(path="/public/", file="getServiceList.json")
 

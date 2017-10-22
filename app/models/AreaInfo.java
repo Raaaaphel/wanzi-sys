@@ -152,22 +152,34 @@ public class AreaInfo implements Serializable {
     }
 
     public static List<AreaInfo> searchArea(String keyword){
-        return coll.find(DBQuery.regex("areaIndex", Pattern.compile(".*" + keyword  + ".*",
+        return coll.find(DBQuery.regex("areaIndex", Pattern.compile(".*" + keyword  + ".*i",
                 Pattern.CASE_INSENSITIVE))).toArray();
 
     }
 
+    /**
+     * 保存地域信息
+     * @param areaList
+     */
     public static void saveAreas(List<AreaInfo> areaList){
         for (AreaInfo node : areaList){
             coll.save(node);
         }
     }
 
+    /**
+     * 判断数据库中是否有数据
+     * @return
+     */
     public static boolean hasArea(){
         Boolean result = false;
         if (coll.getCount() > 0){
             result = true;
         }
         return result;
+    }
+
+    public static List<AreaInfo> findAreaByParentId(String parentId){
+       return coll.find(DBQuery.is("areaParent", parentId)).toArray();
     }
 }
