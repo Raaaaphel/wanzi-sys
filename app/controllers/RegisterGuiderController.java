@@ -1,12 +1,18 @@
 package controllers;
 
+import com.fasterxml.jackson.databind.JsonNode;
+import play.api.mvc.Session;
 import play.libs.Json;
 import play.mvc.*;
 
+import util.LocationLoader;
+import views.html.*;
 import models.*;
 
 import java.util.*;
 
+import play.*;
+import play.api.*;
 import play.data.*;
 
 /**
@@ -21,7 +27,7 @@ public class RegisterGuiderController extends Controller {
      * this method will be called when the application receives a
      * <code>GET</code> request with a path of <code>/</code>.
      */
-    static String homepage = Application.homepage;
+    static String homepage = Global.homepage;
 
     /*
     @Inject
@@ -36,19 +42,21 @@ public class RegisterGuiderController extends Controller {
 
     }
     */
-    public static Result registerGuider() {
-        String userId = session("userId");
-        if (userId != null) {
-            AUser g = AUser.getUserById(userId);
+    public static Result registerGuider(String gid) {
+        String username = session("username");
+        if (username != null) {
+            AUser g = new AUser();
+            if (gid != null){
+                g = AUser.getUserById(gid);
+            }
             return ok(views.html.registerguider.render());
         } else {
-            return RegisterController.onLogout();
+            return ok(views.html.index.render());
         }
     }
 
     /**
      * 保存导游基本信息
-     *
      * @return
      */
     public static Result onRegisterGuider() {
@@ -59,8 +67,8 @@ public class RegisterGuiderController extends Controller {
         } else {
             Map<String, String> newData = filledForm.data();
             AUser u = AUser.getUserById(session().get("userId"));
-            if (u == null) {
-                return RegisterController.onLogout();
+            if (u == null){
+                routes.RegisterController.onLogout();
             }
             u.type = "GUIDER";
             u.city_and_country = newData.get("city_and_country");
@@ -83,24 +91,23 @@ public class RegisterGuiderController extends Controller {
         }
     }
 
-    public static Result applyPic() {
+    public static Result applyPic(){
         return ok(views.html.applyPic.render());
     }
 
     /**
      * 保存导游照片信息
-     *
      * @return
      */
-    public static Result onApplyPic() {
+    public static Result onApplyPic(){
         Map<String, String[]> formData = request().body().asFormUrlEncoded();
         String face = formData.get("au_face")[0];
         String avatar = formData.get("au_avatar")[0];
         String identity = formData.get("au_identity")[0];
         String degree = formData.get("au_degree")[0];
         AUser u = AUser.getUserById(session().get("userId"));
-        if (u == null) {
-            return RegisterController.onLogout();
+        if (u == null){
+            routes.RegisterController.onLogout();
         }
         u.img_theme = "/upload/images/" + face;
         u.img_profile = "/upload/images/" + avatar;
@@ -113,20 +120,19 @@ public class RegisterGuiderController extends Controller {
         return ok(Json.toJson(data));
     }
 
-    public static Result applyService() {
+    public static Result applyService(){
         return ok(views.html.applysService.render());
     }
 
     /**
      * 保存导游简介信 息
-     *
      * @return
      */
-    public static Result onApplyService() {
+    public static Result onApplyService(){
         Map<String, String[]> formData = request().body().asFormUrlEncoded();
         AUser u = AUser.getUserById(session().get("userId"));
         if (u == null) {
-            return RegisterController.onLogout();
+            routes.RegisterController.onLogout();
         }
         String titel = formData.get("as_title")[0];
         String about_text = formData.get("as_about_text")[0];
@@ -137,24 +143,24 @@ public class RegisterGuiderController extends Controller {
         desc.append("<p style=\"font-size:14px;color:#666\">");
         desc.append(about_text);
         desc.append("</p>");
-        for (int i = 0; i < aboutSize; i++) {
-            desc.append("<p><img src=\"/upload/images/");
-            desc.append(formData.get("as_about_mix[" + i + "][img]")[0]);
+        for (int i = 0; i < aboutSize; i++){
+            desc.append("<p><img src=\"/upload/images/" );
+            desc.append(formData.get("as_about_mix["+i+"][img]")[0]);
             desc.append("\"  class=\"img-responsive img-thumbnail\"></p>");
             desc.append("<p style=\"font-size:14px;color:#666\">");
-            desc.append(formData.get("as_about_mix[" + i + "][content]")[0]);
+            desc.append(formData.get("as_about_mix["+i+"][content]")[0]);
             desc.append("</p>");
         }
         desc.append("<h4 style=\"color:#333\">我眼中的这座城市</h4>");
         desc.append("<p style=\"font-size:14px;color:#666\">");
         desc.append(about_text);
         desc.append("</p>");
-        for (int i = 0; i < introduceSize; i++) {
-            desc.append("<p><img src=\"/upload/images/");
-            desc.append(formData.get("as_introduce_mix[" + i + "][img]")[0]);
+        for (int i = 0; i < introduceSize; i++){
+            desc.append("<p><img src=\"/upload/images/" );
+            desc.append(formData.get("as_introduce_mix["+i+"][img]")[0]);
             desc.append("\" class=\"img-responsive img-thumbnail\"></p>");
             desc.append("<p style=\"font-size:14px;color:#666\">");
-            desc.append(formData.get("as_introduce_mix[" + i + "][content]")[0]);
+            desc.append(formData.get("as_introduce_mix["+i+"][content]")[0]);
             desc.append("</p>");
         }
 
