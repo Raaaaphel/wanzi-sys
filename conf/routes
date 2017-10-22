@@ -24,7 +24,7 @@ GET         /login                          controllers.RegisterController.login
 POST        /login                          controllers.RegisterController.onLogin()
 GET         /logout                         controllers.RegisterController.onLogout()
 
-GET         /registerguider                 controllers.RegisterGuiderController.registerGuider()
+GET         /registerguider                 controllers.RegisterGuiderController.registerGuider(gid : String?=null)
 POST        /registerguider                 controllers.RegisterGuiderController.onRegisterGuider()
 GET         /site/applysPic                 controllers.RegisterGuiderController.applyPic()
 POST        /applys/setApplysUser           controllers.RegisterGuiderController.onApplyPic()
@@ -49,6 +49,7 @@ GET         /site/list/id/*cid              controllers.SearchController.getCoun
 GET         /site1/detail/id/*uid           controllers.SearchController.getGuiderDetail(uid:String)
 POST        /setLocation                    controllers.SearchController.setLocation()
 
+#GET         /test                           controllers.RegisterGuiderController.testPic()
 #file upload route
 POST        /file/uploadImage/              controllers.FileController.onUploadImage()
 POST        /file/thumbImg                  controllers.FileController.onUploadThumbImage()
