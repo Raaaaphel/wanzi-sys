@@ -24,7 +24,7 @@ GET         /login                          controllers.RegisterController.login
 POST        /login                          controllers.RegisterController.onLogin()
 GET         /logout                         controllers.RegisterController.onLogout()
 
-GET         /registerguider                 controllers.RegisterGuiderController.registerGuider(gid : String?=null)
+GET         /registerguider                 controllers.RegisterGuiderController.registerGuider()
 POST        /registerguider                 controllers.RegisterGuiderController.onRegisterGuider()
 GET         /site/applysPic                 controllers.RegisterGuiderController.applyPic()
 POST        /applys/setApplysUser           controllers.RegisterGuiderController.onApplyPic()

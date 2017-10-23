@@ -1,18 +1,11 @@
 package controllers;
 
-import com.fasterxml.jackson.databind.JsonNode;
-import play.api.mvc.Session;
+
 import play.libs.Json;
 import play.mvc.*;
 
-import util.LocationLoader;
-import views.html.*;
 import models.*;
-
 import java.util.*;
-
-import play.*;
-import play.api.*;
 import play.data.*;
 
 /**
@@ -27,7 +20,7 @@ public class RegisterGuiderController extends Controller {
      * this method will be called when the application receives a
      * <code>GET</code> request with a path of <code>/</code>.
      */
-    static String homepage = Global.homepage;
+    static String homepage = Application.homepage;
 
     /*
     @Inject
@@ -42,16 +35,13 @@ public class RegisterGuiderController extends Controller {
 
     }
     */
-    public static Result registerGuider(String gid) {
-        String username = session("username");
-        if (username != null) {
-            AUser g = new AUser();
-            if (gid != null){
-                g = AUser.getUserById(gid);
-            }
+    public static Result registerGuider() {
+        String userId = session("userId");
+        AUser u = AUser.getUserById(userId);
+        if (u != null){
             return ok(views.html.registerguider.render());
         } else {
-            return ok(views.html.index.render());
+            return RegisterController.onLogout();
         }
     }
 
@@ -68,7 +58,7 @@ public class RegisterGuiderController extends Controller {
             Map<String, String> newData = filledForm.data();
             AUser u = AUser.getUserById(session().get("userId"));
             if (u == null){
-                routes.RegisterController.onLogout();
+                return RegisterController.onLogout();
             }
             u.type = "GUIDER";
             u.city_and_country = newData.get("city_and_country");
@@ -107,7 +97,7 @@ public class RegisterGuiderController extends Controller {
         String degree = formData.get("au_degree")[0];
         AUser u = AUser.getUserById(session().get("userId"));
         if (u == null){
-            routes.RegisterController.onLogout();
+            return RegisterController.onLogout();
         }
         u.img_theme = "/upload/images/" + face;
         u.img_profile = "/upload/images/" + avatar;
@@ -132,7 +122,7 @@ public class RegisterGuiderController extends Controller {
         Map<String, String[]> formData = request().body().asFormUrlEncoded();
         AUser u = AUser.getUserById(session().get("userId"));
         if (u == null) {
-            routes.RegisterController.onLogout();
+            return RegisterController.onLogout();
         }
         String titel = formData.get("as_title")[0];
         String about_text = formData.get("as_about_text")[0];
