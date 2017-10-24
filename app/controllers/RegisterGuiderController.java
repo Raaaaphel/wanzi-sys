@@ -41,7 +41,7 @@ public class RegisterGuiderController extends Controller {
         if (u != null){
             return ok(views.html.registerguider.render());
         } else {
-            return RegisterController.onLogout();
+            return RegisterController.onLogout("请先登录!");
         }
     }
 
@@ -58,7 +58,7 @@ public class RegisterGuiderController extends Controller {
             Map<String, String> newData = filledForm.data();
             AUser u = AUser.getUserById(session().get("userId"));
             if (u == null){
-                return RegisterController.onLogout();
+                return RegisterController.onLogout("请先登录!");
             }
             u.type = "GUIDER";
             u.city_and_country = newData.get("city_and_country");
@@ -97,7 +97,7 @@ public class RegisterGuiderController extends Controller {
         String degree = formData.get("au_degree")[0];
         AUser u = AUser.getUserById(session().get("userId"));
         if (u == null){
-            return RegisterController.onLogout();
+            return RegisterController.onLogout("请先登录!");
         }
         u.img_theme = "/upload/images/" + face;
         u.img_profile = "/upload/images/" + avatar;
@@ -122,7 +122,7 @@ public class RegisterGuiderController extends Controller {
         Map<String, String[]> formData = request().body().asFormUrlEncoded();
         AUser u = AUser.getUserById(session().get("userId"));
         if (u == null) {
-            return RegisterController.onLogout();
+            return RegisterController.onLogout("请先登录!");
         }
         String titel = formData.get("as_title")[0];
         String about_text = formData.get("as_about_text")[0];

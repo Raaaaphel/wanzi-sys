@@ -22,7 +22,7 @@ GET         /register                       controllers.RegisterController.regis
 POST        /register                       controllers.RegisterController.onRegister()
 GET         /login                          controllers.RegisterController.login()
 POST        /login                          controllers.RegisterController.onLogin()
-GET         /logout                         controllers.RegisterController.onLogout()
+GET         /logout                         controllers.RegisterController.onLogout(alert = "")
 
 GET         /registerguider                 controllers.RegisterGuiderController.registerGuider()
 POST        /registerguider                 controllers.RegisterGuiderController.onRegisterGuider()

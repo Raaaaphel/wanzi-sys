@@ -51,7 +51,7 @@ public class RegisterController extends Controller {
 	public static Result login()
 	{
 
-		return ok(views.html.loginPage.t.login.render());
+		return ok(views.html.loginPage.t.login.render(""));
 	}
 
 	public static Result onLogin()
@@ -71,15 +71,17 @@ public class RegisterController extends Controller {
 				session("userType",u.type);
 				return ok(views.html.index.render());
 			}
-		else
-			return ok (views.html.loginPage.t.login.render());
+		else{
+			String alert = "请输入正确的用户名和密码";
+			return ok (views.html.loginPage.t.login.render(alert));
+		}
 	}
 
-	public static Result onLogout(){
+	public static Result onLogout(String alert){
 		session().remove("username");
 		session().remove("userId");
 		session().remove("userType");
-		return ok(views.html.loginPage.t.login.render());
+		return ok(views.html.loginPage.t.login.render(alert));
 	}
 	/*
 	public static Result onStep1 (){

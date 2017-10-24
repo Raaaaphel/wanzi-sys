@@ -1,7 +1,14 @@
 
 @import helper._
-
+@(alert : String)
 @headerfooter{
+    @if(!alert.equals("")){
+        <script>
+            $(function () {
+                alert('@Html(alert)');
+            })
+        </script>
+    }
     <div class="contianer">
         <div class="content">
 
