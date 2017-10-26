@@ -152,7 +152,7 @@ public class AreaInfo implements Serializable {
     }
 
     public static List<AreaInfo> searchArea(String keyword){
-        return coll.find(DBQuery.regex("areaIndex", Pattern.compile(".*" + keyword  + ".*i",
+        return coll.find(DBQuery.regex("areaIndex", Pattern.compile(".*" + keyword  + ".*",
                 Pattern.CASE_INSENSITIVE))).toArray();
 
     }
