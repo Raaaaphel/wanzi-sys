@@ -1,4 +1,6 @@
+@(u:AUser)
 @headerfooter{
+
     <div class="container">
         <div class="content">
                 <!-- 主题 -->
@@ -474,7 +476,7 @@
                             $('#' + _this_id).closest('.up_poto').find('.img-parent').remove();
                             var str = '<div class="img-parent"><img class="img-data" data-id="' + _this_id + '" data-value="' + path;
                             str += '" src="/upload/images/' + path + '" ></div>';
-                            var str='<div class="img-parent"><img class="img-data" data-id="' + _this_id + '" data-value="' + path + '" src="/upload/images/' + path + '" ></div>';
+                            var str='<div class="img-parent"><img class="img-data" data-id="' + _this_id + '" data-value="' + path + '" src="' + path + '" ></div>';
 
                             $('#' + _this_id).closest('.up_poto').prepend(str);
                             $('#' + _this_id).closest('.up_img').removeClass('up_img1');
@@ -499,7 +501,11 @@
                                 });
                             })
                         }
-
+                        upImgs("au_face","@Html(u.img_theme)");
+                        upImgs("au_avatar","@Html(u.img_profile)");
+                        upImgs("au_identity","@Html(u.img_passport)");
+                        upImgs("au_degree","@Html(u.img_degree)");
+                        upImgs("au_validate","@Html(u.img_validate)");
 
                     });
             </script>
