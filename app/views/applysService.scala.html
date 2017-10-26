@@ -40,7 +40,7 @@
                                 </div>
 
                                 <div class="add_photo">
-                                    添加照片<input type="file" class="upload-img" name="file_name" id="upload-about"></div>
+                                    添加照片<input data-name="about" type="file" class="upload-img" name="file_name" id="upload-about"></div>
                                 <p class="intr_detail">
                                     请上传3-5张关于您个人的生活、旅游等照片，通过照片，可以更好的将您展示给旅行者。支持JPG,PNG,GIF格式。图片照片大小不超过2M。</p>
                                 <ul class="photo_up clearfix" id="about-ul"></ul>
@@ -58,7 +58,7 @@
                                 </div>
 
                                 <div class="add_photo">
-                                    添加照片<input type="file" class="upload-img" name="file_name" id="upload-introduce"></div>
+                                    添加照片<input data-name="introduce" type="file" class="upload-img" name="file_name" id="upload-introduce"></div>
                                 <p class="intr_detail">请上传3-5张关于当地的风景、美食照片，通过照片，介绍城市或行程给旅行者。支持JPG,PNG,GIF格式。照片大小不超过2M。</p>
                                 <ul class="photo_up clearfix" id="introduce-ul"></ul>
                             </div>
@@ -137,6 +137,7 @@
 
 
                         //添加照片
+                        var _img_count = "";
                         $('.upload-img').live('change', function () {
                             if ($(this).attr('id') == 'upload-about') {
                                 if ($('#about-ul').find('li').size() + 1 > 10) {
@@ -144,6 +145,7 @@
                                     return false;
                                 }
                                 _about_count++;
+                                _img_count = _about_count;
                             }
                             if ($(this).attr('id') == 'upload-introduce') {
                                 if ($('#introduce-ul').find('li').size() + 1 > 10) {
@@ -151,10 +153,11 @@
                                     return false;
                                 }
                                 _introduce_count++;
+                                _img_count = _introduce_count;
                             }
                             var _this_id = $(this).attr('id');
                             $.ajaxFileUpload({
-                                url: '/file/uploadImage/',
+                                url: '/file/uploadImage/'+$(this).attr('data-name')+_img_count,
                                 fileElementId: _this_id,
                                 dataType: 'json',
                                 success: function (data, status) {

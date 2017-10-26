@@ -3,53 +3,53 @@
 # ~~~~
 
 # Home page
-GET         /index.html                     controllers.Application.index()
-GET         /                               controllers.Application.index()
+GET         /index.html                        controllers.Application.index()
+GET         /                                  controllers.Application.index()
 
-GET         /assets/*file                   controllers.Assets.at(path="/public", file)
-POST        /assets/*file                   controllers.Assets.at(path="/public", file)
-GET         /app/statics/*file              controllers.Assets.at(path="/public/statics/", file)
-GET         /upload/images/*file            controllers.Assets.at(path = "/public/upload/images/",file)
+GET         /assets/*file                      controllers.Assets.at(path="/public", file)
+POST        /assets/*file                      controllers.Assets.at(path="/public", file)
+GET         /app/statics/*file                 controllers.Assets.at(path="/public/statics/", file)
+GET         /upload/images/*file               controllers.Assets.at(path = "/public/upload/images/",file)
 
 # Map static resources from the /public folder to the /assets URL path
-GET         /tasks                          controllers.Application.tasks()
+GET         /tasks                             controllers.Application.tasks()
 #POST    /tasks                  controllers.Application.newTask()
-POST        /tasks/:id/delete               controllers.Application.deleteTask(id: String)
+POST        /tasks/:id/delete                  controllers.Application.deleteTask(id: String)
 
 #GET		/app/statics/*file  	controllers.Application.externalstatic(file: String)
 
-GET         /register                       controllers.RegisterController.register()
-POST        /register                       controllers.RegisterController.onRegister()
-GET         /login                          controllers.RegisterController.login()
-POST        /login                          controllers.RegisterController.onLogin()
-GET         /logout                         controllers.RegisterController.onLogout(alert = "")
+GET         /register                          controllers.RegisterController.register()
+POST        /register                          controllers.RegisterController.onRegister()
+GET         /login                             controllers.RegisterController.login()
+POST        /login                             controllers.RegisterController.onLogin()
+GET         /logout                            controllers.RegisterController.onLogout(alert = "")
 
-GET         /registerguider                 controllers.RegisterGuiderController.registerGuider()
-POST        /registerguider                 controllers.RegisterGuiderController.onRegisterGuider()
-GET         /site/applysPic                 controllers.RegisterGuiderController.applyPic()
-POST        /applys/setApplysUser           controllers.RegisterGuiderController.onApplyPic()
-GET         /site/applysService             controllers.RegisterGuiderController.applyService()
-POST        /applys/setApplysService        controllers.RegisterGuiderController.onApplyService()
+GET         /registerguider                    controllers.RegisterGuiderController.registerGuider()
+POST        /registerguider                    controllers.RegisterGuiderController.onRegisterGuider()
+GET         /site/applysPic                    controllers.RegisterGuiderController.applyPic()
+POST        /applys/setApplysUser              controllers.RegisterGuiderController.onApplyPic()
+GET         /site/applysService                controllers.RegisterGuiderController.applyService()
+POST        /applys/setApplysService           controllers.RegisterGuiderController.onApplyService()
 
 #GET 	/public/getSearch       controllers.SearchController.getSearch()
 #POST	/public/getSearch		controllers.SearchController.getSearch()
 
-POST        /service/getSearch              controllers.SearchController.searchArea()
-POST        /service/getChildArea           controllers.SearchController.findChildArea()
-POST        /public/getSearch               controllers.Assets.at(path="/public/", file="getSearch.json")
-POST        /service/getServiceList         controllers.Assets.at(path="/public/", file="getServiceList.json")
+POST        /service/getSearch                 controllers.SearchController.searchArea()
+POST        /service/getChildArea              controllers.SearchController.findChildArea()
+POST        /public/getSearch                  controllers.Assets.at(path="/public/", file="getSearch.json")
+POST        /service/getServiceList            controllers.Assets.at(path="/public/", file="getServiceList.json")
 
 #GET		/site/list/id/*cid		controllers.Assets.at(path="/public", cid)
-GET         /site/list/id/*cid              controllers.SearchController.getCountry(cid: String)
+GET         /site/list/id/*cid                 controllers.SearchController.getCountry(cid: String)
 #controllers.SearchController.getCountry(id:String)
 
 #GET 		 /site/loginPage/t/1.html controllers.RegisterController.register()
 #GET	     /site/loginPage/t/2.html controllers.RegisterController.login()
 
-GET         /site1/detail/id/*uid           controllers.SearchController.getGuiderDetail(uid:String)
-POST        /setLocation                    controllers.SearchController.setLocation()
+GET         /site1/detail/id/*uid              controllers.SearchController.getGuiderDetail(uid:String)
+POST        /setLocation                       controllers.SearchController.setLocation()
 
 #GET         /test                           controllers.RegisterGuiderController.testPic()
 #file upload route
-POST        /file/uploadImage/              controllers.FileController.onUploadImage()
-POST        /file/thumbImg                  controllers.FileController.onUploadThumbImage()
+POST        /file/uploadImage/*imgLable        controllers.FileController.onUploadImage(imgLable:String)
+POST        /file/thumbImg/                    controllers.FileController.onUploadThumbImage()
