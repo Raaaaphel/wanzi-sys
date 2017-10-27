@@ -1,6 +1,6 @@
 
 @import helper._
-
+@(u : AUser)
 @headerfooter {
     <link rel="stylesheet" type="text/css" href="/app/statics/js/applys/datetimepicker/css/bootstrap-datetimepicker.min.css">
     <link rel="stylesheet" type="text/css" href="/app/statics/css/applys/style.css">
@@ -8,7 +8,7 @@
     <script src="/app/statics/js/country.js"></script>
     <script type="text/javascript" src="/app/statics/js/applys/datetimepicker/js/locales/bootstrap-datetimepicker.zh-CN.js" charset="UTF-8"></script>
     <script type="text/javascript">
-            var select = document.getElementById("country_list");
+            /*var select = document.getElementById("country_list");
 
             for (var i = 0; i < city_states.length; i++) {
                 var opt = city_states[i];
@@ -16,7 +16,17 @@
                 el.textContent = opt;
                 el.value = opt;
                 select.appendChild(el);
-            }
+            }*/
+            $(document).ready(function(){
+                $('input[name="name"]').val('@Html(u.name)');
+                $('input[name="birth_day"]').val('@Html(u.birth_day)');
+                $('input[name="gender"][value="@Html(u.gender)"]').attr('checked','true');
+                $('input[name="au_home"]').val('@Html(u.birthplace)');
+                $('input[name="wechat"]').val('@Html(u.wechat)');
+                $('input[name="email"]').val('@Html(u.email)');
+                $('input[name="type_work"][value="@u.type_work"]').attr('checked','true');
+                $('input[name="major"]').val('@Html(u.jobtitle)');
+            })
     </script>
     <div class="applys clearfix">
         <div class="l">
@@ -36,7 +46,7 @@
                     <div class="applys_com">
                         <div class="applys_name">* 真实姓名<span class="mark"></span><p class="prompt">走走旅游是一个以真实身份为基础<br>
                             的旅游社区<i></i></p></div>
-                        <input type="text" name="name" class="form-control" style="width: 228px;" required="required" value=@session.get("username")>
+                        <input type="text" name="name" class="form-control" style="width: 228px;" required="required" value="">
                     </div>
                     <div class="applys_com">
                         <div class="applys_name">* 出生年月<span class="mark"></span><p class="prompt" style="top: -15px;">
