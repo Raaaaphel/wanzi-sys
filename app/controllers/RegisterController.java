@@ -10,10 +10,13 @@ import models.*;
 import play.data.*;
 
 import java.util.Map;
+import play.Configuration;
 
 public class RegisterController extends Controller {
 	
-	static String homepage = Application.homepage;
+	//	static String homepage = Application.homepage;
+	static String homepage = Configuration.root().getString("webserverhost");
+	
 	private AUser alluser  = new AUser();
 	/*
     public static Result index() {

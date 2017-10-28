@@ -1,4 +1,4 @@
-package controllers;
+
 
 import models.AreaInfo;
 import play.*;
@@ -6,8 +6,6 @@ import play.Application;
 import util.LocationLoader;
 
 public class Global extends GlobalSettings {
-
-	public static String homepage = "http://beta.zouzouyouyou.info";
 
 	@Override
 	public void onStart(Application app) {

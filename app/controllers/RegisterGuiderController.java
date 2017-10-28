@@ -9,7 +9,7 @@ import models.*;
 import java.util.*;
 
 import play.data.*;
-
+import play.Configuration;
 /**
  * This controller contains an action to handle HTTP requests
  * to the application's home page.
@@ -22,7 +22,7 @@ public class RegisterGuiderController extends Controller {
      * this method will be called when the application receives a
      * <code>GET</code> request with a path of <code>/</code>.
      */
-    static String homepage = Application.homepage;
+    static String homepage = Configuration.root().getString("webserverhost");
 
     /*
     @Inject
