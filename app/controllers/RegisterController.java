@@ -16,8 +16,7 @@ public class RegisterController extends Controller {
 	
 	//	static String homepage = Application.homepage;
 	static String homepage = Configuration.root().getString("webserverhost");
-	
-	private AUser alluser  = new AUser();
+
 	/*
     public static Result index() {
 	return redirect(routes.Application.tasks());

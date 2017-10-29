@@ -53,3 +53,8 @@ POST        /setLocation                       controllers.SearchController.setL
 #file upload route
 POST        /file/uploadImage/*imgLable        controllers.FileController.onUploadImage(imgLable:String)
 POST        /file/thumbImg/                    controllers.FileController.onUploadThumbImage()
+
+GET         /site/demand                       controllers.OrderController.demandPage()
+POST        /intent/addOlister                 controllers.OrderController.onDemand()
+GET         /site/group                        controllers.OrderController.groupDemand()
+POST        /intent/addFirm                    controllers.OrderController.onGroupDemand()
