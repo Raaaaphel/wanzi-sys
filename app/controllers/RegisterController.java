@@ -71,7 +71,7 @@ public class RegisterController extends Controller {
 				session("username", u.name);
 				session("userId",u.id);
 				session("userType",u.type);
-				return ok(views.html.index.render());
+				return redirect("/index");
 			}
 		else{
 			String alert = "请输入正确的用户名和密码";

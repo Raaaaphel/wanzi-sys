@@ -1,7 +1,5 @@
 @import helper._
 @(guider:AUser)
-@import java.lang.String; val chatserviceport="http://test.zouzouyouyou.info:9000/";
-
 @headerfooter{
             <!-- 主题 -->
             <link rel="stylesheet" href="/app/statics/css/detail.css">
@@ -13,7 +11,7 @@
                 display: block!important;
             }
         </style>
-			<!-- 主题部分 -->
+        <!-- 主题部分 -->
 <div class="container">
     <div class="content">
         <div class="container guide-section">
@@ -40,8 +38,7 @@
                 </div>
                 <p class="text-center guide-detail"><span><i></i>向导详细资料</span></p>
                 <div class="text-center order-btn">
-                  <p class="text-color5 main-bg font-size2"><a style="color: white" 
-					  href="@{chatserviceport}room?conversationId=@session().get("userId")@guider.id&userId=@session().get("userId")&anotherId=@guider.id" >咨询预订</a></p>
+                    <p class="text-color5 main-bg font-size2"><a style="color: white" href="localhost:9001/room?conversationId=@session().get("userId")@guider.id&userId=@session().get("userId")&anotherId=@guider.id" >咨询预订</a></p>
                 </div>
                 @if(!guider.img_validate.equals("")) {
                 <p class="text-center guide-yan">
