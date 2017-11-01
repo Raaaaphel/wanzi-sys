@@ -291,6 +291,7 @@
         function submitForm() {
             setCityAndCountry();
             $("#main-form").submit();
+            location.href="/site/applysPic"
         }
             $(document).ready(function () {
                 auto('.applys_year', 0.5);
@@ -692,7 +693,7 @@
                         success: function (data) {
                             if (data.code == 1000) {
                                 alert('您的个人信息已保存，请继续下一步');
-                                areaInfo.href = '/site/applysPic';
+                                Location.href = '/site/applysPic';
                             }
                         }
                     })

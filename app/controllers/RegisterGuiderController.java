@@ -88,8 +88,6 @@ public class RegisterGuiderController extends Controller {
 
     /**
      * 保存导游照片信息
-     *
-     * @return
      */
     public static Result onApplyPic() {
         Map<String, String[]> formData = request().body().asFormUrlEncoded();
@@ -101,10 +99,10 @@ public class RegisterGuiderController extends Controller {
         if (u == null) {
             return RegisterController.onLogout("请先登录!");
         }
-        u.img_theme = "/upload/images/" + face;
-        u.img_profile = "/upload/images/" + avatar;
-        u.img_passport = "/upload/images/" + identity;
-        u.img_degree = "/upload/images/" + degree;
+        u.img_theme = face;
+        u.img_profile = avatar;
+        u.img_passport = identity;
+        u.img_degree = degree;
         AUser.update(u);
 
         Map<String, Object> data = new HashMap<>();
@@ -121,8 +119,6 @@ public class RegisterGuiderController extends Controller {
 
     /**
      * 保存导游简介信 息
-     *
-     * @return
      */
     public static Result onApplyService() {
         Map<String, String[]> formData = request().body().asFormUrlEncoded();
@@ -139,9 +135,12 @@ public class RegisterGuiderController extends Controller {
         desc.append("<p style=\"font-size:14px;color:#666\">");
         desc.append(about_text);
         desc.append("</p>");
+        List<String> aboutImgs = new ArrayList<>();
         for (int i = 0; i < aboutSize; i++) {
-            desc.append("<p><img src=\"/upload/images/");
-            desc.append(formData.get("as_about_mix[" + i + "][img]")[0]);
+            String imgPath = formData.get("as_about_mix[" + i + "][img]")[0];
+            aboutImgs.add(imgPath);
+            desc.append("<p><img src=\"/public/upload/images/");
+            desc.append(imgPath);
             desc.append("\"  class=\"img-responsive img-thumbnail\"></p>");
             desc.append("<p style=\"font-size:14px;color:#666\">");
             desc.append(formData.get("as_about_mix[" + i + "][content]")[0]);
@@ -151,9 +150,12 @@ public class RegisterGuiderController extends Controller {
         desc.append("<p style=\"font-size:14px;color:#666\">");
         desc.append(about_text);
         desc.append("</p>");
+        List<String> introduceImgs = new ArrayList<>();
         for (int i = 0; i < introduceSize; i++) {
-            desc.append("<p><img src=\"/upload/images/");
-            desc.append(formData.get("as_introduce_mix[" + i + "][img]")[0]);
+            String imgPath = formData.get("as_introduce_mix[" + i + "][img]")[0];
+            introduceImgs.add(imgPath);
+            desc.append("<p><img src=\"/public/upload/images/");
+            desc.append(imgPath);
             desc.append("\" class=\"img-responsive img-thumbnail\"></p>");
             desc.append("<p style=\"font-size:14px;color:#666\">");
             desc.append(formData.get("as_introduce_mix[" + i + "][content]")[0]);
@@ -163,6 +165,8 @@ public class RegisterGuiderController extends Controller {
 
         u.traveldisc = desc.toString();
         u.traveltitle = titel;
+        u.imgs_introduce = introduceImgs;
+        u.imgs_about = aboutImgs;
         AUser.update(u);
 
         return ok("{\"code\":1000}");

@@ -1,5 +1,6 @@
 @import helper._
 @(guider:AUser)
+@import java.lang.String;val imgUri="/public/upload/images/";
 @headerfooter{
             <!-- 主题 -->
             <link rel="stylesheet" href="/app/statics/css/detail.css">
@@ -16,7 +17,7 @@
     <div class="content">
         <div class="container guide-section">
             <div class="col-sm-3 guide-l hidden-xs" style="position: fixed; z-index: 1029;">
-                <p class="text-center"><img src="@guider.img_profile" alt="" class="guide-img"></p>
+                <p class="text-center"><img src="@(imgUri)@guider.img_profile" alt="" class="guide-img"></p>
                 <p class="text-center font-size2 guide-name">@(guider.name)</p>
                 <p class="text-center">
                     <i class="start3"></i>
@@ -43,7 +44,7 @@
                 @if(!guider.img_validate.equals("")) {
                 <p class="text-center guide-yan">
 
-                            <img src="@guider.img_validate@@170w_226h_1e_1c_1sh" alt="" class="img-responsive">
+                            <img src="@imgUri@guider.img_validate@@170w_226h_1e_1c_1sh" alt="" class="img-responsive">
                         <span class="text-color5"></span>
                 </p>
                 }
@@ -78,7 +79,7 @@
                         <!--您的浏览器版本过低，我们建议使用最新版本的Chrome、Firefox或IE9+以上的浏览器。-->
                         <!--</video>-->
                         <!--<span></span>-->
-                        <img src="@guider.img_theme" alt="">
+                        <img src="@imgUri@guider.img_theme" alt="">
                     </div>
                     <!-- 向导视频 -->
                     <div class="row">
