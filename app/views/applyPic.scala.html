@@ -1,515 +1,507 @@
-@(u:AUser)
-@headerfooter{
+@(u: AUser)
+    @headerfooter {
 
-    <div class="container">
-        <div class="content">
-                <!-- 主题 -->
-            <style>
-                    .img-data{
-                        /*max-width: 692px;*/
-                        height: 280px;
-                    }
-            </style>
-            <link rel="stylesheet" type="text/css" href="/app/statics/css/applys/style.css">
-            <div class="applys clearfix">
-                <div class="l">
-                    <ul class="fix_left">
-                        <!--<li><a href="/site/applysStep" class="font5 applys_back">返回</a></li>-->
-                        <li><a href="/registerguider" class="font5">个人信息<span></span></a></li>
-                        <li><a href="/site/applysPic" class="font5 action">个人照片<span></span></a></li>
-                        <li><a href="/site/applysService" class="font5">自我介绍<span></span></a></li>
-                    </ul>
-                </div>
-                <div class="r">
-                    <form action="" method="post" id="main-form">
-                        <div class="pho_box">
-                            <div class="cover_top">
-                                <h4>* 封面照</h4>
-                                <div class="cover_img">
-                                    <img src="/app/statics/images/applys/apply_feng.jpg" alt="">
-                                    <div>
-                                        <p><span></span>封面照是抓取旅行者眼球的关键，精选一张自己清晰、</p>
-                                        <p class="retract_p">个性的照片作为封面吧！</p>
-                                        <p><span></span>横版构图，外景拍摄，人物不要太小，不要戴墨镜，背</p>
-                                        <p class="retract_p">景突出当地特色。</p>
-                                        <p><span></span>图片宽度至少为800*500像素。</p>
-                                        <p><span></span>支持JPG,PNG,GIF格式图片</p>
-                                        <p><span></span>图片大小不超过2M。</p>
-                                        <p class="exam_p"><i></i>示例如左图</p>
+        <div class="container">
+            <div class="content">
+                    <!-- 主题 -->
+                <style>
+                        .img-data {
+                            /*max-width: 692px;*/
+                            height: 280px;
+                        }
+                </style>
+                <link rel="stylesheet" type="text/css" href="/app/statics/css/applys/style.css">
+                <div class="applys clearfix">
+                    <div class="l">
+                        <ul class="fix_left">
+                                <!--<li><a href="/site/applysStep" class="font5 applys_back">返回</a></li>-->
+                            <li><a href="/registerguider" class="font5">个人信息<span></span></a></li>
+                            <li><a href="/site/applysPic" class="font5 action">个人照片<span></span></a></li>
+                            <li><a href="/site/applysService" class="font5">自我介绍<span></span></a></li>
+                        </ul>
+                    </div>
+                    <div class="r">
+                        <form action="" method="post" id="main-form">
+                            <div class="pho_box">
+                                <div class="cover_top">
+                                    <h4>* 封面照</h4>
+                                    <div class="cover_img">
+                                        <img src="/app/statics/images/applys/apply_feng.jpg" alt="">
+                                        <div>
+                                            <p><span></span>封面照是抓取旅行者眼球的关键，精选一张自己清晰、</p>
+                                            <p class="retract_p">个性的照片作为封面吧！</p>
+                                            <p><span></span>横版构图，外景拍摄，人物不要太小，不要戴墨镜，背</p>
+                                            <p class="retract_p">景突出当地特色。</p>
+                                            <p><span></span>图片宽度至少为800*500像素。</p>
+                                            <p><span></span>支持JPG,PNG,GIF格式图片</p>
+                                            <p><span></span>图片大小不超过2M。</p>
+                                            <p class="exam_p"><i></i>示例如左图</p>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="cover-bottom">
-                                <div class="cover_up">
-                                    <div class="up_poto applys_delt">
-                                        <div class="up_img up_img1 up_cut" data-width="640" data-height="400">
-                                            <i class="btn-text">点击上传图片</i>
-                                            <input data-name="theme" data-width="800" data-title="封面照" data-height="500" type="file" class="upload-img" name="file_name" id="au_face">
+                                <div class="cover-bottom">
+                                    <div class="cover_up">
+                                        <div class="up_poto applys_delt">
+                                            <div class="up_img up_img1 up_cut" data-width="640" data-height="400">
+                                                <i class="btn-text">点击上传图片</i>
+                                                <input data-name="theme" data-width="800" data-title="封面照" data-height="500" type="file" class="upload-img" name="file_name" id="au_face">
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="pho_box">
-                            <div class="cover_top">
-                                <h4>* 头像</h4>
-                                <div class="cover_img">
-                                    <img src="/app/statics/images/applys/apply_head.jpg" alt="" style="margin-left:54px;">
-                                    <div>
-                                        <p><span></span>清晰地头像可以帮助旅行者了解您。</p>
-                                        <p><span></span>请选择面容清晰的正面照，不能戴墨镜，以裁剪到上半</p>
-                                        <p class="retract_p">身脖子下方到胸部为宜。</p>
-                                        <p><span></span>图片宽度至少为400*400像素。</p>
-                                        <p><span></span>支持JPG,PNG,GIF格式图片</p>
-                                        <p><span></span>图片大小不超过2M。</p>
-                                        <p class="exam_p text-order2"><i></i>示例如左图</p>
+                            <div class="pho_box">
+                                <div class="cover_top">
+                                    <h4>* 头像</h4>
+                                    <div class="cover_img">
+                                        <img src="/app/statics/images/applys/apply_head.jpg" alt="" style="margin-left: 54px;">
+                                        <div>
+                                            <p><span></span>清晰地头像可以帮助旅行者了解您。</p>
+                                            <p><span></span>请选择面容清晰的正面照，不能戴墨镜，以裁剪到上半</p>
+                                            <p class="retract_p">身脖子下方到胸部为宜。</p>
+                                            <p><span></span>图片宽度至少为400*400像素。</p>
+                                            <p><span></span>支持JPG,PNG,GIF格式图片</p>
+                                            <p><span></span>图片大小不超过2M。</p>
+                                            <p class="exam_p text-order2"><i></i>示例如左图</p>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="cover-bottom">
-                                <div class="cover_up">
-                                    <div class="up_poto upload_poto">
-                                        <div class="up_img up_img1 up_cut">
-                                            <i class="btn-text">点击上传照片</i>
-                                            <input data-name="avatar" data-height="400" data-title="头像" data-width="400" type="file" class="upload-img" name="file_name" id="au_avatar">
+                                <div class="cover-bottom">
+                                    <div class="cover_up">
+                                        <div class="up_poto upload_poto">
+                                            <div class="up_img up_img1 up_cut">
+                                                <i class="btn-text">点击上传照片</i>
+                                                <input data-name="avatar" data-height="400" data-title="头像" data-width="400" type="file" class="upload-img" name="file_name" id="au_avatar">
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="pho_box">
-                            <div class="cover_top">
-                                <h4>证件照</h4>
-                                <div class="cover_img">
-                                    <img src="/app/statics/images/applys/applay_zheng.png" alt="" style="margin-left:25px;">
-                                    <div style="width:260px;">
-                                        <p class="text-order2"><span></span>上传本人身份证或护照的照片。</p>
-                                        <p><span></span>证件上的姓名和证件号需清晰可见。</p>
-                                        <p><span></span>照片需免冠，且不得做任何修改。</p>
-                                        <p><span></span>支持JPG,PNG,GIF格式图片</p>
-                                        <p><span></span>图片大小不超过2M。</p>
-                                        <p class="exam_p text-order2"><i></i>示例如左图</p>
+                            <div class="pho_box">
+                                <div class="cover_top">
+                                    <h4>证件照</h4>
+                                    <div class="cover_img">
+                                        <img src="/app/statics/images/applys/applay_zheng.png" alt="" style="margin-left: 25px;">
+                                        <div style="width: 260px;">
+                                            <p class="text-order2"><span></span>上传本人身份证或护照的照片。</p>
+                                            <p><span></span>证件上的姓名和证件号需清晰可见。</p>
+                                            <p><span></span>照片需免冠，且不得做任何修改。</p>
+                                            <p><span></span>支持JPG,PNG,GIF格式图片</p>
+                                            <p><span></span>图片大小不超过2M。</p>
+                                            <p class="exam_p text-order2"><i></i>示例如左图</p>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="cover-bottom">
-                                <div class="cover_up">
-                                    <div class="up_poto upload_poto">
-                                        <div class="up_img up_img1">
-                                            <i class="btn-text">点击上传图片</i>
-                                            <input data-name="identity" type="file" class="upload-normal" name="file_name" id="au_identity">
+                                <div class="cover-bottom">
+                                    <div class="cover_up">
+                                        <div class="up_poto upload_poto">
+                                            <div class="up_img up_img1">
+                                                <i class="btn-text">点击上传图片</i>
+                                                <input data-name="identity" type="file" class="upload-normal" name="file_name" id="au_identity">
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="pho_box" style="margin:0;">
-                            <div class="cover_top">
-                                <h4>学历证件照</h4>
-                                <div class="cover_img">
-                                    <img src="/app/statics/images/applys/apply_edu.jpg" alt="" style="margin-left:54px;">
-                                    <div style="width:290px;">
-                                        <p style="margin:50px 0 5px;"><span></span>请上传您的学历证书</p>
-                                        <p><span></span>支持JPG,PNG,GIF格式图片</p>
-                                        <p><span></span>图片大小不超过2M。</p>
-                                        <p class="exam_p" style="width:133px;"><i></i>示例如左图</p>
+                            <div class="pho_box" style="margin: 0;">
+                                <div class="cover_top">
+                                    <h4>学历证件照</h4>
+                                    <div class="cover_img">
+                                        <img src="/app/statics/images/applys/apply_edu.jpg" alt="" style="margin-left: 54px;">
+                                        <div style="width: 290px;">
+                                            <p style="margin: 50px 0 5px;"><span></span>请上传您的学历证书</p>
+                                            <p><span></span>支持JPG,PNG,GIF格式图片</p>
+                                            <p><span></span>图片大小不超过2M。</p>
+                                            <p class="exam_p" style="width: 133px;"><i></i>示例如左图</p>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="cover-bottom">
-                                <div class="cover_up">
-                                    <div class="up_poto upload_poto">
-                                        <div class="up_img up_img1">
-                                            <i class="btn-text">点击上传图片</i>
-                                            <input data-name="degree" type="file" class="upload-normal" name="file_name" id="au_degree">
+                                <div class="cover-bottom">
+                                    <div class="cover_up">
+                                        <div class="up_poto upload_poto">
+                                            <div class="up_img up_img1">
+                                                <i class="btn-text">点击上传图片</i>
+                                                <input data-name="degree" type="file" class="upload-normal" name="file_name" id="au_degree">
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="pho_box" style="margin:20px 0 0;display:none;">
-                            <div class="cover_top">
-                                <h4>验证照</h4>
-                                <div class="cover_img">
-                                    <img src="/app/statics/images/applys/applay_yan.png" alt="" style="margin-left:54px;">
-                                    <div style="width:364px;">
-                                        <p><span></span>验证照是我们对您在当地的确认，上传验证照有助于建立</p>
-                                        <p class="retract_p">信任。</p>
-                                            <!--				    		<p><span></span>手持“名字@@走走旅游”的牌子拍摄，选择能体现当地特色</p>
-                                        <p class="retract_p">的风景或标志为背景。</p> -->
-                                        <p><span></span>图片宽度至少为600*800像素。</p>
-                                        <p><span></span>图片大小不超过2M。</p>
-                                        <p class="exam_p"><i></i>示例如左图</p>
+                            <div class="pho_box" style="margin: 20px 0 0;
+                                display: none;">
+                                <div class="cover_top">
+                                    <h4>验证照</h4>
+                                    <div class="cover_img">
+                                        <img src="/app/statics/images/applys/applay_yan.png" alt="" style="margin-left: 54px;">
+                                        <div style="width: 364px;">
+                                            <p><span></span>验证照是我们对您在当地的确认，上传验证照有助于建立</p>
+                                            <p class="retract_p">信任。</p>
+                                                <!--				    		<p><span></span>手持“名字@@走走旅游”的牌子拍摄，选择能体现当地特色</p>
+                                            <p class="retract_p">的风景或标志为背景。</p> -->
+                                            <p><span></span>图片宽度至少为600*800像素。</p>
+                                            <p><span></span>图片大小不超过2M。</p>
+                                            <p class="exam_p"><i></i>示例如左图</p>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="cover-bottom">
-                                <div class="cover_up">
-                                    <div class="up_poto upload_poto">
-                                        <div class="up_img up_img1">
-                                            <i class="btn-text">点击上传图片</i>
-                                            <input data-name="validate" type="file" class="upload-normal" name="file_name" id="au_validate">
+                                <div class="cover-bottom">
+                                    <div class="cover_up">
+                                        <div class="up_poto upload_poto">
+                                            <div class="up_img up_img1">
+                                                <i class="btn-text">点击上传图片</i>
+                                                <input data-name="validate" type="file" class="upload-normal" name="file_name" id="au_validate">
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="pre_net clearfix">
-                            <a href="/registerguider" class="pre_btn">上一步</a>
-                            <input type="submit" class="pre_btn" value="下一步">
-                        </div>
-                    </form>
-                </div>
-                <a href="javascript:;" class="decorate_btn"></a>
-                    <!-- 弹出层 -->
-                <div class="modal fade" id="applys-step">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-body">
-                                <h3>成为向导，分享您的城市！</h3>
-                                <p><img src="/app/statics/images/applys/applys_step.png" alt=""></p>
+                            <div class="pre_net clearfix">
+                                <a href="/registerguider" class="pre_btn">上一步</a>
+                                <input type="submit" class="pre_btn" value="下一步">
                             </div>
+                        </form>
+                    </div>
+                    <a href="javascript:;" class="decorate_btn"></a>
+                        <!-- 弹出层 -->
+                    <div class="modal fade" id="applys-step">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-body">
+                                    <h3>成为向导，分享您的城市！</h3>
+                                    <p><img src="/app/statics/images/applys/applys_step.png" alt=""></p>
+                                </div>
+                            </div>
+                            <span class="close_de"></span>
                         </div>
-                        <span class="close_de"></span>
                     </div>
                 </div>
-            </div>
-                <!-- 裁剪弹出层 -->
-            <div class="gray"></div>
-            <div class="jc-demo-box">
-                <h4 class="text-center">上传<span class="title-str">封面图</span></h4>
-                <br>
-                <p style="color: #f00;">* 请在左侧图片上选择裁剪图片的范围来预览</p>
-                <span class="jc-delt"></span>
-                <img src="" id="target" />
-                <div id="preview-pane">
-                    <p class="text-center"><span class="title-str">封面图</span>预览</p>
-                    <div class="preview-container">
-                        <img src="" class="jcrop-preview" />
-                        <input type="hidden" id="save-img">
-                        <input type="hidden" id="btn-id">
+                    <!-- 裁剪弹出层 -->
+                <div class="gray"></div>
+                <div class="jc-demo-box">
+                    <h4 class="text-center">上传<span class="title-str">封面图</span></h4>
+                    <br>
+                    <p style="color: #f00;">* 请在左侧图片上选择裁剪图片的范围来预览</p>
+                    <span class="jc-delt"></span>
+                    <img src="" id="target" />
+                    <div id="preview-pane">
+                        <p class="text-center"><span class="title-str">封面图</span>预览</p>
+                        <div class="preview-container">
+                            <img src="" class="jcrop-preview" />
+                            <input type="hidden" id="save-img">
+                            <input type="hidden" id="btn-id">
+                        </div>
+                        <button class="cut_btn">裁剪</button>
                     </div>
-                    <button class="cut_btn">裁剪</button>
                 </div>
-            </div>
-            <script src="/app/statics/js/applys/ajaxfileupload.js"></script>
-            <script src="/app/statics/js/applys/fixed.js"></script>
-            <script src="/app/statics/js/applys/jquery.Jcrop.min.js"></script>
-            <script>
-                    $(document).ready(function() {
+                <script src="/app/statics/js/applys/ajaxfileupload.js"></script>
+                <script src="/app/statics/js/applys/fixed.js"></script>
+                <script src="/app/statics/js/applys/jquery.Jcrop.min.js"></script>
+                <script>
+                        $(document).ready(function () {
 
-                        var face 		=  '';
-                        var avatar 		=  '';
-                        var identity 	=  '';
-                        var degree 		=  '';
+                            var face = '';
+                            var avatar = '';
+                            var identity = '';
+                            var degree = '';
 
-                        if(face != '')
-                        {
-                            upImgs('au_face', face);
-                        }
+                            if (face != '') {
+                                upImgs('au_face', face);
+                            }
 
-                        if(avatar != '')
-                        {
-                            upImgs('au_avatar', avatar);
-                        }
+                            if (avatar != '') {
+                                upImgs('au_avatar', avatar);
+                            }
 
-                        if(identity != '')
-                        {
-                            upImgs('au_identity', identity);
-                        }
+                            if (identity != '') {
+                                upImgs('au_identity', identity);
+                            }
 
-                        if(degree != '')
-                        {
-                            upImgs('au_degree', degree);
-                        }
+                            if (degree != '') {
+                                upImgs('au_degree', degree);
+                            }
 
-                        var wingao = $(window).height();	//窗口高度
-                        var _width = 0;						//裁剪图片宽度
-                        var _height = 0;					//裁剪图片高度
+                            var wingao = $(window).height();	//窗口高度
+                            var _width = 0;						//裁剪图片宽度
+                            var _height = 0;					//裁剪图片高度
 
-                        var jcrop_api,						//裁剪参数
-                                boundx,
-                                boundy,
-                                $preview,
-                                $pcnt,
-                                $pimg,
-                                xsize,
-                                ysize;
+                            var jcrop_api,						//裁剪参数
+                                    boundx,
+                                    boundy,
+                                    $preview,
+                                    $pcnt,
+                                    $pimg,
+                                    xsize,
+                                    ysize;
 
-                        //上传非裁剪图片
-                        $('.upload-normal').live('change',function(){
-                            var _this_id = $(this).attr('id');
-                            $.ajaxFileUpload({
-                                url: '/file/uploadImage/'+$(this).attr('data-name'),
-                                fileElementId: _this_id,
-                                dataType: 'json',
-                                success: function (data, status)
-                                {
-                                    var path = data.name;
-                                    if(path != '')
-                                    {
-                                        upImgs(_this_id,path)
+                            //上传非裁剪图片
+                            $('.upload-normal').live('change', function () {
+                                var _this_id = $(this).attr('id');
+                                $.ajaxFileUpload({
+                                    url: '/file/uploadImage/' + $(this).attr('data-name'),
+                                    fileElementId: _this_id,
+                                    dataType: 'json',
+                                    success: function (data, status) {
+                                        var path = data.name;
+                                        if (path != '') {
+                                            upImgs(_this_id, path)
+                                        }
+                                        else {
+                                            alert(data.error);
+                                        }
                                     }
-                                    else
-                                    {
-                                        alert(data.error);
-                                    }
-                                }
+                                })
+
                             })
 
-                        })
-
-                        //未通过飘红效果
-                        var _unpass = "";
-                        if(_unpass != '')
-                        {
-                            _unpass = _unpass.split(',');
-                            for(var i in _unpass)
-                            {
-                                $('#' + _unpass[i]).closest('.pho_box').find('h4').addClass('applys_error');
+                            //未通过飘红效果
+                            var _unpass = "";
+                            if (_unpass != '') {
+                                _unpass = _unpass.split(',');
+                                for (var i in _unpass) {
+                                    $('#' + _unpass[i]).closest('.pho_box').find('h4').addClass('applys_error');
+                                }
                             }
-                        }
-                        var _em = $('<em class="pic_error">');
-                        _em.html("(该条目审核未通过)");
-                        $('.applys_error').append(_em);
+                            var _em = $('<em class="pic_error">');
+                            _em.html("(该条目审核未通过)");
+                            $('.applys_error').append(_em);
 
-                        //上传裁剪图片
-                        $('.upload-img').live('change',function(){
-                            //获取需要的宽高
-                            _width = $(this).data('width')
-                            _height = $(this).data('height');
-                            var _title_str = $(this).data('title');
+                            //上传裁剪图片
+                            $('.upload-img').live('change', function () {
+                                //获取需要的宽高
+                                _width = $(this).data('width')
+                                _height = $(this).data('height');
+                                var _title_str = $(this).data('title');
 
-                            $('#save-img').val('');
+                                $('#save-img').val('');
 
-                            var _this_id = $(this).attr('id');
-                            $.ajaxFileUpload({
-                                url: '/file/uploadImage/'+$(this).attr('data-name'),
-                                fileElementId: _this_id,
-                                dataType: 'json',
-                                success: function (data, status)
-                                {
-                                    $('#btn-id').val(_this_id);
-                                    var path = data.name;
-                                    $('#save-img').val(path);
-                                    if(path != '')
-                                    {
-                                        $('#target').attr('src', '/public/upload/images/' + path);
-                                        $('.jcrop-preview').attr('src', '/public/upload/images/' + path);
+                                var _this_id = $(this).attr('id');
+                                $.ajaxFileUpload({
+                                    url: '/file/uploadImage/' + $(this).attr('data-name'),
+                                    fileElementId: _this_id,
+                                    dataType: 'json',
+                                    success: function (data, status) {
+                                        $('#btn-id').val(_this_id);
+                                        var path = data.name;
+                                        $('#save-img').val(path);
+                                        if (path != '') {
+                                            $('#target').attr('src', '/public/upload/images/' + path);
+                                            $('.jcrop-preview').attr('src', '/public/upload/images/' + path);
 
-                                        //jcrop裁剪图片功能
+                                            //jcrop裁剪图片功能
 //						$(".gray").height(gao).fadeTo(0,0.4);
-                                        $('#preview-pane .preview-container').css({"width":250,"height":parseInt(250*_height/_width),"overflow":"hidden"})
+                                            $('#preview-pane .preview-container').css({
+                                                "width": 250,
+                                                "height": parseInt(250 * _height / _width),
+                                                "overflow": "hidden"
+                                            })
 
-                                        $preview = $('#preview-pane'),
-                                                $pcnt = $('#preview-pane .preview-container'),
-                                                $pimg = $('#preview-pane .preview-container img'),
-                                                xsize = $pcnt.width(),
-                                                ysize = $pcnt.height();
+                                            $preview = $('#preview-pane'),
+                                                    $pcnt = $('#preview-pane .preview-container'),
+                                                    $pimg = $('#preview-pane .preview-container img'),
+                                                    xsize = $pcnt.width(),
+                                                    ysize = $pcnt.height();
 
-                                        if(jcrop_api != undefined)
-                                        {
-                                            jcrop_api.destroy();
-                                            $('#target').css({"width": "","height": ""});
+                                            if (jcrop_api != undefined) {
+                                                jcrop_api.destroy();
+                                                $('#target').css({"width": "", "height": ""});
+                                            }
+
+                                            $('#target').Jcrop({
+                                                onChange: updatePreview,
+                                                onSelect: updatePreview,
+                                                boxWidth: 600,
+                                                boxHeight: 300,
+                                                aspectRatio: _width / _height,
+                                                // trackDocument: false
+                                                // boundary: -2
+
+                                            }, function () {
+                                                var bounds = this.getBounds();
+                                                boundx = bounds[0];
+                                                boundy = bounds[1];
+                                                realw = this.getWidgetSize()[0];
+                                                realh = this.getWidgetSize()[1];
+                                                // Store the API in the jcrop_api variable
+                                                jcrop_api = this;
+                                                _comp_height = $('.jcrop-holder').height();
+                                                _comp_height1 = $('#preview-pane').height();
+
+                                                $('.jcrop-keymgr').css("opacity", 0);
+                                                //判断taichuk弹出框的宽高
+                                                var _thumb_box_width = 250;
+                                                _thumb_box_height = _thumb_box_width * _height / _width;
+                                                $('.jc-demo-box').height((100 + realh + 4) > (_thumb_box_height + 54 + 130 + 12) ? (100 + realh + 4) : (_thumb_box_height + 54 + 130 + 12) - 32);
+                                                $('.jc-demo-box').width(realw + 281);
+                                                $preview.appendTo(jcrop_api.ui.holder);
+                                                $('.title-str').text(_title_str);
+                                                $('.gray,.jc-demo-box').delay(3000).show();
+                                            });
+
+                                        }
+                                        else {
+                                            alert(data.error);
                                         }
 
-                                        $('#target').Jcrop({
-                                            onChange: updatePreview,
-                                            onSelect: updatePreview,
-                                            boxWidth: 600,
-                                            boxHeight: 300,
-                                            aspectRatio: _width / _height,
-                                            // trackDocument: false
-                                            // boundary: -2
-
-                                        },function(){
-                                            var bounds = this.getBounds();
-                                            boundx = bounds[0];
-                                            boundy = bounds[1];
-                                            realw= this.getWidgetSize()[0];
-                                            realh= this.getWidgetSize()[1];
-                                            // Store the API in the jcrop_api variable
-                                            jcrop_api = this;
-                                            _comp_height = $('.jcrop-holder').height();
-                                            _comp_height1 = $('#preview-pane').height();
-
-                                            $('.jcrop-keymgr').css("opacity",0);
-                                            //判断taichuk弹出框的宽高
-                                            var _thumb_box_width = 250;
-                                            _thumb_box_height = _thumb_box_width * _height / _width;
-                                            $('.jc-demo-box').height((100 + realh + 4) > (_thumb_box_height + 54 + 130 + 12) ? (100 + realh + 4) : (_thumb_box_height + 54 + 130 + 12) - 32);
-                                            $('.jc-demo-box').width(realw + 281);
-                                            $preview.appendTo(jcrop_api.ui.holder);
-                                            $('.title-str').text(_title_str);
-                                            $('.gray,.jc-demo-box').delay(3000).show();
-                                        });
-
                                     }
-                                    else
-                                    {
-                                        alert(data.error);
-                                    }
+                                });
+                            })
 
-                                }
+                            //裁剪按钮
+                            $('.cut_btn').live('click', function () {
+
+                                var factor = jcrop_api.getScaleFactor();
+                                var _j_select = jcrop_api.tellSelect();
+                                _j_select.x;
+                                _j_select.y;
+                                _j_select.w;
+                                _j_select.h;
+                                $.ajax({
+                                    type: 'POST',
+                                    url: '/file/thumbImg/',
+                                    data: {
+                                        img: $('#save-img').val(),
+                                        x: _j_select.x,
+                                        y: _j_select.y,
+                                        w: _j_select.w,
+                                        h: _j_select.h
+                                    },
+                                    dataType: 'json',
+                                    success: function (data) {
+                                        if (data.code == 1000) {
+                                            var _this_id = $('#btn-id').val();
+                                            var path = data.name;
+                                            upImgs(_this_id, path);
+                                            $('.gray,.jc-demo-box').hide();
+                                        }
+                                        else {
+                                            alert(data.error)
+                                        }
+                                    }
+                                })
+
+                            })
+
+                            //证件照
+                            var idWidth = $('.up_ide').find('img').width();
+                            $('.up_ide').width(idWidth);
+
+                            //删除照片
+                            $('.img-parent span').live('click', function () {
+                                $(this).closest('.img-parent').siblings('.up_img').find('i').html('点击上传图片');
+                                $(this).closest('.img-parent').siblings('.up_img').addClass('up_img1')
+                                $(this).closest('.img-parent').remove();
+                            })
+
+                            //弹出层
+                            $('.decorate_btn').on('click', function () {
+                                $('#applys-step').modal('show');
                             });
-                        })
-
-                        //裁剪按钮
-                        $('.cut_btn').live('click', function(){
-
-                            var factor = jcrop_api.getScaleFactor();
-                            var _j_select = jcrop_api.tellSelect();
-                            _j_select.x;
-                            _j_select.y;
-                            _j_select.w;
-                            _j_select.h;
-                            $.ajax({
-                                type: 'POST',
-                                url: '/file/thumbImg/',
-                                data: {
-                                    img: $('#save-img').val(),
-                                    x : _j_select.x,
-                                    y : _j_select.y,
-                                    w : _j_select.w,
-                                    h : _j_select.h
-                                },
-                                dataType: 'json',
-                                success:function(data)
-                                {
-                                    if(data.code == 1000)
-                                    {
-                                        var _this_id = $('#btn-id').val();
-                                        var path = data.name;
-                                        upImgs(_this_id,path);
-                                        $('.gray,.jc-demo-box').hide();
-                                    }
-                                    else
-                                    {
-                                        alert(data.error)
-                                    }
-                                }
+                            $('.close_de').on('click', function () {
+                                $('#applys-step').modal('hide');
                             })
 
-                        })
+                            //关闭裁剪图片框
+                            $('.jc-delt').on('click', function () {
+                                $('.jc-demo-box,.gray').hide();
+                            })
 
-                        //证件照
-                        var idWidth=$('.up_ide').find('img').width();
-                        $('.up_ide').width(idWidth);
+                            //更新预览图
+                            function updatePreview(c) {
+                                if (parseInt(c.w) > 0) {
+                                    var rx = xsize / c.w;
+                                    var ry = ysize / c.h;
 
-                        //删除照片
-                        $('.img-parent span').live('click',function(){
-                            $(this).closest('.img-parent').siblings('.up_img').find('i').html('点击上传图片');
-                            $(this).closest('.img-parent').siblings('.up_img').addClass('up_img1')
-                            $(this).closest('.img-parent').remove();
-                        })
+                                    $pimg.css({
+                                        width: Math.round(rx * boundx) + 'px',
+                                        height: Math.round(ry * boundy) + 'px',
+                                        marginLeft: '-' + Math.round(rx * c.x) + 'px',
+                                        marginTop: '-' + Math.round(ry * c.y) + 'px'
+                                    });
+                                }
+                            };
 
-                        //弹出层
-                        $('.decorate_btn').on('click',function(){
-                            $('#applys-step').modal('show');
+                            //提交表单
+                            $('#main-form').submit(function () {
+                                var _data = new Object();
+                                $('.img-data').each(function () {
+                                    var _key = $(this).data('id');
+                                    _data[_key] = $(this).data('value');
+                                })
+                                if (_data['au_face'] == undefined) {
+                                    alert('请上传封面照');
+                                    // $('.main-form h4').eq(0).focus();
+                                    return false;
+                                }
+                                if (_data['au_avatar'] == undefined) {
+                                    alert('请上传您的头像');
+                                    // $('.main-form h4').eq(1).focus();
+                                    return false;
+                                }
+                                $.ajax({
+                                    type: 'POST',
+                                    url: '/applys/setApplysUser',
+                                    data: _data,
+                                    dataType: 'json',
+                                    success: function (data) {
+                                        if (data.code == 1000) {
+                                            alert('您的个人照片已保存，请继续下一步');
+                                            window.location.href = '/site/applysService';
+                                        }
+                                    }
+                                })
+                                return false;
+                            })
+
+                            //展示图片操作
+                            function upImgs(_this_id, path) {
+                                //删除旧照片
+                                $('#' + _this_id).closest('.up_poto').find('.img-parent').remove();
+                                var str = '<div class="img-parent"><img class="img-data" data-id="' + _this_id + '" data-value="' + path;
+                                str += '" src="/public/upload/images/' + path + '" ></div>';
+                                var str = '<div class="img-parent"><img class="img-data" data-id="' + _this_id + '" data-value="' + path + '" src="/public/upload/images/' + path + '" ></div>';
+
+                                $('#' + _this_id).closest('.up_poto').prepend(str);
+                                $('#' + _this_id).closest('.up_img').removeClass('up_img1');
+                                $('#' + _this_id).closest('.up_img').find('.btn-text').text('更换图片');
+
+
+                                $('.img-parent img').each(function () {
+                                    var _this = $(this);
+                                    $("<img/>").attr("src", $(this).attr("src")).load(function () {
+                                        var realWidth = this.width;//真实的宽度
+                                        var realHeight = this.height;//真实的高度
+                                        //var oSpan = $('<span>');
+                                        var _realWidth = realWidth / realHeight * 280;
+
+                                        if (_realWidth > 692) {
+                                            _realWidth = 692;
+                                        }
+                                        $(_this).closest('.img-parent').width(_realWidth);
+                                        $(_this).closest('.img-parent img').width(_realWidth);
+                                        //$(_this).closest('.img-parent').append(oSpan);
+                                    });
+                                })
+                            }
+
+                            @if(u.img_theme.length > 0){
+                            upImgs("au_face", "@Html(u.img_theme)");
+                            }
+                            @if(u.img_profile.length > 0){
+                            upImgs("au_avatar", "@Html(u.img_profile)");
+                            }
+                            @if(u.img_passport.length > 0){
+                            upImgs("au_identity", "@Html(u.img_passport)");
+                            }
+                            @if(u.img_degree.length > 0){
+                            upImgs("au_degree", "@Html(u.img_degree)");
+                            }
+                            @if(u.img_validate.length > 0){
+                            upImgs("au_validate", "@Html(u.img_validate)");
+                            }
+
                         });
-                        $('.close_de').on('click',function(){
-                            $('#applys-step').modal('hide');
-                        })
-
-                        //关闭裁剪图片框
-                        $('.jc-delt').on('click',function(){
-                            $('.jc-demo-box,.gray').hide();
-                        })
-
-                        //更新预览图
-                        function updatePreview(c)
-                        {
-                            if (parseInt(c.w) > 0)
-                            {
-                                var rx = xsize / c.w;
-                                var ry = ysize / c.h;
-
-                                $pimg.css({
-                                    width: Math.round(rx * boundx) + 'px',
-                                    height: Math.round(ry * boundy) + 'px',
-                                    marginLeft: '-' + Math.round(rx * c.x) + 'px',
-                                    marginTop: '-' + Math.round(ry * c.y) + 'px'
-                                });
-                            }
-                        };
-
-                        //提交表单
-                        $('#main-form').submit(function(){
-                            var _data = new Object();
-                            $('.img-data').each(function(){
-                                var _key = $(this).data('id');
-                                _data[_key] = $(this).data('value');
-                            })
-                            if(_data['au_face'] == undefined)
-                            {
-                                alert('请上传封面照');
-                                // $('.main-form h4').eq(0).focus();
-                                return false;
-                            }
-                            if(_data['au_avatar'] == undefined)
-                            {
-                                alert('请上传您的头像');
-                                // $('.main-form h4').eq(1).focus();
-                                return false;
-                            }
-                            $.ajax({
-                                type: 'POST',
-                                url: '/applys/setApplysUser',
-                                data: _data,
-                                dataType: 'json',
-                                success:function(data)
-                                {
-                                    if(data.code == 1000)
-                                    {
-                                        alert('您的个人照片已保存，请继续下一步');
-                                        window.location.href = '/site/applysService';
-                                    }
-                                }
-                            })
-                            return false;
-                        })
-
-                        //展示图片操作
-                        function upImgs(_this_id,path)
-                        {
-                            //删除旧照片
-                            $('#' + _this_id).closest('.up_poto').find('.img-parent').remove();
-                            var str = '<div class="img-parent"><img class="img-data" data-id="' + _this_id + '" data-value="' + path;
-                            str += '" src="/public/upload/images/' + path + '" ></div>';
-                            var str='<div class="img-parent"><img class="img-data" data-id="' + _this_id + '" data-value="' + path + '" src="/public/upload/images/' + path + '" ></div>';
-
-                            $('#' + _this_id).closest('.up_poto').prepend(str);
-                            $('#' + _this_id).closest('.up_img').removeClass('up_img1');
-                            $('#' + _this_id).closest('.up_img').find('.btn-text').text('更换图片');
-
-
-                            $('.img-parent img').each(function(){
-                                var _this = $(this);
-                                $("<img/>").attr("src", $(this).attr("src")).load(function() {
-                                    var realWidth = this.width;//真实的宽度
-                                    var realHeight = this.height;//真实的高度
-                                    //var oSpan = $('<span>');
-                                    var _realWidth = realWidth/realHeight*280;
-
-                                    if(_realWidth > 692)
-                                    {
-                                        _realWidth = 692;
-                                    }
-                                    $(_this).closest('.img-parent').width(_realWidth);
-                                    $(_this).closest('.img-parent img').width(_realWidth);
-                                    //$(_this).closest('.img-parent').append(oSpan);
-                                });
-                            })
-                        }
-                        upImgs("au_face","@Html(u.img_theme)");
-                        upImgs("au_avatar","@Html(u.img_profile)");
-                        upImgs("au_identity","@Html(u.img_passport)");
-                        upImgs("au_degree","@Html(u.img_degree)");
-                        upImgs("au_validate","@Html(u.img_validate)");
-
-                    });
-            </script>
-                <!-- 主题 -->
+                </script>
+                    <!-- 主题 -->
+            </div>
         </div>
-    </div>
-}
+    }
