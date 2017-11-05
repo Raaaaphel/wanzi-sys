@@ -281,7 +281,7 @@ function setRegions() {
             for (var i in data) {
                 html += '<option data-id="' + data[i].areaId + '" data-name="' + data[i].areaName + '">' + data[i].areaName + '</option>';
             }
-            $("#region_list").append(html);
+            $("#region_list").empty().append(html);
         }
     });
 }
@@ -302,7 +302,7 @@ function set_country() {
                 html += '<option data-id="' + data[i].areaId + '" data-name="' + data[i].areaName + '">' + data[i].areaName + '</option>';
             }
             if (html.length > 0) {
-                $("#country_list").append(html);
+                $("#country_list").empty().append(html);
                 $("#country_list").css('display','inline');
             }
         }
@@ -325,7 +325,7 @@ function set_city_state() {
                 html += '<option data-id="' + data[i].areaId + '" data-name="' + data[i].areaName + '">' + data[i].areaName + '</option>';
             }
             if (html.length > 0) {
-                $("#city_list").append(html);
+                $("#city_list").empty().append(html);
                 $("#city_list").css('display','inline');
             }
         }
