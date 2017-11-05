@@ -6,7 +6,7 @@ import play.libs.mailer.Email;
 import play.libs.mailer.MailerPlugin;
 
 public class MailService {
-    public void sendGroupDemandMail(GroupOrder order) {
+    public void sendGroupDemandMail(String title, String htmlBody) {
        /* Example
        Email email = new Email();
         email.setSubject("Simple email");
@@ -20,22 +20,11 @@ public class MailService {
         email.setBodyText("A text message");
         email.setBodyHtml("<html><body><p>An <b>html</b> message</p></body></html>");*/
         Email email = new Email();
-        email.setSubject("团游定制_" + order.getFirmName() + "_" + order.getUserName());
+        email.setSubject(title);
         email.setFrom("dannyzjwz@163.com");
         email.addTo("dannyzjwz@163.com");
-        StringBuilder bodyBuilder = new StringBuilder();
-        bodyBuilder.append("<html><body><p>企业名称：");
-        bodyBuilder.append(order.getFirmName());
-        bodyBuilder.append("</p><p>联系人：");
-        bodyBuilder.append(order.getUserName());
-        bodyBuilder.append("</p><p>联系电话：");
-        bodyBuilder.append(order.getPhone());
-        bodyBuilder.append("</p><p>邮箱：");
-        bodyBuilder.append(order.getUserEmail());
-        bodyBuilder.append("</p><p>需求内容：");
-        bodyBuilder.append(order.getContent());
-        bodyBuilder.append("</p></body><html>");
-        email.setBodyHtml(bodyBuilder.toString());
+
+        email.setBodyHtml(htmlBody);
         MailerPlugin.send(email);
     }
 }
