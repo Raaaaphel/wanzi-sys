@@ -332,7 +332,7 @@
                 }
             }
             localStorage.setItem('search', JSON.stringify(list));
-            window.areaInfo.href = '/site/list/id/' + id ;
+            window.location.href = '/site/list/id/' + id ;
         }
         function setSearch() {
             if (JSON.stringify(search) != "{}") {

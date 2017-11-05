@@ -1,0 +1,43 @@
+@(user: AUser)
+@headerfooter {
+    <div class="container">
+        <div class="content">
+            <div class="col-md-2">
+                <div class="col-md-8" style="background: #fff;
+                    margin: 20px 0 20px;
+                    width: 500px">
+                    <div class="applys_name"><span>徒步导游价格／天</span></div>
+                    <input type="text" class="form-control" id="guider_price" style="width: 228px;" placeholder="¥" value="@Html(user.guider_price)">
+                    <div class="applys_name"><span>带车导游价格／天</span></div>
+                    <input type="text" class="form-control" id="guiderdrive_price" style="width: 228px;" placeholder="¥" value="@Html(user.guiderdrive_price)">
+                    <div class="applys_name"><span>接送机价格／次</span></div>
+                    <input type="text" class="form-control" id="guiderpickup_price" style="width: 228px;" placeholder="¥" value="@Html(user.guiderpickup_price)">
+
+                    <button class="ser_btn btn btn-info btn-lg" type="submit" onclick="doSubmit()">下一步</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        function doSubmit() {
+            var data = new Object();
+            data.guider_price = $("#guider_price").val();
+            data.driver_price = $("#guiderdrive_price").val();
+            data.pickup_price = $("#guiderpickup_price").val();
+            $.ajax({
+                url: '/applys/applyPrice',
+                type: 'POST',
+                dataType: 'json',
+                data: data,
+                success: function (result) {
+                    if (result.code == 1000){
+                        alert("设置成功!");
+                        location.href="/";
+                    }
+                }
+            });
+        }
+    </script>
+}

@@ -2,6 +2,7 @@ package models;
 
 
 import java.util.*;
+import java.util.regex.Pattern;
 
 import play.modules.mongodb.jackson.MongoDB;
 import net.vz.mongodb.jackson.JacksonDBCollection;
@@ -68,6 +69,11 @@ public class AUser {
 
     //    private static final long serialVersionUID = 1L;
     private static JacksonDBCollection<AUser, String> coll = MongoDB.getCollection("auser", AUser.class, String.class);
+
+    public static List<AUser> searchGuider(String keyword, Integer limit, Integer page) {
+        return coll.find(DBQuery.regex("city_and_country", Pattern.compile(".*" + keyword + ".*",
+                Pattern.CASE_INSENSITIVE))).limit(limit).skip(limit * (page - 1)).toArray();
+    }
 
     @Id
     @ObjectId

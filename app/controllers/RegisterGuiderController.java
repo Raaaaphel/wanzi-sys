@@ -172,6 +172,31 @@ public class RegisterGuiderController extends Controller {
         return ok("{\"code\":1000}");
     }
 
+    public static Result applyPrice(){
+        AUser u = AUser.getUserById(session("userId"));
+        if (u == null) return RegisterController.onLogout("请登录!");
+        if (!u.type.equals(AUser.GUIDER)) return RegisterController.onLogout("请先注册导游！");
+        return ok(views.html.applyprice.render(u));
+    }
+
+    public static Result onApplyPrice(){
+        Map<String, String[]> formData = request().body().asFormUrlEncoded();
+        AUser u = AUser.getUserById(session().get("userId"));
+        if (u == null) {
+            return RegisterController.onLogout("请先登录!");
+        }
+        String price = formData.get("guider_price")[0];
+        String driver_price = formData.get("driver_price")[0];
+        String pickup_price = formData.get("pickup_price")[0];
+
+        u.guider_price = price;
+        u.guiderdrive_price = driver_price;
+        u.guiderpickup_price = pickup_price;
+        AUser.update(u);
+        String resultJson = "{\"code\":1000}";
+        return ok(resultJson);
+    }
+
 
 }
 

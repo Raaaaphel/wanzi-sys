@@ -159,11 +159,17 @@ public class AreaInfo implements Serializable {
 
     /**
      * 保存地域信息
-     * @param areaList
      */
     public static void saveAreas(List<AreaInfo> areaList){
         for (AreaInfo node : areaList){
-            coll.save(node);
+            AreaInfo existArea = coll.findOne(DBQuery.is("areaId", node.getAreaId()));
+            if (existArea != null){
+                if (existArea.getAreaIndex().length() < node.getAreaIndex().length()) {
+                    coll.updateById(existArea.getId(), node);
+                }
+            } else {
+                coll.save(node);
+            }
         }
     }
 
@@ -181,5 +187,8 @@ public class AreaInfo implements Serializable {
 
     public static List<AreaInfo> findAreaByParentId(String parentId){
        return coll.find(DBQuery.is("areaParent", parentId)).toArray();
+    }
+    public static AreaInfo getAreaById(String areaId){
+        return coll.findOne(DBQuery.is("areaId", areaId));
     }
 }
