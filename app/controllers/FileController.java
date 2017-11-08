@@ -51,10 +51,10 @@ public class FileController extends Controller {
         if (!(w.equals("0") && h.equals("0"))) {
             newName.insert(oldName.lastIndexOf("."), ".cut");
             ImageUtil.cutPic(imgDir + oldName, imgDir + newName.toString(), Double.valueOf(x).intValue(), Double.valueOf(y).intValue(), Double.valueOf(w).intValue(), Double.valueOf(h).intValue());
-            data.put("name", newName.toString());
+            data.put("name", "/public/upload/images/" + newName.toString());
             data.put("code", 1000);
         } else {
-            data.put("name", oldName);
+            data.put("name", "/public/upload/images/" + oldName);
             data.put("code", 1000);
         }
         return ok(Json.toJson(data));
