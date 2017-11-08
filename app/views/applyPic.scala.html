@@ -456,9 +456,9 @@
                             function upImgs(_this_id, path) {
                                 //删除旧照片
                                 $('#' + _this_id).closest('.up_poto').find('.img-parent').remove();
-                                var str = '<div class="img-parent"><img class="img-data" data-id="' + _this_id + '" data-value="' + path;
+                                var str = '<div class="img-parent"><img class="img-data" data-id="' + _this_id + '" data-value="' + path.substring(path.lastIndexOf("/"));
                                 str += '" src="' + path + '" ></div>';
-                                var str = '<div class="img-parent"><img class="img-data" data-id="' + _this_id + '" data-value="' + path + '" src="' + path + '" ></div>';
+                                var str = '<div class="img-parent"><img class="img-data" data-id="' + _this_id + '" data-value="' + path.substring(path.lastIndexOf("/")) + '" src="' + path + '" ></div>';
 
                                 $('#' + _this_id).closest('.up_poto').prepend(str);
                                 $('#' + _this_id).closest('.up_img').removeClass('up_img1');
