@@ -10,6 +10,7 @@ import java.util.*;
 
 import play.data.*;
 import play.Configuration;
+
 /**
  * This controller contains an action to handle HTTP requests
  * to the application's home page.
@@ -99,10 +100,10 @@ public class RegisterGuiderController extends Controller {
         if (u == null) {
             return RegisterController.onLogout("请先登录!");
         }
-        u.img_theme = face;
-        u.img_profile = avatar;
-        u.img_passport = identity;
-        u.img_degree = degree;
+        u.img_theme = "/public/upload/images/" + face;
+        u.img_profile = "/public/upload/images/" + avatar;
+        u.img_passport = "/public/upload/images/" + identity;
+        u.img_degree = "/public/upload/images/" + degree;
         AUser.update(u);
 
         Map<String, Object> data = new HashMap<>();
@@ -137,9 +138,9 @@ public class RegisterGuiderController extends Controller {
         desc.append("</p>");
         List<String> aboutImgs = new ArrayList<>();
         for (int i = 0; i < aboutSize; i++) {
-            String imgPath = formData.get("as_about_mix[" + i + "][img]")[0];
+            String imgPath = "/public/upload/images/" + formData.get("as_about_mix[" + i + "][img]")[0];
             aboutImgs.add(imgPath);
-            desc.append("<p><img src=\"/public/upload/images/");
+            desc.append("<p><img src=\"");
             desc.append(imgPath);
             desc.append("\"  class=\"img-responsive img-thumbnail\"></p>");
             desc.append("<p style=\"font-size:14px;color:#666\">");
@@ -152,9 +153,9 @@ public class RegisterGuiderController extends Controller {
         desc.append("</p>");
         List<String> introduceImgs = new ArrayList<>();
         for (int i = 0; i < introduceSize; i++) {
-            String imgPath = formData.get("as_introduce_mix[" + i + "][img]")[0];
+            String imgPath = "/public/upload/images/" + formData.get("as_introduce_mix[" + i + "][img]")[0];
             introduceImgs.add(imgPath);
-            desc.append("<p><img src=\"/public/upload/images/");
+            desc.append("<p><img src=\"");
             desc.append(imgPath);
             desc.append("\" class=\"img-responsive img-thumbnail\"></p>");
             desc.append("<p style=\"font-size:14px;color:#666\">");
@@ -172,14 +173,14 @@ public class RegisterGuiderController extends Controller {
         return ok("{\"code\":1000}");
     }
 
-    public static Result applyPrice(){
+    public static Result applyPrice() {
         AUser u = AUser.getUserById(session("userId"));
         if (u == null) return RegisterController.onLogout("请登录!");
         if (!u.type.equals(AUser.GUIDER)) return RegisterController.onLogout("请先注册导游！");
         return ok(views.html.applyprice.render(u));
     }
 
-    public static Result onApplyPrice(){
+    public static Result onApplyPrice() {
         Map<String, String[]> formData = request().body().asFormUrlEncoded();
         AUser u = AUser.getUserById(session().get("userId"));
         if (u == null) {
