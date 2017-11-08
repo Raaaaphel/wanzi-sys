@@ -29,7 +29,7 @@ public class FileController extends Controller {
             String oldName = files.get(0).getFilename();
             StringBuilder fileName = new StringBuilder(session("userId"));
             fileName.append("."+imgLable);
-            String newFileName = fileService.saveImage(img, oldName, fileName.toString(), imgDir);
+            String newFileName = "/public/upload/images/" + fileService.saveImage(img, oldName, fileName.toString(), imgDir);
             Map<String, Object> data = new HashMap<>();
             data.put("name", newFileName);
             data.put("code", 1000);
