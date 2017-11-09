@@ -138,7 +138,7 @@ public class RegisterGuiderController extends Controller {
         desc.append("</p>");
         List<String> aboutImgs = new ArrayList<>();
         for (int i = 0; i < aboutSize; i++) {
-            String imgPath = "/public/upload/images/" + formData.get("as_about_mix[" + i + "][img]")[0];
+            String imgPath = formData.get("as_about_mix[" + i + "][img]")[0];
             aboutImgs.add(imgPath);
             desc.append("<p><img src=\"");
             desc.append(imgPath);
@@ -153,7 +153,7 @@ public class RegisterGuiderController extends Controller {
         desc.append("</p>");
         List<String> introduceImgs = new ArrayList<>();
         for (int i = 0; i < introduceSize; i++) {
-            String imgPath = "/public/upload/images/" + formData.get("as_introduce_mix[" + i + "][img]")[0];
+            String imgPath = formData.get("as_introduce_mix[" + i + "][img]")[0];
             introduceImgs.add(imgPath);
             desc.append("<p><img src=\"");
             desc.append(imgPath);
