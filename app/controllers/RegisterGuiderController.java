@@ -180,6 +180,7 @@ public class RegisterGuiderController extends Controller {
         return ok(views.html.applyprice.render(u));
     }
 
+
     public static Result onApplyPrice() {
         Map<String, String[]> formData = request().body().asFormUrlEncoded();
         AUser u = AUser.getUserById(session().get("userId"));
