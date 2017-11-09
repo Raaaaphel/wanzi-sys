@@ -290,8 +290,20 @@
     <script>
         function submitForm() {
             setCityAndCountry();
-            $("#main-form").submit();
-            location.href="/site/applysPic"
+            //$("#main-form").submit();
+            $.ajax({
+                cache: true,
+                type: "POST",
+                url:"/registerguider",
+                data:$('#main-form').serialize(),
+                async: false,
+                error: function(request) {
+                    alert("Connection error");
+                },
+                success: function(data) {
+                    location.href="/site/applysPic";
+                }
+            });
         }
             $(document).ready(function () {
                 auto('.applys_year', 0.5);
