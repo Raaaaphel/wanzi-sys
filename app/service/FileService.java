@@ -8,6 +8,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import play.Logger;
 
 public class FileService {
 
@@ -22,5 +23,15 @@ public class FileService {
             Logger.error("Image upload fail!");
         }
         return newFileName;
+    }
+
+    public static void mkdir(String path){
+        File file = new File(path);
+        if (!file.exists()){
+            Logger.info("Make Dir " + path);
+            if (!file.mkdirs()){
+                Logger.error("Make Dir fail!");
+            }
+        }
     }
 }
