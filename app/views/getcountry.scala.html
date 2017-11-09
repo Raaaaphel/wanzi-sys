@@ -368,7 +368,7 @@
                         if (info) {
                             for (var i in info) {
                                 if (info[i].type == "GUIDER") {
-                                    html += '<div class="col-sm-4 col-xs-12"><a href="/site1/detail/id/' + info[i].id + '"><img style="width: 303px; height: 177px" src="/public/upload/images/' + info[i].img_profile + '" alt="" class="guide-img">\
+                                    html += '<div class="col-sm-4 col-xs-12"><a href="/site1/detail/id/' + info[i].id + '"><img style="width: 303px; height: 177px" src="' + info[i].img_profile + '" alt="" class="guide-img">\
 						 <p class="guide-common"><span class="text-overflow font-size2 common-name">' + info[i].name + '</span>\
 						 <span class="text-right text-overflow main-color"><strong>CNY ' + info[i].guider_price + '</strong>起</span></p>\
 						 <p class="guide-common"><span class="text-overflow">' + info[i].jobtitle + '</span>';
