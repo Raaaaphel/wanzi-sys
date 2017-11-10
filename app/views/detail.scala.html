@@ -154,11 +154,16 @@
                             <div class="swiper-pc">
                                 <div class="swiper-container" id="swiper2">
                                     <div class="swiper-wrapper">
-                                        <ul>
-                                        @for(imgtravel <- (guider.imgs_travel)) {
-                                            <li><img src="imgtravel" alt="" class="brief-img"></li>
+                                        @for(imgtravel <- (guider.imgs_about)) {
+                                            <div class="swiper-slide" >
+                                                <img src="@imgtravel" alt="">
+                                            </div>
                                         }
-                                        </ul>
+                                            @for(imgtravel <- (guider.imgs_introduce)) {
+                                                <div class="swiper-slide" >
+                                                <img src="@imgtravel" alt="">
+                                                </div>
+                                            }
                                             <!--
                                              <div class="swiper-slide" id="55f66953bc3f9" data-name="我的照片">
                                              <img src="https://img.wanzi.cc/images/58b93cf173c76.jpg@@358w_241h_1e_1c_1sh" alt="">
