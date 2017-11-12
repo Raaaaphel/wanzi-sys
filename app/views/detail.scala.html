@@ -39,7 +39,7 @@
                 </div>
                 <p class="text-center guide-detail"><span><i></i>向导详细资料</span></p>
                 <div class="text-center order-btn">
-                    <p class="text-color5 main-bg font-size2"><a style="color: white" href="localhost:9001/room?conversationId=@session().get("userId")@guider.id&userId=@session().get("userId")&anotherId=@guider.id" >咨询预订</a></p>
+                    <p class="text-color5 main-bg font-size2"><a style="color: white" href="@play.Play.application().configuration().getString("chatserviceport")/room?conversationId=@session().get("userId")@guider.id&userId=@session().get("userId")&anotherId=@guider.id" >咨询预订</a></p>
                 </div>
                 @if(!guider.img_validate.equals("")) {
                 <p class="text-center guide-yan">
@@ -152,18 +152,8 @@
                         <div class="left"><p class="font-size2"><i class="line"></i>向导相册</p></div>
                         <div class="right">
                             <div class="swiper-pc">
-                                <div class="swiper-container" id="swiper2">
+                                <div class="swiper-container" id="swiper1">
                                     <div class="swiper-wrapper">
-                                        @for(imgtravel <- (guider.imgs_about)) {
-                                            <div class="swiper-slide" >
-                                                <img src="@imgtravel" alt="">
-                                            </div>
-                                        }
-                                            @for(imgtravel <- (guider.imgs_introduce)) {
-                                                <div class="swiper-slide" >
-                                                <img src="@imgtravel" alt="">
-                                                </div>
-                                            }
                                             <!--
                                              <div class="swiper-slide" id="55f66953bc3f9" data-name="我的照片">
                                              <img src="https://img.wanzi.cc/images/58b93cf173c76.jpg@@358w_241h_1e_1c_1sh" alt="">
@@ -194,7 +184,17 @@
                                      </div>
                                      <div class="swiper-button-prev2 swiper-arrow"></div>
                                      <div class="swiper-button-next2 swiper-arrow"></div>
-                                 </div>
+                                </div>
+
+								<div class="swiper-container" id="swiper2">
+								  <div class="swiper-wrapper">
+									@for(img_intro <- (guider.imgs_introduce)) {
+									<div class="swiper-slide swiper-slide-active"  data-name="我的照片" style="width: 173px; margin-right: 4px;">
+									  <img src="@img_intro" alt="" class="brief-img">
+									</div>
+									}
+								  </div>
+								</div>
                              </div>
                          </div>
                      </div>

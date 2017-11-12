@@ -1,4 +1,8 @@
+@(front_guiders:List[AUser]=null)
 @import helper._
+@import java.lang.String; val chatserviceport="http://test.zouzouyouyou.info:9000"; val testid="999999999999999999999999"; val botid="ffffffffffffffffffffffff";
+
+
 @headerfooter{
 		        <!-- 主题 -->
 		     <link rel="stylesheet" href="app/statics/css/index.css">
@@ -35,6 +39,7 @@
                         </div>
                     </div>
                 </div>
+
                             <div class="swiper-slide banner-slide" style="background-image:url(app/statics/images/shangda2.datu.jpg)" rel="site/detail/id/5765d805dea19.html">
                     <div class="banner-bottom">
                         <div class="container">
@@ -50,7 +55,7 @@
                         </div>
                     </div>
                 </div>
-                    </div>
+        </div>
         <div class="container circle-container">
             <div class="row">
                 <div class="col-xs-8"></div>
@@ -84,7 +89,8 @@
         <div id="swiper2" class="swiper-container" style="overflow:visible;">
             <h2 class="text-center common-h2 font-size4">备受好评的向导</h2>
             <div class="swiper-wrapper computer-swiper">
-                <div class="swiper-slide">
+@*
+              <div class="swiper-slide">
     <a href="site/detail/id/541bb10e0a331.html" target="_blank">
         <div class="comment-section">
             <img src="app/statics/images/ching1.jpg" alt="" class="img-responsive">
@@ -140,7 +146,9 @@
                                     <span class="guide-tag">带车接送机</span>
                                 </p>
     </a>
-    </div>
+				</div>
+
+
                 <div class="swiper-slide">
     <a href="site/detail/id/574d010ec99de.html" target="_blank">
         <div class="comment-section">
@@ -157,8 +165,6 @@
                                             <i class="start3"></i>
                                             <i class="start3"></i>
                                             <i class="start3"></i>
-                                            <i class="start3"></i>
-                                            <i class="start3"></i>
                                             <span>6</span>
             </span>
         </p>
@@ -169,7 +175,71 @@
                                     <span class="guide-tag">带车接送机</span>
                                 </p>
     </a>
-    </div>
+				</div>
+*@
+@*				
+							  <div class="swiper-slide">
+								<a href="@chatserviceport/room?conversationId=@testid@botid&userId=@testid&anotherId=@botid" target="_blank">
+								  <div class="comment-section">
+									<img src="/assets/upload/images/ffffffffffffffffffffffff.theme.jpg" alt="" class="img-responsive">
+									<p class="text-color5 text-overflow">旅行百事通</p>
+								  </div>
+								  <p>
+									<span class="text-overflow font-size2 common-name">ZZ </span>
+									<span class="text-right text-overflow main-color"><strong class="font-size2">68.00</strong>起</span>
+								  </p>
+								  <p>
+									<span class="text-overflow">智能向导</span>
+									<span class="text-overflow text-right start-section">
+									  <i class="start3"></i>
+									  <i class="start3"></i>
+									  <i class="start3"></i>
+									  <i class="start3"></i>
+									  <i class="start3"></i>
+									  <span>58</span>
+									</span>
+								  </p>
+								  <p><span><i class="lit"></i>中国-杭州</span></p>
+								  <p class="font-size1 text-color2 text-overflow">
+                                    <span class="guide-tag">在线向导</span>
+								  </p>
+								</a>
+							  </div>
+				
+*@
+
+							  @for(guider<-front_guiders){
+							  <div class="swiper-slide">
+								<a href="site1/detail/id/@guider.id" target="_blank">
+								  <div class="comment-section">
+									<img src="@guider.img_profile" alt="" class="img-responsive" style="height:280px;width:280px">
+									
+									<p class="text-color5 text-overflow">@guider.traveltitle</p>
+								  </div>
+								  <p>
+									<span class="text-overflow font-size2 common-name">@guider.name</span>
+									<span class="text-right text-overflow main-color"><strong class="font-size2">@guider.guider_price</strong>起</span>
+								  </p>
+								  <p>
+									<span class="text-overflow">专业向导</span>
+									<span class="text-overflow text-right start-section">
+									  <i class="start3"></i>
+									  <i class="start3"></i>
+									  <i class="start3"></i>
+									  <i class="start3"></i>
+									  <span>2</span>
+									</span>
+								  </p>
+								  <p><span><i class="lit"></i>@guider.city_and_country</span></p>
+								  <p class="font-size1 text-color2 text-overflow">
+									<span class="guide-tag">徒步向导</span>
+									<span class="guide-tag">带车向导</span>
+									<span class="guide-tag">带车接送机</span>
+								  </p>
+								</a>
+								                </div>
+							  }
+							  
                 <!--<div class="swiper-slide">-->
     <!--<a href="site/detail/id/557c1a40502bc.html" target="_blank">-->
         <!--<div class="comment-section">-->
@@ -358,8 +428,9 @@
             <h2 class="text-center common-h2 font-size4">尊享品质服务</h2>
             <div class="row">
                 <div class="col-sm-6 col-xs-12">
-                    <div class="service-list">
-                        <img src="app/statics/images/guide.jpg" alt="" class="img-responsive">
+                  <div class="service-list">
+					<img src="http://media.expedia.com/media/content/shared/images/travelguides/destination/6049429/Malta-26310.jpg" alt="" class="img-responsive">
+<!--                        <img src="app/statics/images/guide.jpg" alt="" class="img-responsive">-->
                         <div class="service-title text-center font-size4">
                             <p>中文向导</p>
                         </div>
@@ -371,7 +442,8 @@
                 </div>
                 <div class="col-sm-6 col-xs-12">
                     <div class="service-list">
-                        <img src="app/statics/images/car.jpg" alt="" class="img-responsive">
+<!--                      <img src="app/statics/images/car.jpg" alt="" class="img-responsive">-->
+					  <img src="app/statics/images/teslacar.jpg" alt="" class="img-responsive">
                         <div class="service-title text-center font-size4">
                             <p>接机包车</p>
                         </div>
@@ -382,8 +454,9 @@
                     </div>
                 </div>
                 <div class="col-sm-6 col-xs-12">
-                    <div class="service-list">
-                        <img src="app/statics/images/trip.jpg" alt="" class="img-responsive">
+                  <div class="service-list">
+					<img src="http://www.yomadic.com/wp-content/uploads/european-road-trip-route.jpg" alt="" class="img-responsive">
+<!--                        <img src="app/statics/images/trip.jpg" alt="" class="img-responsive"> -->
                         <div class="service-title text-center font-size4">
                             <p>定制旅行</p>
                         </div>
@@ -394,8 +467,9 @@
                     </div>
                 </div>
                 <div class="col-sm-6 col-xs-12">
-                    <div class="service-list">
-                        <img src="app/statics/images/service.jpg" alt="" class="img-responsive">
+                  <div class="service-list">
+					<img src="app/statics/images/plane.jpg" alt="" class="img-responsive">
+<!--                        <img src="app/statics/images/service.jpg" alt="" class="img-responsive"> -->
                         <div class="service-title text-center font-size4">
                             <p>保障服务</p>
                         </div>

@@ -75,11 +75,25 @@ public class AUser {
                 Pattern.CASE_INSENSITIVE))).limit(limit).skip(limit * (page - 1)).toArray();
     }
 
+    public static List<AUser> getStarGuiders()
+    {
+	List<AUser> guiders = new ArrayList<AUser>();
+
+		AUser g1 = AUser.coll.findOneById("59febdfae4b0321df4d111f8");
+	AUser g2 = AUser.coll.findOneById("111111111111111111111111");
+	AUser g3 = AUser.coll.findOneById("10c8d3518be761e8fdbf2e5a");
+	guiders.add(g1);
+	guiders.add(g2);
+	guiders.add(g3);
+
+	return guiders;
+    }
+
     @Id
     @ObjectId
     public String id;
     public String name;
-
+    
 
     public String email;
     public String password;
@@ -88,7 +102,7 @@ public class AUser {
     public String type = ""; //GUIDER or TRAVELLER
     public String type_work = ""; //STUDNET or EMPLOYEE
     public String gender = "";
-
+    public int age = 0;
     public String city_and_country = ""; // city country in one field
     public String locationIndex; // 导游城市索引
     public String employer = "";
@@ -120,7 +134,8 @@ public class AUser {
     public String guider_price = ""; //徒步旅行收费
     public String guiderdrive_price = ""; //五座车收费
     public String guiderpickup_price = ""; //五座车接机收费
-
+    public double rating = 0.0; 
+    public ArrayList<String> comments = new ArrayList<String>();
 
     public static String GUIDER = "GUIDER";
     public static String TRAVELLER = "TRAVELLER";

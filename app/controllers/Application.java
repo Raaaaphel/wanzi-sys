@@ -5,10 +5,11 @@ import play.data.*;
 
 import models.*;
 //import views.t.*;
+import java.util.*;
 
 public class Application extends Controller {
 	//	static String staticpage = "http://static.zouzouyouyou.info/";
-	static String homepage = "http://www.zouzouyouyou.info/";
+	//  static String homepage = "http://www.zouzouyouyou.info/";
 	/*
 	public static Result externalstatic(String path)
 	{
@@ -19,17 +20,26 @@ public class Application extends Controller {
 
 	
 	public static Result index() {
-	  //    return redirect(routes.Application.tasks());
-		return ok(	  views.html.index.render());
+	    //		return ok(	  views.html.index.render());
+
+		if (session("userId") == null){
+			String newUserId = "999999999999999999999999";  //init session user id for new user
+			session("userId", newUserId);
+		}
+		else{}
+		
+	    List<AUser> starGuiders = AUser.getStarGuiders();
+	    //      play.Logger.info(starGuiders.get(0).name);
+	    return ok(  views.html.index.render(starGuiders));
 	}
   
   public static Result tasks() {
-	  return ok(
-				views.html.index.render()
-				//			        views.html.index.render(Task.all(), taskForm)
-    );
+      return index();
+
   }
 
+  
+	
 	/*
   public static Result newTask() {
     Form<Task> filledForm = taskForm.bindFromRequest();
