@@ -3,7 +3,7 @@
 @import java.lang.String;val imgUri="";
 @headerfooter{
             <!-- 主题 -->
-            <link rel="stylesheet" href="/app/statics/css/detail.css">
+            <link rel="stylesheet" href="/assets/statics/css/detail.css">
             <style>
             .mian-top{
                 display: none!important;
@@ -154,8 +154,14 @@
                             <div class="swiper-pc">
                                 <div class="swiper-container" id="swiper1">
                                     <div class="swiper-wrapper">
+									  @for(img_about <- (guider.imgs_about)) {
+														<div class="swiper-slide swiper-slide-active"  data-name="我的照片" style="width: 173px; margin-right: 4px;">
+														  <img src="@img_about" alt="" class="brief-img">
+														</div>
+														}
 
-                                            <!--
+
+                                <!--
                                              <div class="swiper-slide" id="55f66953bc3f9" data-name="我的照片">
                                              <img src="https://img.wanzi.cc/images/58b93cf173c76.jpg@@358w_241h_1e_1c_1sh" alt="">
                                              <p class="text-color5"><span>我的照片</span><span class="text-right">8</span></p>
@@ -186,6 +192,7 @@
                                      <div class="swiper-button-prev2 swiper-arrow"></div>
                                      <div class="swiper-button-next2 swiper-arrow"></div>
                                 </div>
+								<!--end swiper1 -->
 
 								<div class="swiper-container" id="swiper2">
 								  <div class="swiper-wrapper">
@@ -196,7 +203,8 @@
 									}
 								  </div>
 								</div>
-                             </div>
+
+                            </div>
                          </div>
                      </div>
                      <div class="slide-main yan-section clearfix">
