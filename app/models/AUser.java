@@ -79,7 +79,7 @@ public class AUser {
     {
 	List<AUser> guiders = new ArrayList<AUser>();
 
-		AUser g1 = AUser.coll.findOneById("59febdfae4b0321df4d111f8");
+	AUser g1 = AUser.coll.findOneById("59febdfae4b0321df4d111f8");
 	AUser g2 = AUser.coll.findOneById("111111111111111111111111");
 	AUser g3 = AUser.coll.findOneById("10c8d3518be761e8fdbf2e5a");
 	guiders.add(g1);
@@ -121,7 +121,8 @@ public class AUser {
     public ArrayList<String> imgs_travel = new ArrayList<String>(); //旅行照片
     public List<String> imgs_about = new ArrayList<>(); //关于这座城市的我
     public List<String> imgs_introduce = new ArrayList<>(); //我眼中的这座城市照片
-
+    public ArrayList<String> comments = new ArrayList<String>();
+    
     public String traveltitle = ""; //导游主题
     public String traveldisc = ""; //导游简介
     public String priority_service = ""; //优先接待
@@ -135,7 +136,7 @@ public class AUser {
     public String guiderdrive_price = ""; //五座车收费
     public String guiderpickup_price = ""; //五座车接机收费
     public double rating = 0.0; 
-    public ArrayList<String> comments = new ArrayList<String>();
+    
 
     public static String GUIDER = "GUIDER";
     public static String TRAVELLER = "TRAVELLER";
