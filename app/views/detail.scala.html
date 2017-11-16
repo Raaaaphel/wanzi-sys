@@ -137,7 +137,7 @@
                 <ul class="title clearfix">
                     <li class="text-center active"><a href="javascript:;">向导资料</a></li>
                     <li class="text-center text-color2"><a href="javascript:;">服务及费用</a></li>
-                    <li class="text-center text-color2 commont-num"><a href="javascript:;">评论 27</a></li>
+                    <li class="text-center text-color2 commont-num"><a href="javascript:;">评论</a></li>
                 </ul>
                 <div class="slide-section slide-data">
                     <h3>向导资料</h3>
@@ -905,6 +905,7 @@
                     <h3>评论</h3>
                     <div class="left left-line"><p class="font-size2"><i class="line"></i>评论</p></div>
                     <div id="remark_list">
+
                     </div>
                     <nav aria-label="Page navigation" class="text-center">
                         <ul class="pagination" id="page">
@@ -1335,18 +1336,50 @@
         <!-- 接送机服务费用说明模态框 -->
         <script src="/app/statics/js/ajax.js"></script>
         <script>
+            function getComments() {
+                var _data = new Object();
+                _data.guiderId = "@Html(guider.id)";
+                $.ajax({
+                    url:"/getComments",
+                    type:"POST",
+                    data:_data,
+                    success:function(data){
+                        for(var index in data) {
+                            var html = "";
+                            html +='<div class="slide-main clearfix comment-section"><div class="left"><p><span></span></p></div><div class="right"><div class="row"><div class="col-xs-6"><p>';
+                            html += data[index].userName;
+                            html += '</p></div>' +
+                                    '<div class="col-xs-6"><p class="text-right">';
+                            var star_num = parseInt(data[index].rating);
+                            var blank_num = 4 - star_num;
+                            for(var i = 0;i < star_num; i++) {
+                                html += '<i class="start3"></i>';
+                            }
+                            if (data[index].rating - star_num > 0){
+                                html += '<i class="start2"></i>';
+                            } else {
+                                html += '<i class="start1"></i>';
+                            }
+                            for(var i = 0;i < blank_num; i++) {
+                                html += '<i class="start1"></i>';
+                            }
+                            html += '</p></div></div><p>' + data[index].content;
+                            html += '</p><p class="comment-time text-color1 font-size1">' +
+                                    data[index].date +
+                                    '</p>'
+                            $("#remark_list").append(html);
+                        }
+                        var count = '<a href="javascript:;">评论 '+data.length+'</a>'
+                        $(".commont-num").empty().append(count);
+
+                    }
+                });
+            }
             var timer1 = null,timer2 = null,timer3 = null,mySwiper1= null,mySwiper2= null,mySwiper3= null,total=0;
             var winHeight = $(window).height();
             $(document).ready(function(){
-                    /*$().ajaxConfig({
-                    id:'55d7a85518827',
-                    fn_id:'remark',
-                    page_id:'page',
-                    list_id:'remark_list',
-                    limit:6,
-                    url:'/remark/getGuideRemark',
-                    other:{guide_name:'俞冬磊'}
-                });*/
+
+                getComments();
                 if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
                     var _height = $(window).height();
                 //顶部

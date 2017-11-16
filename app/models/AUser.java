@@ -97,6 +97,7 @@ public class AUser {
 
     public String email;
     public String password;
+    public Double balance=0.0;
 
 
     public String type = ""; //GUIDER or TRAVELLER
@@ -121,7 +122,6 @@ public class AUser {
     public ArrayList<String> imgs_travel = new ArrayList<String>(); //旅行照片
     public List<String> imgs_about = new ArrayList<>(); //关于这座城市的我
     public List<String> imgs_introduce = new ArrayList<>(); //我眼中的这座城市照片
-    public ArrayList<String> comments = new ArrayList<String>();
     
     public String traveltitle = ""; //导游主题
     public String traveldisc = ""; //导游简介
@@ -135,8 +135,9 @@ public class AUser {
     public String guider_price = ""; //徒步旅行收费
     public String guiderdrive_price = ""; //五座车收费
     public String guiderpickup_price = ""; //五座车接机收费
-    public double rating = 0.0; 
-    
+
+    public List<Comment> comments;
+
 
     public static String GUIDER = "GUIDER";
     public static String TRAVELLER = "TRAVELLER";

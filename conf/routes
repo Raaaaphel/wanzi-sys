@@ -51,6 +51,7 @@ POST        /service/getServiceList            controllers.SearchController.sear
 #GET	     /site/loginPage/t/2.html controllers.RegisterController.login()
 
 GET         /site1/detail/id/*uid              controllers.SearchController.getGuiderDetail(uid:String)
+POST        /getComments                       controllers.SearchController.getComments()
 POST        /setLocation                       controllers.SearchController.setLocation()
 
 #GET         /test                           controllers.RegisterGuiderController.testPic()
@@ -62,3 +63,5 @@ GET         /site/demand                       controllers.OrderController.deman
 POST        /intent/addOlister                 controllers.OrderController.onDemand()
 GET         /site/group                        controllers.OrderController.groupDemand()
 POST        /intent/addFirm                    controllers.OrderController.onGroupDemand()
+
+GET         /getBalance                        controllers.OrderController.getBalance()

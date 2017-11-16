@@ -126,7 +126,12 @@
                             <li><a href="/register" class="login-section">注册</a></li>
                             <li><a href="/login" class="login-line">登录</a></li>
                         } else {
-                            <li style="padding: 15px;">欢迎您，@session().get("username")<a href="/logout" style="display: inline">退出登录</a></li>
+                            <li style="padding: 15px;">
+                                欢迎您，@session().get("username")<a href="/logout" style="display: inline">退出登录</a>
+                                @if(session().get("userType")==AUser.TRAVELLER){
+                                <a href="javascript:;" onclick="getBalance()" style="display: inline">查看余额</a>
+                                }
+                            </li>
                         }
                         </ul>
                 </div>
@@ -223,6 +228,15 @@
                 <!-- 底部 -->
             <script src="https://qiyukf.com/script/24c8bd3fd15d1272dc707fb2944bbc27.js" defer async></script>
             <script>
+                function getBalance() {
+                    $.ajax({
+                        url:"/getBalance",
+                        type:"GET",
+                        success:function(data){
+                            alert("您的余额：" + data.balance);
+                        }
+                    });
+                }
 		var timer4 = null;timer1=null, avatar = '',name = '';
 
         //区域搜索

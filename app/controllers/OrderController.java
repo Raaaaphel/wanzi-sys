@@ -119,5 +119,15 @@ public class OrderController extends Controller {
         return ok(Json.toJson(result));
     }
 
+    public static Result getBalance(){
+        String userId = session("userId");
+        AUser user = AUser.getUserById(session("userId"));
+        if (user == null){
+            return RegisterController.onLogout("请先登录!");
+        }
+        Map<String, Object> result = new HashMap<>();
+        result.put("balance", user.balance);
+        return ok(Json.toJson(result));
+    }
 
 }

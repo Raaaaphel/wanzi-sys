@@ -58,6 +58,13 @@ public class SearchController extends Controller {
         return ok(views.html.detail.render(guider));
     }
 
+    public static Result getComments(){
+        Map<String, String[]> formData = request().body().asFormUrlEncoded();
+        String id = formData.get("guiderId")[0];
+        AUser guider = AUser.getUserById(id);
+        return ok(Json.toJson(guider.comments));
+    }
+
     //	public static Result
 
 
