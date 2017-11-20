@@ -86,8 +86,8 @@
                         <span class="icon-bar"></span>
                     </button>
 
-                    <a class="navbar-brand hidden-sm logo-web" href="index.html"><img src="/app/statics/images/logo-web.png" alt=""></a>
-                    <a class="navbar-brand hidden-sm logo-phone" href="index.html"><img src="/app/statics/images/logo-phone.png" alt=""></a>
+                    <a class="navbar-brand hidden-sm logo-web" href="/index"><img src="/app/statics/images/logo-web.png" alt=""></a>
+                    <a class="navbar-brand hidden-sm logo-phone" href="/index"><img src="/app/statics/images/logo-phone.png" alt=""></a>
                 </div>
                 <div class="navbar-collapse collapse" role="navigation">
                     <ul class="nav navbar-nav nav-ul">
@@ -126,11 +126,14 @@
                             <li><a href="/register" class="login-section">注册</a></li>
                             <li><a href="/login" class="login-line">登录</a></li>
                         } else {
-                            <li style="padding: 15px;">
-                                欢迎您，@session().get("username")<a href="/logout" style="display: inline">退出登录</a>
-                                @if(session().get("userType")==AUser.TRAVELLER){
-                                <a href="javascript:;" onclick="getBalance()" style="display: inline">查看余额</a>
-                                }
+
+                            <li class="help-center" style="">
+                                <a href="#">您好，@session().get("username")<i></i></a>
+								<ul>
+								  <li><a href="#"> 我的账户</a></li>
+								  <li><a href="/setting">用户设置</a></li>
+								  <li><a href="/logout"  style="display: inline">退出登录</a> </li>
+								</ul>
                             </li>
                         }
                         </ul>
@@ -207,7 +210,7 @@
                         <div class="col-sm-6 col-xs-12">
                             <p class="text-color2 font-size1"></p>
 
-                            <p class="text-color2 font-size1">® 杭州观海听涛信息科技有限公司 2015-2017 zouzouyouyou.info </p>
+                            <p class="text-color2 font-size1">® 杭州观海听涛信息科技有限公司 2015-2017 izouzou.cc </p>
                         </div>
                             <!--<div class="col-sm-6 hidden-xs">-->
                             <!--&lt;!&ndash;                        -->
@@ -560,6 +563,7 @@
                     $('.help-center').children('ul').hide();
                 }, 200)
             });
+
             //电脑端顶部下载APP
             $('.load-img').hover(function(){
                 clearInterval(timer1);

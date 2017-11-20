@@ -64,4 +64,5 @@ POST        /intent/addOlister                 controllers.OrderController.onDem
 GET         /site/group                        controllers.OrderController.groupDemand()
 POST        /intent/addFirm                    controllers.OrderController.onGroupDemand()
 
-GET         /getBalance                        controllers.OrderController.getBalance()
+GET         /getBalance						   controllers.OrderController.getBalance()
+GET 		/setting						   controllers.SettingController.getSetting()
