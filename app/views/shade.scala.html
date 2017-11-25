@@ -1,0 +1,46 @@
+<link rel="stylesheet"
+		  href="/app/statics/css/shade.css">  
+<script src="/app/statics/js/jquery-1.8.3.min.js" ></script>
+
+
+<div class="shade" >
+  <img id="_tuto" src="/app/statics/images/tuto0.png">
+<div id="tuto-right">
+  <div id="_desc"> 1. 输入你要去的目的地</p></div>
+  <div type="button" id="_know" class="btn btn-info">知道了</div>
+<!--  <div type="button" id="_know" class="btn btn-info">知 --
+  --  道了</div> -->
+  <div type="button" id="_next" class="btn btn-info">下一步</div>
+  </div>
+</div>
+
+<script>
+
+  var page = 0;
+  var total = 2;
+  //var im = ["tuto0.png", "tuto1.png"];
+
+  window.onload=function(){
+     if (page == 0){
+     $(".shade").show();
+     }
+  };
+  
+
+  $("#_know").on("click", function(){
+  $(".shade").hide();
+  page = 0;
+  });
+  
+  $("#_next").on("click", function(){
+  
+      //  page = 1;
+      //      x = (x + 1 ) % im.length;
+
+      $("#_tuto").attr("src", "/app/statics/images/" + "tuto1.png");
+      $("#_desc").html("2. 和你喜欢的导游聊天, 安排好行程，开始你的美好旅行");
+      page = page + 1;
+      if (page==total) $(".shade").hide(); 
+  });
+
+</script>

@@ -78,10 +78,15 @@ public class AUser {
     public static List<AUser> getStarGuiders()
     {
 	List<AUser> guiders = new ArrayList<AUser>();
-
+	/*
 	AUser g1 = AUser.coll.findOneById("59febdfae4b0321df4d111f8");
 	AUser g2 = AUser.coll.findOneById("111111111111111111111111");
 	AUser g3 = AUser.coll.findOneById("10c8d3518be761e8fdbf2e5a");
+	*/
+	AUser g1 = AUser.coll.findOneById("5a045a17e4b05602646333dd");
+	AUser g2 = AUser.coll.findOneById("5a1108b2e4b0e90f7d037dcd");
+	AUser g3 = AUser.coll.findOneById("5a11109ee4b0e90f7d037dce");
+	   
 	guiders.add(g1);
 	guiders.add(g2);
 	guiders.add(g3);
@@ -89,6 +94,8 @@ public class AUser {
 	return guiders;
     }
 
+
+	
     @Id
     @ObjectId
     public String id;
@@ -97,7 +104,7 @@ public class AUser {
 
     public String email;
     public String password;
-    public Double balance=0.0;
+    public double balance=0.0;
 
 
     public String type = ""; //GUIDER or TRAVELLER
@@ -136,7 +143,7 @@ public class AUser {
     public String guiderdrive_price = ""; //五座车收费
     public String guiderpickup_price = ""; //五座车接机收费
 
-    public List<Comment> comments;
+    public List<Comment> comments = new ArrayList<Comment>();
 
 
     public static String GUIDER = "GUIDER";

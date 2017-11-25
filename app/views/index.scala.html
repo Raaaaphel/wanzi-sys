@@ -2,10 +2,12 @@
 @import helper._
 @import java.lang.String; val chatserviceport="http://test.zouzouyouyou.info:9000"; val testid="999999999999999999999999"; val botid="ffffffffffffffffffffffff";
 
-
+<!-- add shade layer for tutorial -->
+@views.html.shade.render();
+  
 @headerfooter{
-		        <!-- 主题 -->
-		     <link rel="stylesheet" href="app/statics/css/index.css">
+    <!-- 主题 -->
+	<link rel="stylesheet" href="app/statics/css/index.css">
     <!-- banner -->
     <div class="swiper-container" id="swiper1">
         <div class="swiper-wrapper">
@@ -708,13 +710,17 @@
 			<!--                        <img src="app/statics/images/visa.jpg" alt="" class="img-responsive">
 										<p class="text-center text-color2 font-size1">走走旅游是Visa高端持卡人尊宠礼遇合作商，Visa的高端持卡人可以享受走走旅游的专享礼遇优惠。</p> -->
 		  </div>
-		  <div class="col-sm-3 col-xs-12">
-			<a href="http://english.ctrip.com/#from=click_en/?AllianceID=338676"><img src="https://n.promospro.com/mimg/merimg/b_143522103060.png?v=141016" alt=""  class="img-responsive"> </a>
+		  <div class="col-sm-3 col-xs-12" >
+			<br><br>
+			<a href="http://english.ctrip.com/#from=click_en/?AllianceID=338676"><img id="ctrip-icon"
+			src="https://www.thebeijinger.com/sites/default/files/thebeijinger/blog-images/309860/ctrip_logo.jpg"
+			alt=""  class="img-responsive" style="height:60px;width:300px;"> </a>
 			<!--                    <img src="app/statics/images/zhaoshang.jpg" alt="" class="img-responsive">
 									<p class="text-center text-color2 font-size1">走走旅游是招商银行专享支付通道合作商，招商银行卡用户可以在走走旅游享受招商银行的专属优惠。</p>-->
 		  </div>
 		  <div class="col-sm-3 col-xs-12">
-			<a href="https://www.airbnb.com/"><img src="http://www.cherryflava.com/wp-content/uploads/2015/04/airbnb-logo.png" alt="" class="img-responsive"></a>  			<!--                    <img src="app/statics/images/eluosi.jpg" alt="" class="img-responsive">
+			<br>
+			<a href="https://www.airbnb.com/"><img src="https://www.logodesign.com/blog/wp-content/uploads/2014/09/airbnb_horizontal_lockup_print.jpg" alt="" class="img-responsive"></a>  			<!--                    <img src="app/statics/images/eluosi.jpg" alt="" class="img-responsive">
 									<p class="text-center text-color2 font-size1">走走旅游是俄罗斯国家旅游协会的合作伙伴，用户可以在走走旅游上享受俄罗斯国家旅游协会提供的各种精品旅行体\\
 									  验。</p>-->
 		  </div>
@@ -732,7 +738,8 @@
 
 	<script src="app/statics/js/swiper.min.js"></script>
     <script>
-    $(document).ready(function(){
+      $(document).ready(function(){
+
 
         $('.banner-slide').click(function(){
             window.open($(this).attr('rel'));
