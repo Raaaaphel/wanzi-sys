@@ -340,9 +340,9 @@ function setCityAndCountry() {
     if (typeof(regionName) != "undefined") {
         cityAndCountry += regionName;
         if (typeof(countryName) != "undefined") {
-            cityAndCountry = cityAndCountry + "_" + countryName;
+            cityAndCountry = cityAndCountry + "-" + countryName;
             if (typeof(cityName) != "undefined")
-                cityAndCountry = cityAndCountry + "_" + cityName;
+                cityAndCountry = cityAndCountry + "-" + cityName;
         }
     }
     $("#city_and_country").val(cityAndCountry);
