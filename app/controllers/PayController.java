@@ -27,8 +27,7 @@ public class PayController extends Controller {
 
     public static Result submitPayWx() {
         Map<String, String[]> formData = request().body().asFormUrlEncoded();
-        //String ip = request().remoteAddress();
-        String ip = "115.197.234.145";
+        String ip = request().remoteAddress();
         String out_trade_no = formData.get("orderId")[0];
         try {
             String nonce_str = PayUtil.getRandomStringByLength(16);//生成随机数，可直接用系统提供的方法
