@@ -3,11 +3,14 @@ package controllers;
 import models.AUser;
 import models.DemandOrder;
 import models.GroupOrder;
+import models.Order;
 import play.libs.Json;
 import play.mvc.Controller;
 import play.mvc.Result;
 import service.MailService;
 
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -54,19 +57,19 @@ public class OrderController extends Controller {
         bodyBuilder.append(order.getStartTime() + "至" + order.getEndTime());
         bodyBuilder.append("</p><p>出行地点：");
         String[] areas = order.getTravelArea();
-        for (int i=0; i<areas.length; i++){
+        for (int i = 0; i < areas.length; i++) {
             bodyBuilder.append(areas[i] + "  ");
         }
         bodyBuilder.append("</p><p>出行人数：");
         bodyBuilder.append(order.getPersonNum());
         bodyBuilder.append("</p><p>是否需要用车：");
-        if (order.getCar().equals(1)){
+        if (order.getCar().equals(1)) {
             bodyBuilder.append("是");
         } else {
             bodyBuilder.append("否");
         }
         bodyBuilder.append("</p><p>是否需要接送机：");
-        if (order.getCar().equals(1)){
+        if (order.getCar().equals(1)) {
             bodyBuilder.append("是");
         } else {
             bodyBuilder.append("否");
@@ -119,10 +122,10 @@ public class OrderController extends Controller {
         return ok(Json.toJson(result));
     }
 
-    public static Result getBalance(){
+    public static Result getBalance() {
         String userId = session("userId");
         AUser user = AUser.getUserById(session("userId"));
-        if (user == null){
+        if (user == null) {
             return RegisterController.onLogout("请先登录!");
         }
         Map<String, Object> result = new HashMap<>();
@@ -130,4 +133,109 @@ public class OrderController extends Controller {
         return ok(Json.toJson(result));
     }
 
+    public static Result booking(String uid, String orderId) {
+
+        AUser guider = AUser.getUserById(uid);
+        if (orderId == null) {
+            return ok(views.html.orderPage.booking.render(guider ,null));
+        } else {
+            Order order = Order.get(orderId);
+            return ok(views.html.orderPage.booking.render(guider ,order));
+        }
+    }
+
+    public static Result addService(String uid) {
+        AUser guider = AUser.getUserById(uid);
+        return ok(views.html.orderPage.addService.render(guider));
+    }
+
+    public static Result wizardService(String uid, String priceType) {
+        AUser guider = AUser.getUserById(uid);
+        String price = "";
+        /*switch (type){
+            case "guider_price":
+                price = guider.guider_price;
+                break;
+            case "guiderdrive_price":
+                price = guider.guiderdrive_price;
+                break;
+            case "guiderpickup_price":
+                price = guider.guiderpickup_price;
+                break;
+        }*/
+        return ok(views.html.orderPage.wizardService.render(guider, priceType));
+    }
+
+    public static Result beforeBooking(String uid) {
+        return ok(views.html.orderPage.beforeBooking.render(uid));
+    }
+
+    public static Result payCenter(String orderId){
+        Order order = Order.get(orderId);
+        return ok(views.html.orderPage.payCenter.render(order));
+    }
+
+    public static Result createOrder(){
+        Map<String, String[]> formData = request().body().asFormUrlEncoded();
+        String guiderId = formData.get("guiderId")[0];
+        String travellerId = session("userId");
+        String priceType = formData.get("priceType")[0];
+        String startTime = formData.get("startTime")[0];
+        String endTime = formData.get("endTime")[0];
+        Integer num = Integer.parseInt(formData.get("num")[0]);
+        AUser guider = AUser.getUserById(guiderId);
+        AUser traveller = AUser.getUserById(travellerId);
+        LocalDate start = LocalDate.parse(startTime);
+        LocalDate end = LocalDate.parse(endTime);
+        long days = ChronoUnit.DAYS.between(start, end);
+        double unitPrice = 9999999;
+
+        Order order = new Order();
+
+        switch (priceType){
+            case "guider_price":
+                unitPrice = Double.parseDouble(guider.guider_price);
+                order.serviceType = "徒步向导";
+                break;
+            case "guiderdrive_price":
+                unitPrice = Double.parseDouble(guider.guiderdrive_price);
+                order.serviceType = "五座车向导";
+                break;
+            case "guiderpickup_price":
+                unitPrice = Double.parseDouble(guider.guiderpickup_price);
+                order.serviceType = "五座车接送机向导";
+                break;
+        }
+        Double totalPrice = unitPrice * num * days;
+        order.guider_id = guider.id;
+        order.guider_name = guider.name;
+        order.status = Order.CREATING;
+        order.total_price = totalPrice;
+        order.traveller_id = traveller.id;
+        order.traveller_name = traveller.name;
+        order.policy = Order.POLICY_MIDIUM;
+        order.startDate = startTime;
+        order.endDate = endTime;
+        order.days = days;
+        order.travellerNum = num;
+        Order.save(order);
+        Map<String, Object> result = new HashMap<>();
+        result.put("guiderId", order.guider_id);
+        result.put("orderId", order.id);
+        return ok(Json.toJson(result));
+
+
+    }
+
+    public static Result confirmOrder(){
+        Map<String, String[]> formData = request().body().asFormUrlEncoded();
+        String orderId = formData.get("orderId")[0];
+        String remark = formData.get("remark")[0];
+        Order order = Order.get(orderId);
+        order.remark = remark;
+        Order.update(order);
+        Map<String, Object> result = new HashMap<>();
+        result.put("orderId", order.id);
+        return ok(Json.toJson(result));
+    }
 }

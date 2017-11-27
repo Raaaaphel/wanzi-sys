@@ -1,0 +1,150 @@
+@(guider:AUser, order:Order)
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <meta name="apple-touch-fullscreen" content="yes" />
+        <meta name="format-detection" content="telephone=no,email=no" />
+        <meta name="App-Config" content="fullscreen=yes,useHistoryState=yes,transition=yes"/>
+        <title>预定</title>
+        <link href="/app/statics/css/mui.min.css" rel="stylesheet"/>
+        <link rel="stylesheet" href="/app/statics/css/zouzou.css" />
+        <script src="/app/statics/js/jquery-2.1.0.js" type="text/javascript" charset="utf-8"></script>
+        <script src="/app/statics/js/mui.min.js"></script>
+        <script src="/app/statics/js/common.js" type="text/javascript" charset="utf-8"></script>
+    </head>
+    <body>
+        <header class="title_header clearfix">
+            <div class="back fl"></div>
+            <h2 class="fl">预定</h2>
+            <a href="tel:400-820-8820">
+                <img src="/app/statics/images/customer_service.svg" />
+                <p>客服</p>
+            </a>
+        </header>
+            <!--内容部分开始-->
+        <div class="content">
+                <!--顶部个人信息开始-->
+            <div class="person_info">
+                <div class="avatar">
+                    <img src="@Html(guider.img_profile)" />
+                </div>
+                <div class="text_info">
+                    <p><span>@Html(guider.name)</span><span>@Html(guider.city_and_country)</span></p>
+                    <p>
+                        <span>@Html(guider.jobtitle)</span>
+                        <span>
+                            <img src="/app/statics/images/star.svg" />
+                            <img src="/app/statics/images/star.svg" />
+                            <img src="/app/statics/images/star.svg" />
+                            <img src="/app/statics/images/star.svg" />
+                            <img src="/app/statics/images/star.svg" />
+                            30
+                        </span>
+                    </p>
+                </div>
+            </div>
+                <!--顶部个人信息结束-->
+                <!--添加服务类型开始-->
+            @if(order == null) {
+                <div class="add_service">
+                    <div class="add_service_btn" onclick="javascript:window.location.href = '/m/order/addService/@Html(guider.id)'">
+                    <img src="/app/statics/images/addition_fill.svg" align="middle"/>
+                    <span>添加服务类型</span>
+                    </div>
+                </div>
+            } else {
+                <div class="cost_sum">
+                    <div onclick="javascript:window.location.href = '/m/order/addService/@Html(guider.id)'">
+                    <p><span>服务类型</span><span>@order.serviceType</span></p>
+                    <p><span>出发日期</span><span>@order.startDate</span></p>
+                    <p><span>结束日期</span><span>@order.endDate</span></p>
+                    <p><span></span><span>共计&nbsp;@order.days&nbsp;天</span></p>
+                    <p><span>出行人数</span><span>@order.travellerNum&nbsp;人</span></p>
+                </div>
+                </div>
+            }
+                <!--添加服务类型结束-->
+                <!--各类费用开始-->
+            <div class="cost_sum">
+                @if(order == null) {
+                    <p><span>服务费用合计</span><span class="all_price">RMB&nbsp;&nbsp;<i class="the_all_price">0</i></span></p>
+                    <!--<p><span>优惠券</span><span class="colorlan discount" data="50">50元优惠券</span></p>-->
+                    <p><span>待支付费用</span><span class="last_price">RMB&nbsp;&nbsp;<i class="the_last_price">
+                        0</i></span></p>
+                } else {
+                    <p><span>服务费用合计</span><span class="all_price">RMB&nbsp;&nbsp;<i class="the_all_price">@order.total_price</i></span></p>
+                    <!--<p><span>优惠券</span><span class="colorlan discount" data="50">50元优惠券</span></p>-->
+                    <p><span>待支付费用</span><span class="last_price">RMB&nbsp;&nbsp;<i class="the_last_price">
+                    @order.total_price</i></span></p>
+                }
+            </div>
+                <!--各类费用结束-->
+                <!--行程备注开始-->
+            <div class="remarks">
+                <p class="title">行程备注</p>
+                <textarea id="remark" placeholder="您可以在这里注明您的特殊需求，是否需要接送机，包车等。以及您需要向导知道的其他行程细节。"></textarea>
+            </div>
+                <!--行程备注结束-->
+                <!--退订政策开始-->
+            <div class="unsubscribe">
+                <p class="title"><span>退订政策</span><span>中等</span></p>
+                <p>●&nbsp;若旅行者在行程开始前14天以外取消订单，退还已付费用的85%；</p>
+                <p>●&nbsp;在行程开始前7天以外14天及以内取消订单，退还已付费用的50%；</p>
+            </div>
+                <!--退订政策结束-->
+                <!--进行下一步操作按钮开始-->
+            <input type="button" value="确认订单并支付" class="foot_next_btn"/>
+                <!--进行下一步操作按钮结束-->
+        </div>
+            <!--内容部分结束-->
+
+
+
+
+        <script>
+//地址栏传总价及计算优惠券
+/*function getQueryString(name) {
+    var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+    var r = window.location.search.substr(1).match(reg);
+    if (r != null) return unescape(r[2]); return null;
+}
+var price = getQueryString('sum_price');
+$(".the_all_price").html(price);
+var discount = $(".discount").attr("data");
+//	  alert(discount)
+var the_last_price = $(".the_last_price").text();
+var the_all_price = $(".the_all_price").text();
+the_last_price = the_all_price - discount ;
+$(".the_last_price").html(the_last_price);
+if(the_all_price == 0){
+    $(".the_last_price").html("0");
+}*/
+//	点击进入下一页
+$(".foot_next_btn").click(function(){
+    @if(order == null){
+        mui.toast('请先添加服务类型',{ duration:'long', type:'div' });
+        return;
+    } else {
+    var _post_data = new Object();
+    _post_data.orderId = '@Html(order.id)';
+    _post_data.remark = $("#remark").val();
+    $.ajax({
+        url: "/order/confirm",
+        dataType: "json",
+        data: _post_data,
+        type: "POST",
+        success: function (data) {
+           location.href = '/m/order/payCenter/'+data.orderId;
+        }
+    });
+    }
+});
+
+</script>
+
+    </body>
+</html>

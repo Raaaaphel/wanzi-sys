@@ -123,7 +123,7 @@ public class AUser {
 
     public String img_passport = ""; //证件照
     public String img_theme = ""; //top big image
-    public String img_profile = "";  //image left //[id].profile.[GUID].jpg
+    public String img_profile = "";  //image left //[id].profile.[GUID].jpg 头像
     public String img_degree = ""; //学历证书照
     public String img_validate = ""; //验证照
     public ArrayList<String> imgs_travel = new ArrayList<String>(); //旅行照片
@@ -143,7 +143,7 @@ public class AUser {
     public String guiderdrive_price = ""; //五座车收费
     public String guiderpickup_price = ""; //五座车接机收费
 
-    public List<Comment> comments = new ArrayList<Comment>();
+    public List<Comment> comments = new ArrayList<>();
 
 
     public static String GUIDER = "GUIDER";

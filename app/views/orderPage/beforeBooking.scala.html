@@ -1,0 +1,68 @@
+@(uid:String)
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <meta name="apple-touch-fullscreen" content="yes" />
+        <meta name="format-detection" content="telephone=no,email=no" />
+        <meta name="App-Config" content="fullscreen=yes,useHistoryState=yes,transition=yes"/>
+        <title>预定前说明</title>
+        <link href="/app/statics/css/mui.min.css" rel="stylesheet"/>
+        <link rel="stylesheet" href="/app/statics/css/zouzou.css" />
+        <script src="/app/statics/js/jquery-2.1.0.js" type="text/javascript" charset="utf-8"></script>
+        <script src="/app/statics/js/mui.min.js"></script>
+        <script src="/app/statics/layer/layer.js" type="text/javascript"></script>
+        <script src="/app/statics/js/common.js" type="text/javascript" charset="utf-8"></script>
+    </head>
+    <body>
+        <header class="title_header clearfix">
+            <div class="back fl"></div>
+        </header>
+            <!--内容部分开始-->
+        <div class="content">
+                <!--预订前说明内容开始-->
+            <div class="booking_before">
+                <p class="title">在预订前，请您确认如下几点：</p>
+                <p><span>●</span>&nbsp;您已经与向导就行程进行了初步沟通。</p>
+                <p><span>●</span>&nbsp;24小时内，向导有权选择接受或者拒绝您的预订，如果向导拒绝，您已支付的费用将全额退回您的账户。</p>
+                <p><span>●</span>&nbsp;若有任何问题，请在行程结束后的48小时内联系客服处理，如果您对服务没有异议，向导可在行程结束48小时后提取相关服务费用。</p>
+            </div>
+                <!--预订前说明内容结束-->
+                <!--进行下一步操作按钮开始-->
+            <div class="booking_before_btn">
+                <input type="button" value="去预订" onclick="javascript:window.location.href='/m/order/booking/@Html(uid)'" />
+                <p>点击去预订即表示已阅读并同意“<span class="free_statement">免费声明</span>”</p>
+            </div>
+                <!--进行下一步操作按钮结束-->
+                <!--业务说明弹框开始-->
+            <div class="iframe">
+                <p class="title">标题标题</p>
+                <p>内容部分内容部分内容部分内容部分内容部分内容部分内容部分内容部分内容部分内容部分内容部分内容部分内容部分内容部分内容部分内容部分</p>
+                <p>内容部分内容部分内容部分内容部分内容部分内容部分内容部分内容部分内容部分内容部分内容部分内容部分内容部分内容部分内容部分内容部分</p>
+            </div>
+                <!--业务说明弹框结束-->
+        </div>
+            <!--内容部分结束-->
+
+
+
+
+        <script>
+//	业务说明弹框
+$(".free_statement").click(function(){
+    layer.open({
+        type: 1,
+        title: false,
+        closeBtn: 0,
+        shadeClose: true,
+        skin: 'yourclass',
+        content: $('.iframe')
+    });
+});
+</script>
+
+    </body>
+</html>

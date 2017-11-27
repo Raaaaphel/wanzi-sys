@@ -1,4 +1,4 @@
-package util.pyament;
+package util.payment;
 
 import java.io.*;
 import java.net.SocketTimeoutException;
@@ -101,8 +101,8 @@ public class HttpRequest //implements IServiceRequest{
         XStream xStreamForRequestPostData = new XStream(new DomDriver("UTF-8", new XmlFriendlyNameCoder("-_", "_")));
 
         //将要提交给API的数据对象转换成XML格式数据Post给API
-        String postDataXML = xStreamForRequestPostData.toXML(xmlObj);
-
+        //String postDataXML = xStreamForRequestPostData.toXML(xmlObj);
+        String postDataXML = String.valueOf(xmlObj);
         Util.log("httpRequest send Before,	"+postDataXML);
 
         //得指明使用UTF-8编码，否则到API服务器XML的中文不能被成功识别

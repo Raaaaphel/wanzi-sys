@@ -1,0 +1,88 @@
+@(guider:AUser)
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <meta name="apple-touch-fullscreen" content="yes" />
+        <meta name="format-detection" content="telephone=no,email=no" />
+        <meta name="App-Config" content="fullscreen=yes,useHistoryState=yes,transition=yes"/>
+        <title>添加服务类型</title>
+        <link href="/app/statics/css/mui.min.css" rel="stylesheet"/>
+        <link rel="stylesheet" href="/app/statics/css/zouzou.css" />
+        <script src="/app/statics/js/jquery-2.1.0.js" type="text/javascript" charset="utf-8"></script>
+        <script src="/app/statics/js/mui.min.js"></script>
+        <script src="/app/statics/js/common.js" type="text/javascript" charset="utf-8"></script>
+        <script src="/app/statics/layer/layer.js" type="text/javascript"></script>
+    </head>
+    <body class="bghui">
+        <header class="title_header clearfix">
+            <div class="back fl"></div>
+            <h2 class="fl">添加服务类型</h2>
+            <a href="tel:400-820-8820">
+                <img src="/app/statics/images/customer_service.svg" />
+                <p>客服</p>
+            </a>
+        </header>
+            <!--内容部分开始-->
+        <div class="content">
+                <!--向导服务开始-->
+            <p class="add_service_title">向导服务</p>
+            <ul class="add_service_info">
+                <li onclick="javascript:window.location.href='/m/order/wizardService/@Html(guider.id)/guider_price'">
+                    <p>徒步&nbsp;RMB&nbsp;@Html(guider.guider_price)/天</p>
+                    <br />
+                    <p class="pay_description"><span>费用说明</span></p>
+                    <img src="/app/statics/images/right.svg"/>
+                </li>
+                <li onclick="javascript:window.location.href='/m/order/wizardService/@Html(guider.id)/guiderdrive_price'">
+                    <p>五座车&nbsp;RMB&nbsp;@Html(guider.guiderdrive_price)/天</p>
+                    <br />
+                    <p class="pay_description"><span>费用说明</span></p>
+                    <img src="/app/statics/images/right.svg"/>
+                </li>
+            </ul>
+                <!--向导服务结束-->
+                <!--向导服务开始-->
+            <p class="add_service_title">接送机服务</p>
+            <ul class="add_service_info">
+                <li onclick="javascript:window.location.href='/m/order/wizardService/@Html(guider.id)/guiderpickup_price'">
+                    <p>五座车&nbsp;RMB&nbsp;@Html(guider.guiderpickup_price)/天</p>
+                    <br />
+                    <p class="pay_description"><span>费用说明</span></p>
+                    <img src="/app/statics/images/right.svg"/>
+                </li>
+            </ul>
+                <!--向导服务结束-->
+                <!--业务说明弹框开始-->
+            <div class="iframe">
+                <p class="title">标题标题</p>
+                <p>内容部分内容部分内容部分内容部分内容部分内容部分内容部分内容部分内容部分内容部分内容部分内容部分内容部分内容部分内容部分内容部分</p>
+                <p>内容部分内容部分内容部分内容部分内容部分内容部分内容部分内容部分内容部分内容部分内容部分内容部分内容部分内容部分内容部分内容部分</p>
+            </div>
+                <!--业务说明弹框结束-->
+        </div>
+            <!--内容部分结束-->
+
+
+
+
+        <script>
+//	业务说明弹框
+$(".pay_description span").click(function(){
+    layer.open({
+        type: 1,
+        title: false,
+        closeBtn: 0,
+        shadeClose: true,
+        skin: 'yourclass',
+        content: $('.iframe')
+    });
+    return false;
+});
+</script>
+
+    </body>
+</html>

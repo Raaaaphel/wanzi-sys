@@ -1,0 +1,261 @@
+@(guider:AUser, priceType:String)
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <meta name="apple-touch-fullscreen" content="yes" />
+        <meta name="format-detection" content="telephone=no,email=no" />
+        <meta name="App-Config" content="fullscreen=yes,useHistoryState=yes,transition=yes"/>
+        @if(priceType.equals("guider_price")) {
+            <title>徒步向导服务</title>
+        }
+        @if(priceType.equals("guiderdrive_price")){
+        <title>五座车向导服务</title>
+        }
+        @if(priceType.equals("guiderpickup_price")){
+        <title>五座车接机向导服务</title>
+        }
+        <link href="/app/statics/css/mui.min.css" rel="stylesheet"/>
+        <link rel="stylesheet" type="text/css" href="/app/statics/css/datepicker.css">
+        <link rel="stylesheet" href="/app/statics/css/zouzou.css" />
+        <script src="/app/statics/js/jquery-2.1.0.js" type="text/javascript" charset="utf-8"></script>
+        <script src="/app/statics/layer/layer.js" type="text/javascript"></script>
+        <script src="/app/statics/js/mui.min.js"></script>
+        <script src="/app/statics/js/common.js" type="text/javascript" charset="utf-8"></script>
+        <script type="text/javascript" src="/app/statics/js/zepto.min.js"></script>
+        <script type="text/javascript" src="/app/statics/js/datepicker.js"></script>
+    </head>
+    <body class="bghui">
+        <header class="title_header clearfix">
+            <div class="back fl"></div>
+            @if(priceType.equals("guider_price")) {
+                <h2 class="fl">徒步向导服务</h2>
+            }
+            @if(priceType.equals("guiderdrive_price")){
+                <h2 class="fl">五座车向导服务</h2>
+            }
+            @if(priceType.equals("guiderpickup_price")){
+                <h2 class="fl">五座车接机向导服务</h2>
+            }
+            <a href="#">
+                <p class="pay_info">费用说明</p>
+            </a>
+        </header>
+            <!--内容部分开始-->
+        <div class="content">
+                <!--开始结束日期选择开始-->
+            <div class="onfoot_time_titlt">
+                <div>
+				请选择服务日期
+                </div>
+            </div>
+            <div class="onfoot_time_chose">
+                <ul>
+                    <li class="start">
+                        <p id="start_date">开始日期</p>
+                        <p id="start_time" class="time"></p>
+                    </li>
+                    <li class="end">
+                        <p id="end_date">结束日期</p>
+                        <p id="end_time" class="time"></p>
+                    </li>
+                </ul>
+            </div>
+                <!--开始结束日期选择结束-->
+                <!--旅行人数设置开始-->
+            <div class="person_chose">
+                <div class="tit">
+				旅行者人数
+                    <div class="person_quantity">
+                        <img src="/app/statics/images/subtract.svg" class="subtract" />
+                        <img src="/app/statics/images/subtract_white.svg" class="subtract_white" />
+                        <div>
+                            <span class="digital time">1</span>
+                        </div>
+                        <img src="/app/statics/images/add.svg" class="add"/>
+                    </div>
+                </div>
+            </div>
+                <!--旅行人数设置结束-->
+                <!--服务费用开始-->
+            <div class="onfoot_time_titlt">
+                <div class="borbottnone">
+                    <span class="fl">服务费用</span>
+                    <span class="fr">CNY&nbsp;<span class="sum_price">0</span></span>
+                        <!--下面是一个人一天的费用-->
+                    @if(priceType.equals("guider_price")) {
+                        <span class="oneperson_oneday">@Html(guider.guider_price)</span>
+                    }
+                    @if(priceType.equals("guiderdrive_price")){
+                        <span class="oneperson_oneday">@Html(guider.guiderdrive_price)</span>
+                    }
+                    @if(priceType.equals("guiderpickup_price")){
+                        <span class="oneperson_oneday">@Html(guider.guiderpickup_price)</span>
+                    }
+
+                </div>
+            </div>
+                <!--服务费用结束-->
+                <!--确认添加按钮开始-->
+            <input type="button" value="确认添加" class="foot_next_btn" />
+                <!--确认添加按钮结束-->
+                <!--业务说明弹框开始-->
+            <div class="iframe">
+                <p class="title">标题标题</p>
+                <p>内容部分内容部分内容部分内容部分内容部分内容部分内容部分内容部分内容部分内容部分内容部分内容部分内容部分内容部分内容部分内容部分</p>
+                <p>内容部分内容部分内容部分内容部分内容部分内容部分内容部分内容部分内容部分内容部分内容部分内容部分内容部分内容部分内容部分内容部分</p>
+            </div>
+                <!--业务说明弹框结束-->
+        </div>
+            <!--内容部分结束-->
+
+
+
+
+        <script type="text/javascript">
+//	开始时间选择
+var startDate  = document.getElementById('start_date');
+var start_time = document.getElementById('start_time');
+var startDatePicker = new window.DatePicker({
+    target     : start_time,
+    confirmCbk : function(data) {
+        start_time.textContent = data.year + '-' + data.month + '-' + data.day;
+        $("#start_date").css("line-height","25px");
+        $("#start_date").text("重选开始日期");
+    }
+});
+startDate.onclick = function(e) {
+    startDate.blur();
+    startDatePicker.open();
+};
+
+//	结束时间选择
+var endDate  = document.getElementById('end_date');
+var end_time = document.getElementById('end_time');
+var endDatePicker = new window.DatePicker({
+    target     : end_time,
+    confirmCbk : function(data) {
+        end_time.textContent = data.year + '-' + data.month + '-' + data.day;
+        $("#end_date").css("line-height","25px");
+        $("#end_date").text("重选结束日期");
+    }
+});
+endDate.onclick = function(e) {
+    endDate.blur();
+    endDatePicker.open();
+};
+//点击增加旅行者人数
+$(document).ready(function(){
+    $(".add").click(function(){
+        var oldValue=parseInt($(".digital").text());//取出现在的值，并使用parseInt转为int类型数据
+        oldValue++;//自加1
+        $(".digital").text(oldValue);//将增加后的值付给原控件
+        if(oldValue<=1){
+            $(".subtract").hide();
+            $(".subtract_white").show();
+        }else{
+            $(".subtract").show();
+            $(".subtract_white").hide();
+        }
+    });
+});
+//点击减少旅行者人数
+$(document).ready(function(){
+    $(".subtract").click(function(){
+        var oldValue=parseInt($(".digital").text());//取出现在的值，并使用parseInt转为int类型数据
+        oldValue--;//自加1
+        $(".digital").text(oldValue);//将增加后的值付给原控件
+        if(oldValue<=1){
+            $(".subtract").hide();
+            $(".subtract_white").show();
+        }else{
+            $(".subtract").show();
+            $(".subtract_white").hide();
+        }
+    });
+});
+//	业务说明弹框
+$(".pay_info").click(function(){
+    layer.open({
+        type: 1,
+        title: false,
+        closeBtn: 0,
+        shadeClose: true,
+        skin: 'yourclass',
+        content: $('.iframe')
+    });
+    return false;
+});
+//	改变出行日期和人数自动计算价格函数
+$(".time").bind("DOMNodeInserted",function(){
+    var start_time = $("#start_time").text();
+    var end_time = $("#end_time").text();
+    var days = daysBetween(start_time,end_time);
+//	    alert(days)
+    var person = $(".digital").text();
+    var oneperson_oneday = $(".oneperson_oneday").text();
+    var days_num = days*1;
+    if( start_time == '' || end_time == ''){
+        $(".sum_price").html("0");
+        return false;
+    }
+    if( days_num <= 0 ){
+        $(".sum_price").html("0");
+        mui.toast('结束日期要在开始日期之后',{ duration:'long', type:'div' })
+        return false;
+    }
+    var sum = days*person*oneperson_oneday;
+    $(".sum_price").html(sum);
+})
+
+//验证并提交数据
+$(".foot_next_btn").click(function(e){
+    var start_time = $("#start_time").text();
+    var end_time = $("#end_time").text();
+    var digital = $(".digital").text();
+    var sum_price = $(".sum_price").text();
+    if(start_time == '') {
+        mui.toast('请选择开始日期',{ duration:'short', type:'div' })
+        return;
+    }
+    if(end_time == '') {
+        mui.toast('请选择结束日期',{ duration:'short', type:'div' })
+        return;
+    }
+    if(sum_price == 0) {
+        mui.toast('结束日期要在开始日期之后',{ duration:'long', type:'div' })
+        return;
+    }
+    var _post_data = new Object();
+    _post_data.startTime = start_time;
+    _post_data.endTime = end_time;
+    _post_data.num = digital;
+    _post_data.guiderId = '@Html(guider.id)'
+    _post_data.priceType = '@Html(priceType)';
+    $.ajax({
+        url: "/order/creating",
+        dataType: "json",
+        data: _post_data,
+        type: "POST",
+        success: function (data) {
+            location.href = '/m/order/booking/'+data.guiderId +'?orderId='+data.orderId;
+        }
+    });
+    //window.location.href='booking.html?sum_price='+ sum_price+'';
+});
+//	计算天数
+function daysBetween(sDate1,sDate2){
+    //Date.parse() 解析一个日期时间字符串，并返回1970/1/1 午夜距离该日期时间的毫秒数
+    var time1 = Date.parse(new Date(sDate1));
+    var time2 = Date.parse(new Date(sDate2));
+    var nDays = parseInt((time2 - time1)/1000/3600/24);
+    return  nDays;
+};
+</script>
+
+    </body>
+</html>

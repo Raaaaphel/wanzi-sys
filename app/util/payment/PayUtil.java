@@ -25,7 +25,7 @@ public class PayUtil {
         return sb.toString();
 	}
 	public static String getSign(Map<String, Object> map){
-		ArrayList<String> list = new ArrayList<String>();
+		ArrayList<String> list = new ArrayList<>();
         for(Map.Entry<String,Object> entry:map.entrySet()){
             if(entry.getValue()!="" && !entry.toString().equals("return_code") && !entry.toString().equals("return_msg") && !entry.toString().equals("result_code")){
             	System.out.println();
@@ -41,7 +41,7 @@ public class PayUtil {
         }
         
         String result = sb.toString();
-        result += "key=73baf0c0c55c26f7c8a11202d3e4926d";
+        result += "key=izouzouizouzouizouzouizouzouizou";
         //Util.log("Sign Before MD5:" + result);
         result = MD5.MD5Encode(result).toUpperCase();
         //Util.log("Sign Result:" + result);
