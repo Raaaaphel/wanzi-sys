@@ -1,6 +1,8 @@
 package controllers;
 
 
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.HashMap;
@@ -27,7 +29,7 @@ public class PayController extends Controller {
 
     public static Result submitPayWx() {
         Map<String, String[]> formData = request().body().asFormUrlEncoded();
-        String ip = request().remoteAddress();
+        String ip = getIpAddr();
         String out_trade_no = formData.get("orderId")[0];
         try {
             String nonce_str = PayUtil.getRandomStringByLength(16);//生成随机数，可直接用系统提供的方法
@@ -48,7 +50,7 @@ public class PayController extends Controller {
             map.put("spbill_create_ip", ip);
             map.put("trade_type", trade_type);
             map.put("notify_url", notify_url);//notify_url 支付成功之后 微信会进行异步回调的地址
-            map.put("scene_info",scene_info); //场景信息
+            map.put("scene_info", scene_info); //场景信息
             String sign = PayUtil.getSign(map);//参数加密  该方法key的需要根据你当前公众号的key进行修改
             map.put("sign", sign);
             String content = XMLParser.getXMLFromMap(map);
@@ -65,7 +67,7 @@ public class PayController extends Controller {
                 result.put("mweb_url", mwebUrl);
                 return ok(Json.toJson(result));
             }
-        } catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
@@ -75,7 +77,7 @@ public class PayController extends Controller {
     //支付回调接口（微信异步会通知）notify_url 配置的值
     public static Result payCallback() {
         Document xmlData = request().body().asXml();
-        String orderId = XPath.selectText("//out_trade_no",xmlData);
+        String orderId = XPath.selectText("//out_trade_no", xmlData);
         //返回的数据
 
         //支付回调处理订单 更改订单状态
@@ -84,6 +86,40 @@ public class PayController extends Controller {
                 + "<return_msg><![CDATA[OK]]></return_msg>"
                 + "</xml>";
         return ok(xml).as("text/xml");
+    }
+
+    private static String getIpAddr() {
+        String ipAddress = null;
+        //ipAddress = request().getRemoteAddr();
+        ipAddress = request().getHeader("x-forwarded-for");
+        if (ipAddress == null || ipAddress.length() == 0 || "unknown".equalsIgnoreCase(ipAddress)) {
+            ipAddress = request().getHeader("Proxy-Client-IP");
+        }
+        if (ipAddress == null || ipAddress.length() == 0 || "unknown".equalsIgnoreCase(ipAddress)) {
+            ipAddress = request().getHeader("WL-Proxy-Client-IP");
+        }
+        if (ipAddress == null || ipAddress.length() == 0 || "unknown".equalsIgnoreCase(ipAddress)) {
+            ipAddress = request().remoteAddress();
+            if (ipAddress.equals("127.0.0.1")) {
+                //根据网卡取本机配置的IP
+                InetAddress inet = null;
+                try {
+                    inet = InetAddress.getLocalHost();
+                    ipAddress = inet.getHostAddress();
+                } catch (UnknownHostException e) {
+                    e.printStackTrace();
+                }
+            }
+
+        }
+        //对于通过多个代理的情况，第一个IP为客户端真实IP,多个IP按照','分割
+        if (ipAddress != null && ipAddress.length() > 15) {
+            //"***.***.***.***".length() = 15
+            if (ipAddress.indexOf(",") > 0) {
+                ipAddress = ipAddress.substring(0, ipAddress.indexOf(","));
+            }
+        }
+        return ipAddress;
     }
 }
 
