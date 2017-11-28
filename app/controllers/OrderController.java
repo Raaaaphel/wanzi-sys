@@ -195,15 +195,15 @@ public class OrderController extends Controller {
         switch (priceType){
             case "guider_price":
                 unitPrice = Double.parseDouble(guider.guider_price);
-                order.serviceType = "徒步向导";
+                order.serviceType = "徒步向导旅行服务";
                 break;
             case "guiderdrive_price":
                 unitPrice = Double.parseDouble(guider.guiderdrive_price);
-                order.serviceType = "五座车向导";
+                order.serviceType = "五座车向导旅行服务";
                 break;
             case "guiderpickup_price":
                 unitPrice = Double.parseDouble(guider.guiderpickup_price);
-                order.serviceType = "五座车接送机向导";
+                order.serviceType = "五座车接送机向导旅行服务";
                 break;
         }
         Double totalPrice = unitPrice * num * days;

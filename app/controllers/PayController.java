@@ -40,7 +40,7 @@ public class PayController extends Controller {
             String trade_type = "MWEB";
             String appid = "wx806bf0ac9a8bd94e";
             String mch_id = "1491635342";
-            String notify_url = "/pay/WxPaidNotify";
+            String notify_url = "http://test.izouzou.cc/pay/WxPaidNotify";
             String scene_info = "{\"h5_info\": {\"type\":\"Wap\",\"wap_url\": \"https://test.izouzou.cc\",\"wap_name\": \"走走旅游\"}}";
             Map<String, Object> map = new HashMap<>();
             map.put("appid", appid);
