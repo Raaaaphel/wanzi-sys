@@ -97,7 +97,7 @@ public class PayController extends Controller {
         requestHeaders.keySet().forEach((e)->{
             Logger.info(e+":"+Arrays.toString(requestHeaders.get(e)));
         });
-        ipAddress = request().getHeader("x-forwarded-for");
+        ipAddress = request().getHeader("X-Forwarded-For");
         Logger.info("x-forwarded-for"+ipAddress);
         if (ipAddress == null || ipAddress.length() == 0 || "unknown".equalsIgnoreCase(ipAddress)) {
             ipAddress = request().getHeader("Proxy-Client-IP");
