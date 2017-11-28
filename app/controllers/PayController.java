@@ -1,5 +1,6 @@
 package controllers;
 
+import play.Logger;
 
 import java.net.InetAddress;
 import java.net.UnknownHostException;
@@ -92,14 +93,18 @@ public class PayController extends Controller {
         String ipAddress = null;
         //ipAddress = request().getRemoteAddr();
         ipAddress = request().getHeader("x-forwarded-for");
+        Logger.info("x-forwarded-for"+ipAddress);
         if (ipAddress == null || ipAddress.length() == 0 || "unknown".equalsIgnoreCase(ipAddress)) {
             ipAddress = request().getHeader("Proxy-Client-IP");
+            Logger.info("Proxy-Client-IP"+ipAddress);
         }
         if (ipAddress == null || ipAddress.length() == 0 || "unknown".equalsIgnoreCase(ipAddress)) {
             ipAddress = request().getHeader("WL-Proxy-Client-IP");
+            Logger.info("WL-Proxy-Client-IP"+ipAddress);
         }
         if (ipAddress == null || ipAddress.length() == 0 || "unknown".equalsIgnoreCase(ipAddress)) {
             ipAddress = request().remoteAddress();
+            Logger.info("remoteAddress"+ipAddress);
             if (ipAddress.equals("127.0.0.1")) {
                 //根据网卡取本机配置的IP
                 InetAddress inet = null;
@@ -116,6 +121,7 @@ public class PayController extends Controller {
         if (ipAddress != null && ipAddress.length() > 15) {
             //"***.***.***.***".length() = 15
             if (ipAddress.indexOf(",") > 0) {
+                Logger.info("多代理"+ipAddress);
                 ipAddress = ipAddress.substring(0, ipAddress.indexOf(","));
             }
         }
