@@ -1,13 +1,14 @@
 package controllers;
 
 import models.Order;
+
 import play.Logger;
 
 import java.net.InetAddress;
 import java.net.UnknownHostException;
+
 import java.time.LocalDateTime;
-import java.time.ZoneId;
-import java.util.Arrays;
+import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -16,7 +17,7 @@ import play.libs.Json;
 import play.libs.XPath;
 import play.mvc.Controller;
 import play.mvc.Result;
-import util.payment.Util;
+
 import util.payment.HttpRequest;
 import util.payment.PayUtil;
 import util.payment.XMLParser;
@@ -63,7 +64,8 @@ public class PayController extends Controller {
             String PostResult = http.sendPost("https://api.mch.weixin.qq.com/pay/unifiedorder", content);
             Map<String, Object> cbMap = XMLParser.getMapFromXML(PostResult);
             if (cbMap.get("return_code").equals("SUCCESS") && cbMap.get("result_code").equals("SUCCESS")) {
-
+                order.status = Order.UNPAID;
+                Order.update(order);
                 String prepay_id = cbMap.get("prepay_id") + "";//这就是预支付id
                 String mwebUrl = cbMap.get("mweb_url") + ""; //拉起微信客户端的跳转url
                 Map<String, Object> result = new HashMap<>();
@@ -85,9 +87,13 @@ public class PayController extends Controller {
         String orderId = XPath.selectText("//out_trade_no", xmlData);
         String sign = XPath.selectText("//sign", xmlData);
         if (resultCode.equals("SUCCESS")) {
-            Logger.info("order:"+orderId);
-            Logger.info("time_end"+endTime);
-            Logger.info("sign:"+sign);
+            Order order = Order.get(orderId);
+            order.status = Order.PAID;
+            DateTimeFormatter df = DateTimeFormatter.ofPattern("yyyyMMddHHmmss");
+            LocalDateTime time = LocalDateTime.parse(endTime, df);
+            df = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+            order.endDate = df.format(time);
+            Order.update(order);
         }
         //返回的数据
 
