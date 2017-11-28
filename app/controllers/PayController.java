@@ -6,6 +6,7 @@ import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -92,6 +93,10 @@ public class PayController extends Controller {
     private static String getIpAddr() {
         String ipAddress = null;
         //ipAddress = request().getRemoteAddr();
+        Map<String, String[]> requestHeaders = request().headers();
+        requestHeaders.keySet().forEach((e)->{
+            Logger.info(e+":"+Arrays.toString(requestHeaders.get(e)));
+        });
         ipAddress = request().getHeader("x-forwarded-for");
         Logger.info("x-forwarded-for"+ipAddress);
         if (ipAddress == null || ipAddress.length() == 0 || "unknown".equalsIgnoreCase(ipAddress)) {
