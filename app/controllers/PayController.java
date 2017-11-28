@@ -1,5 +1,6 @@
 package controllers;
 
+import models.Order;
 import play.Logger;
 
 import java.net.InetAddress;
@@ -33,21 +34,22 @@ public class PayController extends Controller {
         Map<String, String[]> formData = request().body().asFormUrlEncoded();
         String ip = getIpAddr();
         String out_trade_no = formData.get("orderId")[0];
+        Order order = Order.get(out_trade_no);
         try {
             String nonce_str = PayUtil.getRandomStringByLength(16);//生成随机数，可直接用系统提供的方法
-            String spbill_create_ip = Util.getIpAdd();//用户端ip,这里随意输入的
             String trade_type = "MWEB";
             String appid = "wx806bf0ac9a8bd94e";
             String mch_id = "1491635342";
             String notify_url = "/pay/WxPaidNotify";
-            String scene_info = "{\"h5_info\": {\"type\":\"Wap\",\"wap_url\": \"https://pay.qq.com\",\"wap_name\": \"腾讯充值\"}}";
+            String scene_info = "{\"h5_info\": {\"type\":\"Wap\",\"wap_url\": \"https://test.izouzou.cc\",\"wap_name\": \"走走旅游\"}}";
             Map<String, Object> map = new HashMap<>();
             map.put("appid", appid);
             map.put("mch_id", mch_id);
             map.put("device_info", "WEB");
             map.put("nonce_str", nonce_str);
-            map.put("body", "购买金币");//订单标题
+            map.put("body", order.serviceType);//订单标题
             map.put("out_trade_no", out_trade_no);//订单ID
+            //map.put("total_fee", order.total_price); //需支付金额
             map.put("total_fee", 1);//订单需要支付的金额
             map.put("spbill_create_ip", ip);
             map.put("trade_type", trade_type);
@@ -64,7 +66,6 @@ public class PayController extends Controller {
 
                 String prepay_id = cbMap.get("prepay_id") + "";//这就是预支付id
                 String mwebUrl = cbMap.get("mweb_url") + ""; //拉起微信客户端的跳转url
-                LocalDateTime current = LocalDateTime.now(ZoneId.of("Asia/Shanghai"));
                 Map<String, Object> result = new HashMap<>();
                 result.put("mweb_url", mwebUrl);
                 return ok(Json.toJson(result));
@@ -79,7 +80,15 @@ public class PayController extends Controller {
     //支付回调接口（微信异步会通知）notify_url 配置的值
     public static Result payCallback() {
         Document xmlData = request().body().asXml();
+        String resultCode = XPath.selectText("//result_code", xmlData);
+        String endTime = XPath.selectText("//time_end", xmlData);
         String orderId = XPath.selectText("//out_trade_no", xmlData);
+        String sign = XPath.selectText("//sign", xmlData);
+        if (resultCode.equals("SUCCESS")) {
+            Logger.info("order:"+orderId);
+            Logger.info("time_end"+endTime);
+            Logger.info("sign:"+sign);
+        }
         //返回的数据
 
         //支付回调处理订单 更改订单状态
@@ -93,23 +102,23 @@ public class PayController extends Controller {
     private static String getIpAddr() {
         String ipAddress = null;
         //ipAddress = request().getRemoteAddr();
-        Map<String, String[]> requestHeaders = request().headers();
+       /* Map<String, String[]> requestHeaders = request().headers();
         requestHeaders.keySet().forEach((e)->{
             Logger.info(e+":"+Arrays.toString(requestHeaders.get(e)));
-        });
+        });*/
         ipAddress = request().getHeader("X-Forwarded-For");
-        Logger.info("x-forwarded-for"+ipAddress);
+        //Logger.info("x-forwarded-for"+ipAddress);
         if (ipAddress == null || ipAddress.length() == 0 || "unknown".equalsIgnoreCase(ipAddress)) {
             ipAddress = request().getHeader("Proxy-Client-IP");
-            Logger.info("Proxy-Client-IP"+ipAddress);
+           // Logger.info("Proxy-Client-IP"+ipAddress);
         }
         if (ipAddress == null || ipAddress.length() == 0 || "unknown".equalsIgnoreCase(ipAddress)) {
             ipAddress = request().getHeader("WL-Proxy-Client-IP");
-            Logger.info("WL-Proxy-Client-IP"+ipAddress);
+            //Logger.info("WL-Proxy-Client-IP"+ipAddress);
         }
         if (ipAddress == null || ipAddress.length() == 0 || "unknown".equalsIgnoreCase(ipAddress)) {
             ipAddress = request().remoteAddress();
-            Logger.info("remoteAddress"+ipAddress);
+           // Logger.info("remoteAddress"+ipAddress);
             if (ipAddress.equals("127.0.0.1")) {
                 //根据网卡取本机配置的IP
                 InetAddress inet = null;
@@ -126,7 +135,7 @@ public class PayController extends Controller {
         if (ipAddress != null && ipAddress.length() > 15) {
             //"***.***.***.***".length() = 15
             if (ipAddress.indexOf(",") > 0) {
-                Logger.info("多代理"+ipAddress);
+               // Logger.info("多代理"+ipAddress);
                 ipAddress = ipAddress.substring(0, ipAddress.indexOf(","));
             }
         }
