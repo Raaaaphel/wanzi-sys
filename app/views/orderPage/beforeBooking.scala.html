@@ -33,16 +33,20 @@
                 <!--预订前说明内容结束-->
                 <!--进行下一步操作按钮开始-->
             <div class="booking_before_btn">
-                <input type="button" value="去预订" onclick="javascript:window.location.href='/m/order/booking/@Html(uid)'" />
                 <p>点击去预订即表示已阅读并同意“<span class="free_statement">免费声明</span>”</p>
+              <input type="button" value="去预订" onclick="javascript:window.location.href='/m/order/booking/@Html(uid)'" />
             </div>
                 <!--进行下一步操作按钮结束-->
                 <!--业务说明弹框开始-->
-            <div class="iframe">
-                <p class="title">标题标题</p>
+            <iframe class="iframe" src="/site/html/id/disclaimer">
+<!--                <p class="title"></p>
                 <p>内容部分内容部分内容部分内容部分内容部分内容部分内容部分内容部分内容部分内容部分内容部分内容部分内容部分内容部分内容部分内容部分</p>
-                <p>内容部分内容部分内容部分内容部分内容部分内容部分内容部分内容部分内容部分内容部分内容部分内容部分内容部分内容部分内容部分内容部分</p>
-            </div>
+                <p>内容部分内容部分内容部分内容部分内容部分
+                内容部分内容部分内容部分内容部分内容部分内容
+                部分内容部分内容部分内容部分内容部分内容部
+                分</p>
+				-->
+            </iframe>
                 <!--业务说明弹框结束-->
         </div>
             <!--内容部分结束-->

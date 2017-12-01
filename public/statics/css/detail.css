@@ -1,3 +1,12 @@
+/* bottom button in desktop hidden*/
+#_btn-ask{
+	visibility:hidden;
+}
+
+#_btn-order{
+	visibility:hidden;
+}
+
 /* 左侧部分 */
 .guide-section{
 	margin-top: 30px;
@@ -160,7 +169,7 @@
 /* 右侧 */
 .guide-r{
 	width: 728px;
-	margin-left: 272px;
+	margin-left: 272px; 
 	margin-right: 0;
 }
 .guide-photo{
@@ -912,6 +921,8 @@
 	.guide-r{
 		width: 7.5rem;
 		padding: 0;
+		position: relative;
+		margin-left: 0; 
 	}
 	.guide-r img{
 		border-radius: 0!important;
@@ -1034,6 +1045,7 @@
 	}
 	.slide-comment .left-line{
 	    display: block;
+		padding-bottom:50px; 
 	}
 	.slide-section .left{
 		width: auto;
@@ -1235,5 +1247,36 @@
 	.more-comment{
 		font-weight: bold;
 		margin: 0.44rem 0 0.72rem;
+	}
+
+	.main-white{
+		display:none;
+		height:10px;
+	}
+	
+	/*	
+	
+	.btn-ask{
+		position:fixed;
+		bottom: 10px;
+		left: 10px;
+		z-index: 1029;
+	}
+	*/
+	
+	#_btn-ask{
+		visibility:visible;
+		position: fixed;
+		left:10;
+		bottom:10px;
+		z-index:1048;
+	}
+
+	#_btn-order{
+		visibility:visible;
+		position: fixed;
+		right:10px;
+		bottom:10px;
+		z-index:1048;
 	}
 }
