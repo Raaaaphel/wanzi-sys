@@ -134,13 +134,14 @@ public class OrderController extends Controller {
     }
 
     public static Result booking(String uid, String orderId) {
-
         AUser guider = AUser.getUserById(uid);
         if (orderId == null) {
-            return ok(views.html.orderPage.booking.render(guider ,null));
+            String customerId = session("userId");
+            Order order = Order.getByCustomerAndGuider(customerId, uid);
+            return ok(views.html.orderPage.booking.render(guider, order));
         } else {
             Order order = Order.get(orderId);
-            return ok(views.html.orderPage.booking.render(guider ,order));
+            return ok(views.html.orderPage.booking.render(guider, order));
         }
     }
 
@@ -170,12 +171,12 @@ public class OrderController extends Controller {
         return ok(views.html.orderPage.beforeBooking.render(uid));
     }
 
-    public static Result payCenter(String orderId){
+    public static Result payCenter(String orderId) {
         Order order = Order.get(orderId);
         return ok(views.html.orderPage.payCenter.render(order));
     }
 
-    public static Result createOrder(){
+    public static Result createOrder() {
         Map<String, String[]> formData = request().body().asFormUrlEncoded();
         String guiderId = formData.get("guiderId")[0];
         String travellerId = session("userId");
@@ -192,7 +193,7 @@ public class OrderController extends Controller {
 
         Order order = new Order();
 
-        switch (priceType){
+        switch (priceType) {
             case "guider_price":
                 unitPrice = Double.parseDouble(guider.guider_price);
                 order.serviceType = "徒步向导旅行服务";
@@ -206,7 +207,8 @@ public class OrderController extends Controller {
                 order.serviceType = "五座车接送机向导旅行服务";
                 break;
         }
-        Double totalPrice = unitPrice * num * days;
+        double count = (num - 1) * 0.3 + 1;
+        Double totalPrice = unitPrice * count * days;
         order.guider_id = guider.id;
         order.guider_name = guider.name;
         order.status = Order.CREATING;
@@ -227,7 +229,7 @@ public class OrderController extends Controller {
 
     }
 
-    public static Result confirmOrder(){
+    public static Result confirmOrder() {
         Map<String, String[]> formData = request().body().asFormUrlEncoded();
         String orderId = formData.get("orderId")[0];
         String remark = formData.get("remark")[0];

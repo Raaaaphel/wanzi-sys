@@ -75,18 +75,23 @@ public class AUser {
                 Pattern.CASE_INSENSITIVE))).limit(limit).skip(limit * (page - 1)).toArray();
     }
 
-    public static List<AUser> getStarGuiders()
+    public static List<AUser> getStarGuiders(String refer)
     {
-	List<AUser> guiders = new ArrayList<AUser>();
+	List<AUser> guiders = new ArrayList<>();
 	/*
 	AUser g1 = AUser.coll.findOneById("59febdfae4b0321df4d111f8");
 	AUser g2 = AUser.coll.findOneById("111111111111111111111111");
 	AUser g3 = AUser.coll.findOneById("10c8d3518be761e8fdbf2e5a");
 	*/
+	if (refer != null){
+	    AUser g = coll.findOneById(refer);
+	    if (g != null)
+	        guiders.add(g);
+    }
 	AUser g1 = AUser.coll.findOneById("5a045a17e4b05602646333dd");
 	AUser g2 = AUser.coll.findOneById("5a1108b2e4b0e90f7d037dcd");
 	AUser g3 = AUser.coll.findOneById("5a11109ee4b0e90f7d037dce");
-	   
+
 	guiders.add(g1);
 	guiders.add(g2);
 	guiders.add(g3);
@@ -94,8 +99,6 @@ public class AUser {
 	return guiders;
     }
 
-
-	
     @Id
     @ObjectId
     public String id;
@@ -104,7 +107,7 @@ public class AUser {
 
     public String email;
     public String password;
-    public double balance=0.0;
+    public Double balance=0.0;
 
 
     public String type = ""; //GUIDER or TRAVELLER
@@ -129,7 +132,7 @@ public class AUser {
     public ArrayList<String> imgs_travel = new ArrayList<String>(); //旅行照片
     public List<String> imgs_about = new ArrayList<>(); //关于这座城市的我
     public List<String> imgs_introduce = new ArrayList<>(); //我眼中的这座城市照片
-    
+
     public String traveltitle = ""; //导游主题
     public String traveldisc = ""; //导游简介
     public String priority_service = ""; //优先接待
@@ -142,6 +145,9 @@ public class AUser {
     public String guider_price = ""; //徒步旅行收费
     public String guiderdrive_price = ""; //五座车收费
     public String guiderpickup_price = ""; //五座车接机收费
+
+    public String userQrcodeUrl = "";
+    public String indexQrcodeUrl = "";
 
     public List<Comment> comments = new ArrayList<>();
 

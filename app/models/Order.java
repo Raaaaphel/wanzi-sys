@@ -63,4 +63,9 @@ public class Order {
 	{
 		return Order.coll.findOneById(id);
 	}
+
+	public static Order getByCustomerAndGuider(String customerId, String guiderId){
+	    return coll.findOne(DBQuery.and(DBQuery.is("traveller_id", customerId), DBQuery.is("guider_id", guiderId),DBQuery.is("status", CREATING)));
+
+    }
 }

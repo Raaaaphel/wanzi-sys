@@ -123,7 +123,11 @@ var start_time = document.getElementById('start_time');
 var startDatePicker = new window.DatePicker({
     target     : start_time,
     confirmCbk : function(data) {
-        start_time.textContent = data.year + '-' + data.month + '-' + data.day;
+        if(data.month == 0){
+            start_time.textContent = data.year-1 + '-' + 12 + '-' + data.day;
+        } else {
+            start_time.textContent = data.year + '-' + data.month + '-' + data.day;
+        }
         $("#start_date").css("line-height","25px");
         $("#start_date").text("重选开始日期");
     }
@@ -139,7 +143,12 @@ var end_time = document.getElementById('end_time');
 var endDatePicker = new window.DatePicker({
     target     : end_time,
     confirmCbk : function(data) {
-        end_time.textContent = data.year + '-' + data.month + '-' + data.day;
+        if(data.month == 0){
+            end_time.textContent = data.year-1 + '-' + 12 + '-' + data.day;
+        } else {
+            end_time.textContent = data.year + '-' + data.month + '-' + data.day;
+        }
+
         $("#end_date").css("line-height","25px");
         $("#end_date").text("重选结束日期");
     }
@@ -208,7 +217,7 @@ $(".time").bind("DOMNodeInserted",function(){
         mui.toast('结束日期要在开始日期之后',{ duration:'long', type:'div' })
         return false;
     }
-    var sum = days*person*oneperson_oneday;
+    var sum = days*oneperson_oneday * ((person - 1) * 0.3 + 1);
     $(".sum_price").html(sum);
 })
 
@@ -250,8 +259,8 @@ $(".foot_next_btn").click(function(e){
 //	计算天数
 function daysBetween(sDate1,sDate2){
     //Date.parse() 解析一个日期时间字符串，并返回1970/1/1 午夜距离该日期时间的毫秒数
-    var time1 = Date.parse(new Date(sDate1));
-    var time2 = Date.parse(new Date(sDate2));
+    var time1 = Date.parse(sDate1);
+    var time2 = Date.parse(sDate2);
     var nDays = parseInt((time2 - time1)/1000/3600/24);
     return  nDays;
 };

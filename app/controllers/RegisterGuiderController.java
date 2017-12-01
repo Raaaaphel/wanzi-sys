@@ -70,6 +70,7 @@ public class RegisterGuiderController extends Controller {
             u.birth_day = newData.get("birth_day");
             u.email = newData.get("email");
             u.name = newData.get("name");
+            u.userQrcodeUrl = homepage + "/site1/detail/id/" + u.id;
 
             if (u.type_work.equals(AUser.EMPLOYEE)) {
                 u.jobtitle = newData.get("job");

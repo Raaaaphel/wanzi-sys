@@ -19,7 +19,7 @@ public class Application extends Controller {
 	static Form<Task> taskForm = Form.form(Task.class); 
 
 	
-	public static Result index() {
+	public static Result index(String refer) {
 	    //		return ok(	  views.html.index.render());
 
 		if (session("userId") == null){
@@ -27,19 +27,17 @@ public class Application extends Controller {
 			session("userId", newUserId);
 		}
 		else{}
-		
-	    List<AUser> starGuiders = AUser.getStarGuiders();
+
+	    List<AUser> starGuiders = AUser.getStarGuiders(refer);
 	    //      play.Logger.info(starGuiders.get(0).name);
 	    return ok(  views.html.index.render(starGuiders));
 	}
   
   public static Result tasks() {
-      return index();
+      return index(null);
 
   }
 
-  
-	
 	/*
   public static Result newTask() {
     Form<Task> filledForm = taskForm.bindFromRequest();

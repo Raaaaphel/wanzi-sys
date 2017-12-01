@@ -39,8 +39,11 @@
                 </div>
                 <p class="text-center guide-detail"><span><i></i>向导详细资料</span></p>
                 <div class="text-center order-btn">
-                    <p class="text-color5 main-bg font-size2"><a style="color: white" href="@play.Play.application().configuration().getString("chatserviceport")/room?conversationId=@session().get("userId")@guider.id&userId=@session().get("userId")&anotherId=@guider.id" >咨询预订</a></p>
+                    <p class="text-color5 main-bg font-size2"><a style="color: white" href="@play.Play.application().configuration().getString("chatserviceport")/room?conversationId=@session().get("userId")@guider.id&userId=@session().get("userId")&anotherId=@guider.id" >我要咨询</a></p>
+                    <p class="text-color5 main-bg
+					font-size2"><a style="color:white" href="/m/order/beforeBooking/@Html(guider.id)">我要预定</a></p>
                 </div>
+
                 @if(!guider.img_validate.equals("")) {
                 <p class="text-center guide-yan">
 
@@ -155,7 +158,7 @@
                                 <div class="swiper-container" id="swiper1">
                                     <div class="swiper-wrapper">
 									  @for(img_about <- (guider.imgs_about)) {
-														<div class="swiper-slide swiper-slide-active"  data-name="我的照片" style="width: 173px; margin-right: 4px;">
+														<div class="swiper-slide"  data-name="我的照片" style="width: 173px; margin-right: 4px;">
 														  <img src="@img_about" alt="" class="brief-img">
 														</div>
 														}
