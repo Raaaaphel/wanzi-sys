@@ -76,4 +76,7 @@ GET         /m/order/payCenter/*orderId                   controllers.OrderContr
 POST        /order/creating                               controllers.OrderController.createOrder()
 POST        /order/confirm                                controllers.OrderController.confirmOrder()
 POST        /pay/submitPayWx                              controllers.PayController.submitPayWx()
-POST        /pay/WxPaidNotify                             controllers.PayController.payCallback()
+POST        /pay/WxPaidNotify 							  controllers.PayController.payCallback()
+
+GET 		/setting/myorders							  controllers.SettingController.getMyOrders()
+

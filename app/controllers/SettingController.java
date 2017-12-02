@@ -7,7 +7,7 @@ import play.mvc.*;
 import models.*;
 
 import java.util.*;
-
+import java.lang.*;
 import play.data.*;
 import play.Configuration;
 
@@ -20,4 +20,18 @@ public class SettingController extends Controller {
 	{
 		return ok(views.html.setting.render());
 	}
+
+	public static Result getMyOrders()
+	{
+		
+		List<Order> traveller_orders = new ArrayList<Order>();
+		List<Order> guider_orders = new ArrayList<Order>();
+		
+		return ok(views.html.myorder.render(traveller_orders, guider_orders));
+	}
+	public static Result refer()
+	{
+		return ok(views.html.refer.render());
+	}
+	
 }

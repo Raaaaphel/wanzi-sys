@@ -1,0 +1,50 @@
+@* @import java.lang.String; val
+ref_link='http://www.izouzou.cc/register?refer=@session.get("userId")'; *@
+
+
+
+@headerfooter{
+	
+<link rel="stylesheet" type="text/css" href="/app/statics/css/setting.css">
+
+<div class="applys clearfix">
+  <div class="l">
+	<ul class="fix_left">
+		<li><a class="font5"> <span> 我的帐户</a></span> </li>
+		<li><a class="font5"> <span> 我的订单</a></span> </li>
+		<li><a class="font5 action"><span> 推荐有奖 </a></span></li>
+		<li><a class="font5"><span> 用户设置 </a></span></li>
+	</ul>
+  </div>
+
+  <div class="r">
+	<div class="section">
+
+	  <strong>打印推广</strong>
+		<div class="#">
+		<img src="#" class="img-85">
+		<p>打印二维码 放到您所在的城市的酒店机场，游客扫码会在导游首页和搜索页看到您哦！</p>
+		</div>
+	
+		<div class="">
+		<button type="button" class="btn btn-info ">打印</button> 
+		</div>
+	</div>
+	
+	<div class="section">
+		@if(session().get("userType") == "GUIDER"){
+		<div class="">
+		  <img src="#" class="img-85">
+		</div>
+
+		<strong>分享链接</strong>
+		<p>http://www.izouzou.cc/register?refer=@session().get("userId")</p>
+		<p>通过以上链接注册，您和您的好友都会得到¥ 100 旅游金<a href="#">旅游金使用规则</a> </p>
+		<button class="btn btn-info">立即分享</button>
+		}
+	</div>
+
+  </div>
+</div>
+
+}
