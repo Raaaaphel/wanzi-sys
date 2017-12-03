@@ -49,13 +49,13 @@ ref_link='http://www.izouzou.cc/register?refer=@session.get("userId")'; *@
 	<script>
 		var host_name = window.location.host;
 			var qrcode1 = new QRCode(document.getElementById('index-refer-qrcode'), {
-				text: 'http://'+host_name+'@Html(guider.indexQrcodeUrl)',
+				text: 'http://'+host_name+'/index?refer='+'@Html(guider.id)',
 				colorDark : '#000000',
 				colorLight : '#ffffff',
 				correctLevel : QRCode.CorrectLevel.H
 			});
 			var qrcode2 = new QRCode(document.getElementById('user-refer-qrcode'), {
-				text: 'http://'+host_name+'@Html(guider.userQrcodeUrl)',
+				text: 'http://'+host_name+'/site1/detail/id/'+'@Html(guider.id)',
 				colorDark : '#000000',
 				colorLight : '#ffffff',
 				correctLevel : QRCode.CorrectLevel.H
