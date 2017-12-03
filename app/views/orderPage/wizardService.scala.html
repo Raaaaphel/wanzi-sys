@@ -224,6 +224,10 @@ $(".time").bind("DOMNodeInserted",function(){
 $(".foot_next_btn").click(function(e){
     var start_time = $("#start_time").text();
     var end_time = $("#end_time").text();
+
+    start_time = formatDateString(start_time);
+    end_time = formatDateString(end_time);
+
     var digital = $(".digital").text();
     var sum_price = $(".sum_price").text();
     if(start_time == '') {
@@ -263,6 +267,30 @@ function daysBetween(sDate1,sDate2){
     var nDays = parseInt((time2 - time1)/1000/3600/24);
     return  nDays;
 };
+
+function dateToDateString(date) {
+    var year = "";
+    var month = "";
+    var day = "";
+    year = date.getFullYear();
+    if (month = date.getMonth()+1 < 10){
+        month = "0" + month;
+    }
+    if (day = date.getDay() + 1 < 10){
+        day = "0" + day;
+    }
+    return year + "-" + month + "-" + day;
+}
+function formatDateString(oldString) {
+    var temp = oldString.split("-");
+    if (temp[1].length < 2){
+        temp[1] = "0" + temp[1];
+    }
+    if (temp[2].length < 2){
+        temp[2] = "0" + temp[2];
+    }
+    return temp[0] + "-" + temp[1] + "-" + temp[2];
+}
 </script>
 
     </body>
