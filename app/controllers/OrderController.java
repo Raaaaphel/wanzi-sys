@@ -4,6 +4,7 @@ import models.AUser;
 import models.DemandOrder;
 import models.GroupOrder;
 import models.Order;
+
 import play.libs.Json;
 import play.mvc.Controller;
 import play.mvc.Result;
@@ -220,6 +221,7 @@ public class OrderController extends Controller {
         order.endDate = endTime;
         order.days = days;
         order.travellerNum = num;
+        order.travelPlace = guider.city_and_country;
         Order.save(order);
         Map<String, Object> result = new HashMap<>();
         result.put("guiderId", order.guider_id);
@@ -239,5 +241,32 @@ public class OrderController extends Controller {
         Map<String, Object> result = new HashMap<>();
         result.put("orderId", order.id);
         return ok(Json.toJson(result));
+    }
+
+    public static Result acceptOrder(String orderId) {
+        Order order = Order.get(orderId);
+        String userId = session("userId");
+        if (userId.equals(order.guider_id)) {
+            order.status = Order.INSERVICE;
+            Order.update(order);
+            //TODO :通知用户导游已接单
+            return redirect("/setting/myorders");
+        } else {
+            return redirect("/logout");
+        }
+    }
+
+    public static Result cancelOrder(String orderId) {
+        Order order = Order.get(orderId);
+        String userId = session("userId");
+        if (userId.equals(order.guider_id)) {
+            order.status = Order.CANCELED;
+            Order.update(order);
+            //TODO :退款
+            //TODO :通知用户导游已取消订单
+            return redirect("/setting/myorders");
+        } else {
+            return redirect("/logout");
+        }
     }
 }

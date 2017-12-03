@@ -2,10 +2,11 @@
 ref_link='http://www.izouzou.cc/register?refer=@session.get("userId")'; *@
 
 
-
+@(guider:AUser)
 @headerfooter{
 	
 <link rel="stylesheet" type="text/css" href="/app/statics/css/setting.css">
+<script src="/app/statics/js/qrcode.js"></script>
 
 <div class="applys clearfix">
   <div class="l">
@@ -21,8 +22,7 @@ ref_link='http://www.izouzou.cc/register?refer=@session.get("userId")'; *@
 	<div class="section">
 
 	  <strong>打印推广</strong>
-		<div class="#">
-		<img src="#" class="img-85">
+		<div id="index-refer-qrcode" class="qrcode">
 		<p>打印二维码 放到您所在的城市的酒店机场，游客扫码会在导游首页和搜索页看到您哦！</p>
 		</div>
 	
@@ -33,7 +33,7 @@ ref_link='http://www.izouzou.cc/register?refer=@session.get("userId")'; *@
 	
 	<div class="section">
 		@if(session().get("userType") == "GUIDER"){
-		<div class="">
+		<div id="user-refer-qrcode" class="qrcode">
 		  <img src="#" class="img-85">
 		</div>
 
@@ -46,5 +46,23 @@ ref_link='http://www.izouzou.cc/register?refer=@session.get("userId")'; *@
 
   </div>
 </div>
+	<script>
+		var host_name = window.location.host;
+			var qrcode1 = new QRCode(document.getElementById('index-refer-qrcode'), {
+				text: 'http://'+host_name+'@Html(guider.indexQrcodeUrl)',
+				colorDark : '#000000',
+				colorLight : '#ffffff',
+				correctLevel : QRCode.CorrectLevel.H
+			});
+			var qrcode2 = new QRCode(document.getElementById('user-refer-qrcode'), {
+				text: 'http://'+host_name+'@Html(guider.userQrcodeUrl)',
+				colorDark : '#000000',
+				colorLight : '#ffffff',
+				correctLevel : QRCode.CorrectLevel.H
+			});
+			$(function(){
+				$(".qrcode img").addClass("img-85");
+			})
+	</script>
 
 }

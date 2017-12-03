@@ -1,15 +1,14 @@
 package controllers;
 
 
-import play.libs.Json;
 import play.mvc.*;
 
 import models.*;
 
 import java.util.*;
-import java.lang.*;
-import play.data.*;
-import play.Configuration;
+
+
+
 
 /**
  * This controller contains an action to handle HTTP requests
@@ -23,15 +22,21 @@ public class SettingController extends Controller {
 
 	public static Result getMyOrders()
 	{
-		
-		List<Order> traveller_orders = new ArrayList<Order>();
-		List<Order> guider_orders = new ArrayList<Order>();
-		
+		String userId = session("userId");
+		String userType = session("userType");
+		List<Order> traveller_orders = new ArrayList<>();
+		List<Order> guider_orders = new ArrayList<>();
+		if (userType.equals(AUser.TRAVELLER)){
+			traveller_orders = Order.getCustomerOrders(userId);
+		} else if (userType.equals(AUser.GUIDER)) {
+			guider_orders = Order.getGuiderOrders(userId);
+		}
 		return ok(views.html.myorder.render(traveller_orders, guider_orders));
 	}
 	public static Result refer()
 	{
-		return ok(views.html.refer.render());
+		AUser guider = AUser.getUserById(session("userId"));
+		return ok(views.html.refer.render(guider));
 	}
 	
 }

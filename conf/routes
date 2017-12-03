@@ -75,8 +75,11 @@ GET         /m/order/beforeBooking/*uid                   controllers.OrderContr
 GET         /m/order/payCenter/*orderId                   controllers.OrderController.payCenter(orderId:String)
 POST        /order/creating                               controllers.OrderController.createOrder()
 POST        /order/confirm                                controllers.OrderController.confirmOrder()
+GET         /order/accept/*orderId                        controllers.OrderController.acceptOrder(orderId:String)
+GET         /order/cancel/*orderId                        controllers.OrderController.cancelOrder(orderId:String)
 POST        /pay/submitPayWx                              controllers.PayController.submitPayWx()
-POST        /pay/WxPaidNotify 							  controllers.PayController.payCallback()
+POST        /pay/WxPaidNotify                             controllers.PayController.payCallback()
 
-GET 		/setting/myorders							  controllers.SettingController.getMyOrders()
+GET         /setting/myorders                             controllers.SettingController.getMyOrders()
+GET         /setting/refer                                controllers.SettingController.refer()
 

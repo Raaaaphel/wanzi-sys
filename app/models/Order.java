@@ -28,6 +28,7 @@ public class Order {
     public String endDate;
     public Integer travellerNum;
     public Long days;
+    public String travelPlace;
 
     //	public HashMap serviceitems<String, int>; // (String service_name, int per_pirce, int quote, int item_price) // service_name=(GUIDER, CAR, PIACKUP)
                                                   // 服务名称（导游，带车导游，接送机），单价，服务数量（天数），小记＝单价＊天数
@@ -46,6 +47,7 @@ public class Order {
 	public static String INSERVICE = "INSERVICE";
 	public static String COMPLETE= "COMPLETE";
 	public static String USERCONFIRMED= "USERCONFIRMED";
+	public static String CANCELED = "CANCELED";
     /* 取消政策 */
 	public static String POLICY_STRICT = "STRICT";
 	public static String POLICY_MIDIUM = "MIDIUM";
@@ -66,6 +68,10 @@ public class Order {
 
 	public static Order getByCustomerAndGuider(String customerId, String guiderId){
 	    return coll.findOne(DBQuery.and(DBQuery.is("traveller_id", customerId), DBQuery.is("guider_id", guiderId),DBQuery.is("status", CREATING)));
-
+    }
+    public static List<Order> getGuiderOrders(String guiderId){
+	    return  coll.find(DBQuery.and(DBQuery.is("guider_id", guiderId),DBQuery.is("status", PAID))).toArray();
+    }public static List<Order> getCustomerOrders(String travellerId){
+	    return  coll.find(DBQuery.and(DBQuery.is("traveller_id", travellerId),DBQuery.is("status", PAID))).toArray();
     }
 }
