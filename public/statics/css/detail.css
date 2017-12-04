@@ -1267,16 +1267,22 @@
 	#_btn-ask{
 		visibility:visible;
 		position: fixed;
-		left:10;
-		bottom:10px;
-		z-index:1048;
+		left:-20px;
+		bottom:0px;
+		width:3.75rem;
+		z-index:1049;
+
 	}
 
 	#_btn-order{
 		visibility:visible;
 		position: fixed;
-		right:10px;
-		bottom:10px;
-		z-index:1048;
+		right:0px;
+		bottom:0px;
+		width:3.75rem;
+		z-index:1049;
+
+/*		border:none;
+		border-radius:initial; */
 	}
 }

@@ -96,8 +96,9 @@
                             <input type="text" placeholder="请输入您想去的国家、城市">
                         </div></i>
                         <li class="hidden-sm hidden-md order-li mian-top"><a href="site/demand.html" target="_blank">定制旅行</a></li>
-                        <li class="slide-li mian-top"><a href="/registerguider">成为向导</a></li>
-                        <li class=" mian-top"><a href="site/group.html" target="_blank">团队企业服务</a></li>
+						<li class=" mian-top"><a href="site/group.html" target="_blank">团队企业服务</a></li>
+						<li class="slide-li mian-top"><a href="/registerguider">成为向导</a></li>
+												
                         <li class="load-img">
                                 <!--<li class="load-img">-->
                                 <!--<a href="javascript:;">下载APP</a>-->
@@ -130,12 +131,16 @@
                             <li class="help-center" style="">
                                 <a href="#">您好，@session().get("username")<i></i></a>
 								<ul>
-								  <li><a href="#"> 我的账户</a></li>
+								  <li><a href="#">我的账户</a></li>
+								  <li><a href="/setting/myorders">我的订单</a></li>
+								  <li><a href="/setting/refer">推荐有奖 </a><span class="font-size1" style="color:red">new</span> </li>
 								  <li><a href="/setting">用户设置</a></li>
-								  <li><a href="/logout"  style="display: inline">退出登录</a> </li>
+								  <li><a href="/logout"  style="display: inline">退出登录</a></li>
 								</ul>
                             </li>
                         }
+						<li>	<a href="#"	> 消息(0) </a> </li>
+
                         </ul>
                 </div>
             </div>

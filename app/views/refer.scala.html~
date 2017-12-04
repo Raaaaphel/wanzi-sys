@@ -19,38 +19,40 @@ ref_link='http://www.izouzou.cc/register?refer=@session.get("userId")'; *@
   </div>
 
   <div class="r intr_box">
+	<div class="col-sm-12"><p class="font-size2">二维码推广</p></div>
+	<div class="col-sm-12">	<p>打印二维码 放到您所在的城市的酒店机场，游客扫码会在导游首页和搜索页看到您哦！</p>
+	</div>
 
-		<div class="col-sm-12"><p class="font-size2">二维码推广</p></div>
 
 		<div id="index-refer-qrcode" class="qrcode col-sm-10">
 		</div>
 	
-		<div class="col-sm-2" style="height:100px">
+		<p class="serv_p" style="">
 		    <button type="button" class="btn btn-info btn-right" style="">打印</button> 
-		</div>
+		</p>
 		
 
-		<div class="col-sm-12">	<p>打印二维码 放到您所在的城市的酒店机场，游客扫码会在导游首页和搜索页看到您哦！</p>
-		</div>
 
-	<br><br><br><br>
 
+	<p></p><p></p>
+	
 	@if(session().get("userType") == "GUIDER"){
 
 		<div class"col-sm-12"><p class="font-size2">分享链接</p></div> 
-
-		<div id="user-refer-qrcode" class="qrcode col-sm-10">
-		</div>
-
-		<div class="col-sm-2" style="">
-			<button class="btn btn-info btn-right">分享</button>
-		</div>
 		
 		<div class="col-sm-12">
 			<p>http://www.izouzou.cc/register?refer=@session().get("userId")</p>
 			<p>邀请好友通过以上链接注册，您和您的好友都会得到¥ 100 旅游金 <a href="#">旅游金使用规则</a></p>
 		</div>
+
+		<div id="user-refer-qrcode" class="qrcode col-sm-10">
+		</div>
+
+			<p class="serv_p">
+			<button class="btn btn-info btn-right">分享</button>
+			</p>
 	}
+	
   </div>
 </div>
 	<script>

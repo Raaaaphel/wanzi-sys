@@ -1,0 +1,65 @@
+### header menu ###
+header.group_travel=Group Travel
+header.personalized_travel=Personalize Travel
+header.become_guider=Become Guider
+
+header.register=Register
+header.login=Login
+header.message=Message
+
+header.account=Account
+header.orders=Orders
+header.setting=Setting
+header.referral=Referral
+header.logout=Logout
+
+header.menu.how_guider=How to become a guider
+header.menu.how_personalized_travel=How to personalize travel
+header.menu.how_starguider=How to be a star guider
+header.menu.FAQ=FAQ
+
+### index content ###
+index.search_box=Where do you travel to
+
+index.start_guiders=Star Guiders
+
+index.quality_service=Quality Service
+index.local_guiders=Local Guiders
+index.local_guiders_p=
+index.pickup_service=Pickup Service
+index.pickup_service_p=
+index.personalized_travel=Personalized Travel
+index.personalized_travel_p=
+index.secure_care=Secure Care
+index.secure_care_p=
+
+### footer menu ###
+footer.company_name=® Guan Tech 2015-2017
+footer.domain=izouzou.cc
+footer.contact=Contact
+footer.wechat=WeChat
+footer.wechatid=31681315103
+footer.email=Email
+footer.email_address=info@izouzou.cc
+
+footer.company_info=Company Information
+footer.about_us=About US
+footer.join_us=Join US
+footer.contact_us=Contact US
+footer.sitemap=Sitemap
+
+footer.newbee=Newbee
+footer.help_center=Help Center
+footer.service_agreement=Service Agreement
+footer.privacy=Privacy
+footer.disclaim=Disclaim
+footer.user_policy=User Policy
+footer.guarentee_plan_items=Gurantee Plan Items
+
+footer.for_guider=For Guider
+footer.why_guider=Why Guider
+footer.guider_standard=Guider Standard
+footer.become_guider=Become Guider
+
+side.customer_service=Customer Service
+side.backtotop=Top
