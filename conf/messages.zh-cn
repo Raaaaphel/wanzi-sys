@@ -1,68 +1,76 @@
 ### header menu ###
-header.group_travel=Group Travel
-header.personalized_travel=Personalize Travel
-header.become_guider=Become Guider
+header.index=首页
+header.search_box=请输入您想去的国家、城市
 
-header.register=Register
-header.login=Login
-header.message=Message
+header.group_travel=团队企业服务
+header.personalized_travel=定制旅行
+header.become_guider=成为向导
 
-header.account=Account
-header.orders=Orders
-header.setting=Setting
-header.referral=Referral
-header.logout=Logout
+header.register=注册
+header.login=登录
+header.hello=您好,
+header.message=消息
 
-header.menu.how_guider=How to become a guider
-header.menu.how_personalized_travel=How to personalize travel
-header.menu.how_starguider=How to be a star guider
-header.menu.FAQ=FAQ
+header.account=我的账户
+header.orders=我的订单
+header.setting=用户设置
+header.referral=推荐有奖
+header.logout=退出登录
+
+header.menu.helplist=帮助中心
+header.menu.how_order_guider=如何预订向导
+header.menu.how_personalized_travel=如何定制旅行服务
+header.menu.how_starguider=如何成为一名优秀的向导
+header.menu.FAQ=更多问题与解答
+
 
 ### index content ###
-index.search_box=Where do you travel to
+index.search_box=请输入您想去的国家、城市
 
-index.start_guiders=Star Guiders
+index.start_guiders=备受好评的向导
 
-index.quality_service=Quality Service
-index.local_guiders=Local Guiders
-index.local_guiders_p=
-index.pickup_service=Pickup Service
-index.pickup_service_p=
-index.personalized_travel=Personalized Travel
-index.personalized_travel_p=
-index.secure_care=Secure Care
-index.secure_care_p=
+index.quality_service=尊享品质服务
+index.local_guiders=当地人向导
+index.local_guiders_p=全球20个国家，超过300个城市，都可以找
+到当地的华人华侨，留学生等等优质的中文向导，他们可能是律师、
+医生、人类学家、运动员…他们将尽心尽责为您提供最纯粹的当地人旅行体验。
+index.pickup_service=接机包车
+index.pickup_service_p=走走旅游的中文向导包车服务，从下飞机开始，就为您全程护航，走走旅游的包车服务车型多样，甚至包括澳洲房车等等车型，以期满足您的个性化旅行需求。
+index.personalized_travel=定制旅行
+index.personalized_travel_p=向导生活在各个国家学习工作生活多年，对所在地区自然景色和人文特色有深入，可以为您提供如预约德国乘坐滑翔机，私人游艇出海，希腊环岛自驾，迈阿密州天体海滩赏金发美女等等独特的定制旅行项目
+index.secure_care=保障服务
+index.secure_care_p=出境游最重要的是安全，走走旅游为您提供全球救援服务。我们在每一个服务区域，都有当地的导游协会、学联、地接社等，应对可能出现的突发情况，为您的境外旅行保驾护航。
 
 ### footer menu ###
-footer.company_name=® Guan Tech 2015-2017
+footer.company_name=® 杭州观海听涛信息科技有限公司
 footer.domain=izouzou.cc
-footer.contact=Contact
-footer.wechat=WeChat
-footer.wechatid=31681315103
-footer.email=Email
+footer.contact=联系方式
+footer.wechat=微信
+footer.wechatid=18896608671
+footer.email=邮箱
 footer.email_address=info@izouzou.cc
 
-footer.company_info=Company Information
-footer.about_us=About US
-footer.join_us=Join US
-footer.contact_us=Contact US
-footer.sitemap=Sitemap
+footer.company_info=公司信息
+footer.about_us=关于我们
+footer.join_us=加入我们
+footer.contact_us=联系我们
+footer.sitemap=网站地图
 
-footer.newbie=Newbie
-footer.help_center=Help Center
-footer.service_agreement=Service Agreement
-footer.privacy=Privacy
-footer.disclaim=Disclaim
-footer.user_policy=User Policy
-footer.guarentee_plan_items=Gurantee Plan Items
+footer.newbie=新手上路
+footer.help_center=帮助中心
+footer.service_agreement=服务条款
+footer.privacy=隐私政策
+footer.disclaim=免责声明
+footer.user_policy=使用政策须知
+footer.guarentee_plan=保障计划条款
 
-footer.for_guider=For Guider
-footer.why_guider=Why Guider
-footer.guider_standard=Guider Standard
-footer.become_guider=Become Guider
+footer.for_guider=向导须知
+footer.why_guider=为什么成为向导
+footer.guider_standard=向导服务标准
+footer.become_guider=申请成为向导
 
-side.customer_service=Customer Service
-side.backtotop=Top
+side.customer_service=联系客服
+side.backtotop=回到顶部
 
 
 # backend order states 0-3
@@ -80,7 +88,6 @@ guiderorder.EXCEPTION=订单异常
 
 
 guiderorder.state.ALL=全部订单
-
 # front end states 0-3
 guiderorder.state.INPROGRESS=进行中订单
 

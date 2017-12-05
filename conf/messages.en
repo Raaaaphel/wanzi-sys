@@ -1,10 +1,14 @@
 ### header menu ###
+header.index=Home Page
+header.search_box=Where do you travel to
+
 header.group_travel=Group Travel
 header.personalized_travel=Personalize Travel
 header.become_guider=Become Guider
 
 header.register=Register
 header.login=Login
+header.hello=Hello
 header.message=Message
 
 header.account=Account
@@ -13,6 +17,7 @@ header.setting=Setting
 header.referral=Referral
 header.logout=Logout
 
+header.menu.helplist=Help List
 header.menu.how_guider=How to become a guider
 header.menu.how_personalized_travel=How to personalize travel
 header.menu.how_starguider=How to be a star guider
@@ -33,8 +38,10 @@ index.personalized_travel_p=
 index.secure_care=Secure Care
 index.secure_care_p=
 
+index.partners=Partners
+
 ### footer menu ###
-footer.company_name=® Guan Tech 2015-2017
+footer.company_name=® Guanhaitingtao Tech 
 footer.domain=izouzou.cc
 footer.contact=Contact
 footer.wechat=WeChat
@@ -54,7 +61,7 @@ footer.service_agreement=Service Agreement
 footer.privacy=Privacy
 footer.disclaim=Disclaim
 footer.user_policy=User Policy
-footer.guarentee_plan_items=Gurantee Plan Items
+footer.guarentee_plan=Gurantee Plan Items
 
 footer.for_guider=For Guider
 footer.why_guider=Why Guider

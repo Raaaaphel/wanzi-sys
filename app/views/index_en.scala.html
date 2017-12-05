@@ -1,0 +1,876 @@
+@(front_guiders:List[AUser]=null)
+@import helper._
+@import java.lang.String; val chatserviceport="http://test.zouzouyouyou.info:9000"; val testid="999999999999999999999999"; val botid="ffffffffffffffffffffffff";
+
+<!-- add shade layer for tutorial -->
+@**
+@if(session.get("userId") != ""){
+@views.html.shade.render();
+}
+**@
+
+@headerfooter_en{
+    <!-- 主题 -->
+	<link rel="stylesheet" href="app/statics/css/index.css">
+    <!-- banner -->
+    <div class="swiper-container" id="swiper1">
+        <div class="swiper-wrapper">
+                            <div class="swiper-slide banner-slide" style="background-image:url(app/statics/images/ching2.datu.jpg)" rel="site/detail/id/56c1f1a0422cb.html">
+                    <div class="banner-bottom">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-sm-8 col-xs-12">
+                                    <h2 class="text-left text-color5 font-size6">阿姆斯特丹 — 转角听故事，挥手看美景的地方</h2>
+                                    <p class="text-left text-color5">阿姆斯特丹这座城市是如此的开放又如此的神秘。围绕着荷兰首都阿姆斯特丹的故事多得数不清，但是有些时候，得靠自己深入了解其背后的故事。</p>      
+                                </div>
+                                <div class="col-sm-4 col-xs-4 text-right">
+                                    <p class="text-color5"><span>喵喵</span> <span>欧洲-荷兰</span></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                            <div class="swiper-slide banner-slide" style="background-image:url(app/statics/images/jaq1.datu.jpg)" rel="site/detail/id/5830fed1e54ac.html">
+                    <div class="banner-bottom">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-sm-8 col-xs-12">
+                                    <h2 class="text-left text-color5 font-size6">置身于风景秀美的澳洲</h2>
+                                    <p class="text-left text-color5">天蓝蓝、水绿绿，满目青翠，绿树成荫，百花争艳，感受悉尼繁华市区的车水马龙，去墨尔本海边吹吹清风，尽情地欣赏天边夕阳勾勒出的那一抹靓丽的红晕，更会飘逸着罗曼蒂克的浪漫情怀。</p>      
+                                </div>
+                                <div class="col-sm-4 col-xs-4 text-right">
+                                    <p class="text-color5"><span>林静</span> <span>澳洲-澳大利亚</span></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                            <div class="swiper-slide banner-slide" style="background-image:url(app/statics/images/shangda2.datu.jpg)" rel="site/detail/id/5765d805dea19.html">
+                    <div class="banner-bottom">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-sm-8 col-xs-12">
+                                    <h2 class="text-left text-color5 font-size6">旧金山-优美而不失大气的风景下的时尚都市</h2>
+                                    <p class="text-left text-color5">带你了解为什么金门大桥不是金色，优胜美地为什么可以是美国最有名的国家公园，为什么谷歌苹果都喜欢在硅谷扎根，为什么一号公路是世界最美的公路.. 答案等你来探索...</p>      
+                                </div>
+                                <div class="col-sm-4 col-xs-4 text-right">
+                                    <p class="text-color5"><span>慧心</span> <span>美洲-美国</span></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        </div>
+        <div class="container circle-container">
+            <div class="row">
+                <div class="col-xs-8"></div>
+                <div class="col-xs-4" style="padding-right:0;">
+                    <div class="swiper-pagination banner-circle text-right computer-circle"></div>
+                    <div class="swiper-pagination banner-circle phone-circle"></div>
+                </div>
+            </div>
+        </div>
+        <div class="banner-arrow"><div class="swiper-button-prev1"></div></div>
+        <div class="banner-arrow"><div class="swiper-button-next1"></div></div>
+    </div>
+    <!-- 搜索框 -->
+    <div class="sear-area" >
+        <input type="text" id="search" data-id=""  data-name="" placeholder="@Messages("index.search_box")" class="swiper-no-swiping">
+        <span  class="search"></span>
+        <div class="searching-area">
+        </div>
+        <div class="search-history">
+            <div id="history">
+            </div>
+            <div id="city">
+            </div>
+        </div>
+    </div>
+    <!-- 搜索框 -->
+	<!-- banner -->
+        <!-- 备受好评的向导 -->
+    <div class="main-white">
+	<div class="container" style="overflow:hidden;">
+        <div id="swiper2" class="swiper-container" style="overflow:visible;">
+            <h2 class="text-center common-h2 font-size4">@Messages("index.start_guiders")</h2>
+            <div class="swiper-wrapper computer-swiper">
+@*
+              <div class="swiper-slide">
+    <a href="site/detail/id/541bb10e0a331.html" target="_blank">
+        <div class="comment-section">
+            <img src="app/statics/images/ching1.jpg" alt="" class="img-responsive">
+            <p class="text-color5 text-overflow">走在大阪，感受大阪的无穷魅力</p>
+        </div>
+        <p>
+            <span class="text-overflow font-size2 common-name">宁静</span>
+            <span class="text-right text-overflow main-color"><strong class="font-size2">CNY 800</strong>起</span>
+        </p>
+         <p>
+            <span class="text-overflow">全职向导</span>
+            <span class="text-overflow text-right start-section">
+                                            <i class="start3"></i>
+                                            <i class="start3"></i>
+                                            <i class="start3"></i>
+                                            <i class="start3"></i>
+                                            <i class="start3"></i>
+                                            <span>5</span>
+            </span>
+        </p>
+        <p><span><i class="lit"></i>日本 - 大阪</span></p>
+        <p class="font-size1 text-color2 text-overflow">
+                                    <span class="guide-tag">带车向导</span>
+                                    <span class="guide-tag">带车接送机</span>
+                                </p>
+    </a>
+    </div>
+                <div class="swiper-slide">
+    <a href="site/detail/id/560a4f004719d.html" target="_blank">
+        <div class="comment-section">
+            <img src="app/statics/images/shangda1.jpg" alt="" class="img-responsive">
+            <p class="text-color5 text-overflow">带您领略地地道道的西欧</p>
+        </div>
+        <p>
+            <span class="text-overflow font-size2 common-name">解方成</span>
+            <span class="text-right text-overflow main-color"><strong class="font-size2">CNY 600</strong>起</span>
+        </p>
+         <p>
+            <span class="text-overflow">专业向导</span>
+            <span class="text-overflow text-right start-section">
+                                            <i class="start3"></i>
+                                            <i class="start3"></i>
+                                            <i class="start3"></i>
+                                            <i class="start3"></i>
+                                            <i class="start3"></i>
+                                            <span>27</span>
+            </span>
+        </p>
+        <p><span><i class="lit"></i>德国 - 慕尼黑</span></p>
+        <p class="font-size1 text-color2 text-overflow">
+                                    <span class="guide-tag">徒步向导</span>
+                                    <span class="guide-tag">带车向导</span>
+                                    <span class="guide-tag">带车接送机</span>
+                                </p>
+    </a>
+				</div>
+
+
+                <div class="swiper-slide">
+    <a href="site/detail/id/574d010ec99de.html" target="_blank">
+        <div class="comment-section">
+            <img src="app/statics/images/Tham1.jpg" alt="" class="img-responsive">
+            <p class="text-color5 text-overflow">带您畅游奥兰多迪斯尼</p>
+        </div>
+        <p>
+            <span class="text-overflow font-size2 common-name">杨卓</span>
+            <span class="text-right text-overflow main-color"><strong class="font-size2">CNY 850</strong>起</span>
+        </p>
+         <p>
+            <span class="text-overflow">专业向导</span>
+            <span class="text-overflow text-right start-section">
+                                            <i class="start3"></i>
+                                            <i class="start3"></i>
+                                            <i class="start3"></i>
+                                            <span>6</span>
+            </span>
+        </p>
+        <p><span><i class="lit"></i>美国 - 奥兰多</span></p>
+        <p class="font-size1 text-color2 text-overflow">
+                                    <span class="guide-tag">徒步向导</span>
+                                    <span class="guide-tag">带车向导</span>
+                                    <span class="guide-tag">带车接送机</span>
+                                </p>
+    </a>
+				</div>
+*@
+@*				
+							  <div class="swiper-slide">
+								<a href="@chatserviceport/room?conversationId=@testid@botid&userId=@testid&anotherId=@botid" target="_blank">
+								  <div class="comment-section">
+									<img src="/assets/upload/images/ffffffffffffffffffffffff.theme.jpg" alt="" class="img-responsive">
+									<p class="text-color5 text-overflow">旅行百事通</p>
+								  </div>
+								  <p>
+									<span class="text-overflow font-size2 common-name">ZZ </span>
+									<span class="text-right text-overflow main-color"><strong class="font-size2">68.00</strong>起</span>
+								  </p>
+								  <p>
+									<span class="text-overflow">智能向导</span>
+									<span class="text-overflow text-right start-section">
+									  <i class="start3"></i>
+									  <i class="start3"></i>
+									  <i class="start3"></i>
+									  <i class="start3"></i>
+									  <i class="start3"></i>
+									  <span>58</span>
+									</span>
+								  </p>
+								  <p><span><i class="lit"></i>中国-杭州</span></p>
+								  <p class="font-size1 text-color2 text-overflow">
+                                    <span class="guide-tag">在线向导</span>
+								  </p>
+								</a>
+							  </div>
+				
+*@
+
+							  @for(guider<-front_guiders){
+							  <div class="swiper-slide">
+								<a href="site1/detail/id/@guider.id" target="_blank">
+								  <div class="comment-section">
+									<img src="@guider.img_profile" alt="" class="img-responsive" style="height:280px;width:280px">
+									
+									<p class="text-color5 text-overflow">@guider.traveltitle</p>
+								  </div>
+								  <p>
+									<span class="text-overflow font-size2 common-name">@guider.name</span>
+									<span class="text-right text-overflow main-color"><strong class="font-size2">@guider.guider_price</strong>起</span>
+								  </p>
+								  <p>
+									<span class="text-overflow">专业向导</span>
+									<span class="text-overflow text-right start-section">
+									  <i class="start3"></i>
+									  <i class="start3"></i>
+									  <i class="start3"></i>
+									  <i class="start3"></i>
+									  <span>2</span>
+									</span>
+								  </p>
+								  <p><span><i class="lit"></i>@guider.city_and_country</span></p>
+								  <p class="font-size1 text-color2 text-overflow">
+									<span class="guide-tag">徒步向导</span>
+									<span class="guide-tag">带车向导</span>
+									<span class="guide-tag">带车接送机</span>
+								  </p>
+								</a>
+								                </div>
+							  }
+							  
+                <!--<div class="swiper-slide">-->
+    <!--<a href="site/detail/id/557c1a40502bc.html" target="_blank">-->
+        <!--<div class="comment-section">-->
+            <!--<img src="https://img.wanzi.cc/images/599e46bbf39af.png@@650w_379h_1e_1c_1sh" alt="" class="img-responsive">-->
+            <!--<p class="text-color5 text-overflow">我在东京等你来</p>-->
+        <!--</div>-->
+        <!--<p>-->
+            <!--<span class="text-overflow font-size2 common-name">赵响</span>-->
+            <!--<span class="text-right text-overflow main-color"><strong class="font-size2">CNY 1000</strong>起</span>-->
+        <!--</p>-->
+         <!--<p>-->
+            <!--<span class="text-overflow">自由职业</span>-->
+            <!--<span class="text-overflow text-right start-section">-->
+                                            <!--<i class="start3"></i>-->
+                                            <!--<i class="start3"></i>-->
+                                            <!--<i class="start3"></i>-->
+                                            <!--<i class="start3"></i>-->
+                                            <!--<i class="start3"></i>-->
+                                            <!--<span>30</span>-->
+            <!--</span>-->
+        <!--</p>-->
+        <!--<p><span><i class="lit"></i>日本 - 东京</span></p>-->
+        <!--<p class="font-size1 text-color2 text-overflow">-->
+                                    <!--<span class="guide-tag">徒步向导</span>-->
+                                    <!--<span class="guide-tag">带车向导</span>-->
+                                    <!--<span class="guide-tag">带车接送机</span>-->
+                                <!--</p>-->
+    <!--</a>-->
+    <!--</div>-->
+                <!--<div class="swiper-slide">-->
+    <!--<a href="site/detail/id/5796603d08c9b.html" target="_blank">-->
+        <!--<div class="comment-section">-->
+            <!--<img src="https://img.wanzi.cc/images/57b12d9e2fa50.jpg@@650w_379h_1e_1c_1sh" alt="" class="img-responsive">-->
+            <!--<p class="text-color5 text-overflow">伦敦——欧洲政治文化经济中心</p>-->
+        <!--</div>-->
+        <!--<p>-->
+            <!--<span class="text-overflow font-size2 common-name">张宇</span>-->
+            <!--<span class="text-right text-overflow main-color"><strong class="font-size2">CNY 1100</strong>起</span>-->
+        <!--</p>-->
+         <!--<p>-->
+            <!--<span class="text-overflow">房产管理</span>-->
+            <!--<span class="text-overflow text-right start-section">-->
+                                            <!--<i class="start3"></i>-->
+                                            <!--<i class="start3"></i>-->
+                                            <!--<i class="start3"></i>-->
+                                            <!--<i class="start3"></i>-->
+                                            <!--<i class="start3"></i>-->
+                                            <!--<span>31</span>-->
+            <!--</span>-->
+        <!--</p>-->
+        <!--<p><span><i class="lit"></i>英国 - 伦敦</span></p>-->
+        <!--<p class="font-size1 text-color2 text-overflow">-->
+                                    <!--<span class="guide-tag">带车向导</span>-->
+                                    <!--<span class="guide-tag">带车接送机</span>-->
+                                <!--</p>-->
+    <!--</a>-->
+    <!--</div>-->
+                <!--<div class="swiper-slide">-->
+    <!--<a href="site/detail/id/587dd7843ae79.html" target="_blank">-->
+        <!--<div class="comment-section">-->
+            <!--<img src="https://img.wanzi.cc/images/5899731b4ed85.jpg@@650w_379h_1e_1c_1sh" alt="" class="img-responsive">-->
+            <!--<p class="text-color5 text-overflow">想带您玩不一样的行程！吃不一样的食物</p>-->
+        <!--</div>-->
+        <!--<p>-->
+            <!--<span class="text-overflow font-size2 common-name">陈沛君</span>-->
+            <!--<span class="text-right text-overflow main-color"><strong class="font-size2">CNY 200</strong>起</span>-->
+        <!--</p>-->
+         <!--<p>-->
+            <!--<span class="text-overflow">广告设计师</span>-->
+            <!--<span class="text-overflow text-right start-section">-->
+                                            <!--<i class="start3"></i>-->
+                                            <!--<i class="start3"></i>-->
+                                            <!--<i class="start3"></i>-->
+                                            <!--<i class="start3"></i>-->
+                                            <!--<i class="start3"></i>-->
+                                            <!--<span>14</span>-->
+            <!--</span>-->
+        <!--</p>-->
+        <!--<p><span><i class="lit"></i>马来西亚 - 吉隆坡</span></p>-->
+        <!--<p class="font-size1 text-color2 text-overflow">-->
+                                    <!--<span class="guide-tag">徒步向导</span>-->
+                                    <!--<span class="guide-tag">带车向导</span>-->
+                                    <!--<span class="guide-tag">徒步接送机</span>-->
+                                    <!--<span class="guide-tag">带车接送机</span>-->
+                                <!--</p>-->
+    <!--</a>-->
+    <!--</div>-->
+                <!--<div class="swiper-slide">-->
+    <!--<a href="site/detail/id/55d7a85518827.html" target="_blank">-->
+        <!--<div class="comment-section">-->
+            <!--<img src="https://img.wanzi.cc/images/58b93ce70a146.jpg@@650w_379h_1e_1c_1sh" alt="" class="img-responsive">-->
+            <!--<p class="text-color5 text-overflow">南京的四季总是最美的，因为你也在这里</p>-->
+        <!--</div>-->
+        <!--<p>-->
+            <!--<span class="text-overflow font-size2 common-name">俞冬磊</span>-->
+            <!--<span class="text-right text-overflow main-color"><strong class="font-size2">CNY 200</strong>起</span>-->
+        <!--</p>-->
+         <!--<p>-->
+            <!--<span class="text-overflow">专业向导</span>-->
+            <!--<span class="text-overflow text-right start-section">-->
+                                            <!--<i class="start3"></i>-->
+                                            <!--<i class="start3"></i>-->
+                                            <!--<i class="start3"></i>-->
+                                            <!--<i class="start3"></i>-->
+                                            <!--<i class="start3"></i>-->
+                                            <!--<span>31</span>-->
+            <!--</span>-->
+        <!--</p>-->
+        <!--<p><span><i class="lit"></i>中国 - 南京</span></p>-->
+        <!--<p class="font-size1 text-color2 text-overflow">-->
+                                    <!--<span class="guide-tag">徒步向导</span>-->
+                                    <!--<span class="guide-tag">带车向导</span>-->
+                                    <!--<span class="guide-tag">带车接送机</span>-->
+                                <!--</p>-->
+    <!--</a>-->
+    <!--</div>-->
+                <!--<div class="swiper-slide">-->
+    <!--<a href="site/detail/id/55b30cbf93d2c.html" target="_blank">-->
+        <!--<div class="comment-section">-->
+            <!--<img src="https://img.wanzi.cc/images/55ef93bac075c.jpg@@650w_379h_1e_1c_1sh" alt="" class="img-responsive">-->
+            <!--<p class="text-color5 text-overflow">像杭州人一样闲逛天堂</p>-->
+        <!--</div>-->
+        <!--<p>-->
+            <!--<span class="text-overflow font-size2 common-name">潘冬青</span>-->
+            <!--<span class="text-right text-overflow main-color"><strong class="font-size2">CNY 300</strong>起</span>-->
+        <!--</p>-->
+         <!--<p>-->
+            <!--<span class="text-overflow">兼职向导</span>-->
+            <!--<span class="text-overflow text-right start-section">-->
+                                            <!--<i class="start3"></i>-->
+                                            <!--<i class="start3"></i>-->
+                                            <!--<i class="start3"></i>-->
+                                            <!--<i class="start3"></i>-->
+                                            <!--<i class="start3"></i>-->
+                                            <!--<span>26</span>-->
+            <!--</span>-->
+        <!--</p>-->
+        <!--<p><span><i class="lit"></i>中国 - 杭州</span></p>-->
+        <!--<p class="font-size1 text-color2 text-overflow">-->
+                                    <!--<span class="guide-tag">徒步向导</span>-->
+                                    <!--<span class="guide-tag">带车向导</span>-->
+                                    <!--<span class="guide-tag">徒步接送机</span>-->
+                                    <!--<span class="guide-tag">带车接送机</span>-->
+                                <!--</p>-->
+    <!--</a>-->
+    <!--</div>-->
+                <!--<div class="swiper-slide">-->
+    <!--<a href="site/detail/id/55d6710be1c41.html" target="_blank">-->
+        <!--<div class="comment-section">-->
+            <!--<img src="https://img.wanzi.cc/images/583bf83544792.jpg@@650w_379h_1e_1c_1sh" alt="" class="img-responsive">-->
+            <!--<p class="text-color5 text-overflow">带你感受现代和历史交融的米兰</p>-->
+        <!--</div>-->
+        <!--<p>-->
+            <!--<span class="text-overflow font-size2 common-name">雷政韬</span>-->
+            <!--<span class="text-right text-overflow main-color"><strong class="font-size2">CNY 500</strong>起</span>-->
+        <!--</p>-->
+         <!--<p>-->
+            <!--<span class="text-overflow">政治学本科在读</span>-->
+            <!--<span class="text-overflow text-right start-section">-->
+                                            <!--<i class="start3"></i>-->
+                                            <!--<i class="start3"></i>-->
+                                            <!--<i class="start3"></i>-->
+                                            <!--<i class="start3"></i>-->
+                                            <!--<i class="start3"></i>-->
+                                            <!--<span>19</span>-->
+            <!--</span>-->
+        <!--</p>-->
+        <!--<p><span><i class="lit"></i>意大利 - 米兰</span></p>-->
+        <!--<p class="font-size1 text-color2 text-overflow">-->
+                                    <!--<span class="guide-tag">徒步向导</span>-->
+                                    <!--<span class="guide-tag">带车向导</span>-->
+                                    <!--<span class="guide-tag">徒步接送机</span>-->
+                                    <!--<span class="guide-tag">带车接送机</span>-->
+                                <!--</p>-->
+    <!--</a>-->
+    <!--</div>-->
+            </div>
+        </div>
+	</div>
+    </div>
+    <div class="main-line"></div>
+    <!-- 备受好评的向导 -->
+        <!-- 尊享品质服务 -->
+    <div class="main-white">
+        <div class="container service-section1">
+            <h2 class="text-center common-h2 font-size4">@Messages("index.quality_service")</h2>
+            <div class="row">
+                <div class="col-sm-6 col-xs-12">
+                  <div class="service-list">
+					<img src="http://media.expedia.com/media/content/shared/images/travelguides/destination/6049429/Malta-26310.jpg" alt="" class="img-responsive">
+<!--                        <img src="app/statics/images/guide.jpg" alt="" class="img-responsive">-->
+                        <div class="service-title text-center font-size4">
+                            <p>@Messages("index.local_guiders")</p>
+                        </div>
+                        <div class="service-explain">
+                            <p class="text-color5 text-center font-size4"><strong>@Messages("index.local_guiders")</strong></p>
+                            <p class="text-color5 font-size6">@Messages("index.local_guiders_p")</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-xs-12">
+                    <div class="service-list">
+<!--                      <img src="app/statics/images/car.jpg" alt="" class="img-responsive">-->
+					  <img src="app/statics/images/teslacar.jpg" alt="" class="img-responsive">
+                        <div class="service-title text-center font-size4">
+                            <p>"@Messages("index.pickup_service")"</p>
+                        </div>
+                        <div class="service-explain">
+                            <p class="text-color5 text-center font-size4"><strong>@Messages("index.pickup_service")</strong></p>
+                            <p class="text-color5 font-size6">@Messages("index.pickup_service_p")</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-xs-12">
+                  <div class="service-list">
+					<img src="http://www.yomadic.com/wp-content/uploads/european-road-trip-route.jpg" alt="" class="img-responsive">
+<!--                        <img src="app/statics/images/trip.jpg" alt="" class="img-responsive"> -->
+                        <div class="service-title text-center font-size4">
+                            <p>@Messages("index.personalized_travel")</p>
+                        </div>
+                        <div class="service-explain">
+                            <p class="text-color5 text-center font-size4"><strong>@Messages("index.personalized_travel")</strong></p>
+                            <p class="text-color5 font-size6">@Messages("index.personalized_travel_p")</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-xs-12">
+                  <div class="service-list">
+					<img src="app/statics/images/plane.jpg" alt="" class="img-responsive">
+<!--                        <img src="app/statics/images/service.jpg" alt="" class="img-responsive"> -->
+                        <div class="service-title text-center font-size4">
+                            <p>@Messages("index.secure_care")</p>
+                        </div>
+                        <div class="service-explain">
+                            <p class="text-color5 text-center font-size4"><strong>@Messages("index.secure_care")</strong></p>
+                            <p class="text-color5 font-size6">@Messages("index.secure_care_p")</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="main-line"></div>
+    <!-- 尊享品质服务 -->
+    <!-- 四步轻松预订向导 -->
+    <!--<div class="main-white order-video">-->
+        <!--<div class="container">-->
+            <!--<h2 class="text-center common-h2 font-size4">四步轻松预订向导</h2>-->
+            <!--<div class="video-box">-->
+                <!--<video src="app/statics/video/video.mp4" class="video_main" controls="controls" width="970" height="546" poster="app/statics/images/video-bg.jpg">-->
+                    <!--<source type="video/mp4" src="app/statics/video/video.mp4">-->
+                    <!--您的浏览器版本过低，我们建议使用最新版本的Chrome、Firefox或IE9+以上的浏览器。-->
+                <!--</video>-->
+                <!--<span></span>-->
+                <!--<img src="app/statics/images/video-bg.jpg" alt="" width="970" height="546">-->
+            <!--</div>-->
+            <!--<p class="text-right font-size6 video-p">-->
+                <!--<strong class="main-color">下载走走旅游APP</strong>-->
+                <!--<span class="video-section">-->
+                    <!--<img src="app/statics/images/video-app.png" alt="">-->
+                    <!--<span class="text-center">扫码下载APP</span>-->
+                    <!--<i></i>-->
+                <!--</span>-->
+            <!--</p>-->
+        <!--</div>-->
+    <!--</div>-->
+    <!--<div class="main-line order-video"></div>-->
+
+	<!-- partner-->
+	
+	<!-- partner -->
+
+
+
+	<!-- 四步轻松预订向导 -->
+        <!-- 旅行者们的评论 -->
+		<div class="main-white">
+        <div class="container swiper-container" id="swiper3">
+<!--            <h2 class="text-center common-h2 font-size4">游客的评价</h2>
+				<div class="swiper-wrapper">
+				  
+                  <div class="swiper-slide">
+					
+                        <div class="col-sm-12">
+                            <div class="comment-top">
+                                <p class="text-top">
+                                    <img src="https://img.wanzi.cc/images/15af124086bca.jpg@@50w_50h_1e_1c_1sh" alt="" class="comment-img">
+                                    <span>张超</span>
+                                    <sapn class="comment-start">
+                                                                            <i class="start3"></i>
+                                                                            <i class="start3"></i>
+                                                                            <i class="start3"></i>
+                                                                            <i class="start3"></i>
+                                                                            <i class="start3"></i>
+                                                                        </sapn>
+                                </p>
+                                <p class="text-color7 font-size6">很有幸找到小喵当我们的向导，从订宾馆开始就会就给出建议，订到既经济实惠的宾馆，就在市中心吃饭出行都很方便，来之前还告诉我们未来的天气，需要带的衣物，路上的注意事项。见面就给我们准备好的交通卡，整个旅程都是轻轨和公交，既不耽误时间，又为我们省了很多钱，而且她对荷兰的交通非常熟悉，就跟着小喵走就是了<span class="emoji-outer emoji-sizer"><span class="emoji-inner emoji1f601"></span></span>。整个旅行非常开心，虽然只有三天，但像朋友一样相处，她大太阳下帮忙排队买票，她也还帮忙提一些东西，给出中肯的建议，提醒该注意的事项。第二天陪我们去打折村购物，到晚上9点过把我们安排妥当才回家，在回来路上把退税单都帮忙填好，看得出她也很累，但是没有怨言，也挺心疼这个小姑娘的。最后一天还送我们到机场，帮忙换登机牌，托运行李，帮忙办理退税，总之你想到的想不到的她都帮忙操办了。整个旅程既紧凑(该玩的景点都玩到了)又惬意(我们坐在公园的草坪上吃零食喝饮料聊天晒太阳<span class="emoji-outer emoji-sizer"><span class="emoji-inner emoji1f60a"></span></span>)，说这么多，就是希望大家如果有缘看到我的评论，就千万别犹豫，赶紧和她联系预约时间，她可是很抢手的<span class="emoji-outer emoji-sizer"><span class="emoji-inner emoji1f604"></span></span>，如果你也有幸能找到她当向导，那你一定会有一个美好回忆的旅行。<span class="emoji-outer emoji-sizer"><span class="emoji-inner emoji1f60a"></span></span></p>
+                            </div>
+                            <p class="text-center comment-bottom">
+                                <span class="comment-span">
+			<a href="site/detail/id/56c1f1a0422cb.html">
+                                    <img src="https://img.wanzi.cc/images/57a7db6fcaba2.jpg@@50w_50h" alt="" class="comment-lit">
+                                    <strong class="text-color6 font-size2">喵喵</strong>
+                                    <span><i class="lit"></i>荷兰</span>
+			</a>
+                                </span>
+                            </p>
+                        </div>
+                    </div>
+-->
+<!--
+				    <div class="swiper-slide">
+                        <div class="col-sm-12">
+                            <div class="comment-top">
+                                <p class="text-top">
+                                    <img src="https://img.wanzi.cc/images/55f1551613be0.jpg@@50w_50h_1e_1c_1sh" alt="" class="comment-img">
+                                    <span>张笑娜</span>
+                                    <sapn class="comment-start">
+                                                                            <i class="start3"></i>
+                                                                            <i class="start3"></i>
+                                                                            <i class="start3"></i>
+                                                                            <i class="start3"></i>
+                                                                            <i class="start3"></i>
+                                                                        </sapn>
+                                </p>
+                                <p class="text-color7 font-size6">临时起意去日本，没有来得及仔细设计行程和酒店，全权交给了走走旅游的向导小哥，对于我这个出游喜欢做足功课，对吃住都很挑剔的人来说，算是一次冒险吧。向导小哥很好，热情周到，在黄金周住宿紧张的情况下，尽可能为我们安排了一个美好的假期，而自己则不辞辛劳每晚赶回京都，只为了让怀孕的妻子睡得踏实。看得出小哥的努力，努力去熟悉日本的环境以便为游客安排更好的行程，努力去学习更多的历史文化知识以便能对着游客侃侃而谈让游客游有所获。身在异乡的年轻人，并不容易，一切都只能靠自己打拼。祝福他生活幸福美满，宝宝平安健康吧。</p>
+                            </div>
+
+
+			    <p class="text-center comment-bottom">
+                                <span class="comment-span">
+			<a href="site/detail/id/5608a52c1daa6.html">
+                                    <img src="https://img.wanzi.cc/images/592297f1de35b.jpg@@50w_50h" alt="" class="comment-lit">
+                                    <strong class="text-color6 font-size2">马乐</strong>
+                                    <span><i class="lit"></i>京都</span>
+			</a>
+                                </span>
+                            </p>
+                        </div>
+                    </div>
+                                    <div class="swiper-slide">
+                        <div class="col-sm-12">
+                            <div class="comment-top">
+                                <p class="text-top">
+                                    <img src="https://img.wanzi.cc/images/58a0b7903308b.jpg@@50w_50h_1e_1c_1sh" alt="" class="comment-img">
+                                    <span>鲁婷</span>
+                                    <sapn class="comment-start">
+                                                                            <i class="start3"></i>
+                                                                            <i class="start3"></i>
+                                                                            <i class="start3"></i>
+                                                                            <i class="start3"></i>
+                                                                            <i class="start3"></i>
+                                                                        </sapn>
+                                </p>
+                                <p class="text-color7 font-size6">这次出行可以说是十分匆忙，把蜜月选在了我们超爱的北欧城市，但提前一天才订了酒店还有向导，哈哈。因为之前在加州有找过很赞的向导，所以这一次毫不犹豫的要找向导同游。经过各种考量，决定找这位每张照片都在笑，也养了狗狗，还在评论里介绍爸爸妈妈的sarah。从接机开始就一路给我们讲斯德哥尔摩的相关知识。接下来的两天给我们安排了非常充实的行程，除了给我们普及各种知识还给我们介绍很多当地特色的小东西小食物。根据我们的吃货需求，还带我们去吃了好吃和特别的餐厅，提议帮我们约餐厅。因为后面有几天我们自己的行程，Sarah还特意带我们把后面两天我们自己逛街和购物的地方踩了点，陪我们去办旅游卡，推荐各种值得去的地方，总之就是各种nice！如果刚好你也跟我们一样超爱北欧风，找Sarah带你们深度游斯德哥尔摩一定没错！只要有向导出门完全不用做攻略。最后祝Sarah工作顺利，天天开心！</p>
+                            </div>
+                            <p class="text-center comment-bottom">
+                                <span class="comment-span">
+			<a href="site/detail/id/5804984b7d11b.html">
+                                    <img src="https://img.wanzi.cc/images/581023d3ef8ec.jpg@@50w_50h" alt="" class="comment-lit">
+                                    <strong class="text-color6 font-size2">沈晓晶</strong>
+                                    <span><i class="lit"></i>斯德哥尔摩</span>
+			</a>
+                                </span>
+                            </p>
+                        </div>
+                    </div>
+                                    <div class="swiper-slide">
+                        <div class="col-sm-12">
+                            <div class="comment-top">
+                                <p class="text-top">
+                                    <img src="https://img.wanzi.cc/images/5780ca5d35b5a.jpg@@50w_50h_1e_1c_1sh" alt="" class="comment-img">
+                                    <span>施小玫</span>
+                                    <sapn class="comment-start">
+                                                                            <i class="start3"></i>
+                                                                            <i class="start3"></i>
+                                                                            <i class="start3"></i>
+                                                                            <i class="start3"></i>
+                                                                            <i class="start3"></i>
+                                                                        </sapn>
+                                </p>
+                                <p class="text-color7 font-size6">谢铮负责了我们一家三口的巴黎之行，无论是接送机还是包车服务，都让人非常满意。途径的名胜古迹都会一一介绍，还推荐了许多当地特色美食。为人坦诚大方，细心体贴。特别让人感动的是，在参观凡尔赛宫时为了不让我们晒太阳，他帮我们排队暴晒了一个多小时，还笑着说没事，自己本来就黑，就当晒日光浴。在我购物血拼时，帮忙照看小朋友。陪着我们玩迪土尼那天，回到酒店都11点了，他还要开车近1个小时才能到家，第二天还是按时按点来接我们。最后送机时还派出了美丽漂亮的夫人在机场帮助我们办理退税，整个过程认真仔细负责！真是完美的一对！有机会再到巴黎，谢铮是我们不二的选择！</p>
+                            </div>
+                            <p class="text-center comment-bottom">
+                                <span class="comment-span">
+			<a href="site/detail/id/555065a45d708.html">
+                                    <img src="https://img.wanzi.cc/images/5779fc0c203ee.jpg@@50w_50h" alt="" class="comment-lit">
+                                    <strong class="text-color6 font-size2">谢铮</strong>
+                                    <span><i class="lit"></i>巴黎</span>
+			</a>
+                                </span>
+                            </p>
+                        </div>
+                    </div>
+                                    <div class="swiper-slide">
+                        <div class="col-sm-12">
+                            <div class="comment-top">
+                                <p class="text-top">
+                                    <img src="https://img.wanzi.cc/images/58855dde1bacd.jpg@@50w_50h_1e_1c_1sh" alt="" class="comment-img">
+                                    <span>lili</span>
+                                    <sapn class="comment-start">
+                                                                            <i class="start3"></i>
+                                                                            <i class="start3"></i>
+                                                                            <i class="start3"></i>
+                                                                            <i class="start3"></i>
+                                                                            <i class="start3"></i>
+                                                                        </sapn>
+                                </p>
+                                <p class="text-color7 font-size6">我这次独自一人带着七岁的女儿去波士顿，能够遇到“李叔叔”真是太幸运了！因为我英文基础不好，第一次去美国，原本仰仗同行的妹妹帮忙，谁知出发前她婆婆突发脑瘀血抢救，她去不了了，我大字不识，入关，接机，酒店住宿……完全开不了口，也听不懂对话啊！还带着一个不更事的孩子……当时临近除夕，波士顿认识的朋友都回国过年了，妹妹情急之下在走走旅游上连续沟通了好几个接机，我也是半信半疑，心里不踏实，妹妹说李春元是一个17个月大的女孩儿的父亲，和他对话感觉人很周到，可信度高，为了让我减少疑虑，妹妹还和李春元沟通了很多孩子的话题，小李真有耐心，主动告知我入关的步骤和航站楼的布局，他让我一下飞机就联系他，他会在大厅等我们，同时电话指导。后来我实在说不清楚的时候都是拍照片发给他，他即时翻译解释。本来把我们安全送到酒店，我就不好意思再麻烦他了，因为我定的酒店门口泊车不太方便，他主动说没事儿，一直帮我们办理完酒店入住，还把自己的联系方式也留给前台，以备万一。这次波士顿的行程我差点儿取消，当时也是不想让女儿失望才咬牙出行，如果不是遇到小李，尤其在出发前再三犹豫的时候，网上细致的沟通给了我点点信心。当然见到李叔叔的一刹那，心也随飞机一起安心着陆了，闺女初见小李时说了一句话：妈妈，李叔叔戴眼镜儿，像matthew老师。路上得知小李的爱人是哈佛的博士后，他自己也是学霸级的，难怪待人接物透着非一般的涵养（呵呵）给李叔叔一个大大的赞！</p>
+                            </div>
+                            <p class="text-center comment-bottom">
+                                <span class="comment-span">
+			<a href="site/detail/id/5765d805dea19.html">
+                                    <img src="https://img.wanzi.cc/images/5780a6dc70790.jpg@@50w_50h" alt="" class="comment-lit">
+                                    <strong class="text-color6 font-size2">李春元</strong>
+                                    <span><i class="lit"></i>波士顿</span>
+			</a>
+                                </span>
+                            </p>
+                        </div>
+                    </div>
+                                    <div class="swiper-slide">
+                        <div class="col-sm-12">
+                            <div class="comment-top">
+                                <p class="text-top">
+                                    <img src="https://img.wanzi.cc/images/584bbae63b9b8.jpg@@50w_50h_1e_1c_1sh" alt="" class="comment-img">
+                                    <span>潘恒</span>
+                                    <sapn class="comment-start">
+                                                                            <i class="start3"></i>
+                                                                            <i class="start3"></i>
+                                                                            <i class="start3"></i>
+                                                                            <i class="start3"></i>
+                                                                            <i class="start3"></i>
+                                                                        </sapn>
+                                </p>
+                                <p class="text-color7 font-size6">帅气又有爱心的大哥哥，很快就和孩子们混熟了，谢谢你来接机时和孩子带的见面礼和最后分离时送给孩子的小礼物。黄金海岸不大，但却是海上运动的天堂，大哥哥带着我先生和我儿子去寻找海上游玩项目并积极与教练沟通一些注意事项，让父子俩玩的学的都很开心。然后带着我和我女儿先围着黄金海岸转了一圈，让我们初步了解了一下这个城市，随后转战各个购物中心。让我们一家都受益良多。小伙子很热心，虽然不是他服务时间，他还帮我们叫出租车（黄金海岸的Tax非常少，大街上根本找不着）。虽说是短短的两天，却提供给我们很大的帮助，让我们迅速地知道哪里有好吃好玩好逛的地方，突然就对这个城市有了熟悉感！希望今后还有相聚的机会！</p>
+                            </div>
+                            <p class="text-center comment-bottom">
+                                <span class="comment-span">
+			<a href="site/detail/id/5830fed1e54ac.html">
+                                    <img src="https://img.wanzi.cc/images/584a43937c40a.jpg@@50w_50h" alt="" class="comment-lit">
+                                    <strong class="text-color6 font-size2">吉原君</strong>
+                                    <span><i class="lit"></i>黄金海岸</span>
+			</a>
+                                </span>
+                            </p>
+                        </div>
+                    </div>
+-->
+
+	    </div>
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-button-next"></div>
+        </div>
+    </div>
+    <div class="main-line"></div>
+    <!-- 旅行者们的评论 -->
+
+	<!-- 合作伙伴 -->
+	<div class="main-white">
+	  <div class="container partner-section">
+		<h2 class="text-center common-h2 font-size4">@Messages("index.partners")</h2>
+		<div class="row">
+		  <div class="col-sm-3 col-xs-12" ><br><br><br>
+			<a href="https://www.booking.com/index.html?aid=1370600"><img src="http://img.clubic.com/07387773-photo-booking-com-logo.jpg" alt="" class="img-responsive"></a>
+			<!--                        <img src="app/statics/images/visa.jpg" alt="" class="img-responsive">
+										<p class="text-center text-color2 font-size1">走走旅游是Visa高端持卡人尊宠礼遇合作商，Visa的高端持卡人可以享受走走旅游的专享礼遇优惠。</p> -->
+		  </div>
+		  <div class="col-sm-3 col-xs-12" >
+			<br><br>
+			<a href="http://english.ctrip.com/#from=click_en/?AllianceID=338676"><img id="ctrip-icon"
+			src="https://www.thebeijinger.com/sites/default/files/thebeijinger/blog-images/309860/ctrip_logo.jpg"
+			alt=""  class="img-responsive" style="height:60px;width:300px;"> </a>
+			<!--                    <img src="app/statics/images/zhaoshang.jpg" alt="" class="img-responsive">
+									<p class="text-center text-color2 font-size1">走走旅游是招商银行专享支付通道合作商，招商银行卡用户可以在走走旅游享受招商银行的专属优惠。</p>-->
+		  </div>
+		  <div class="col-sm-3 col-xs-12">
+			<br>
+			<a href="https://www.airbnb.com/"><img src="https://www.logodesign.com/blog/wp-content/uploads/2014/09/airbnb_horizontal_lockup_print.jpg" alt="" class="img-responsive"></a>  			<!--                    <img src="app/statics/images/eluosi.jpg" alt="" class="img-responsive">
+									<p class="text-center text-color2 font-size1">走走旅游是俄罗斯国家旅游协会的合作伙伴，用户可以在走走旅游上享受俄罗斯国家旅游协会提供的各种精品旅行体\\
+									  验。</p>-->
+		  </div>
+		  <div class="col-sm-3 col-xs-12">
+			<a href="https://www.qunar.com/"> <img src="http://www.ieyenews.com/wordpress/wp-content/uploads/2015/06/qunar-logo.jpg" alt="" class="img-responsive">			</a>
+			<!--                    <img src="app/statics/images/airanshao.jpg" alt="" class="img-responsive">
+									<p class="text-center text-color2 font-size1">走走旅游是爱燃烧—中文跑步社区的地接合作伙伴，为爱燃烧的全球马拉松提供专业的地接与向导服务。</p>
+									-->
+		  </div>
+		</div>
+	  </div>
+	</div>
+	<div class="main-line"></div>
+	<!-- 合作伙伴 -->
+
+	<script src="app/statics/js/swiper.min.js"></script>
+    <script>
+      $(document).ready(function(){
+
+
+        $('.banner-slide').click(function(){
+            window.open($(this).attr('rel'));
+        });
+
+        var timer2 = null,mySwiper1 = null,mySwiper2 = null,mySwiper3 = null,windowWidth = $(window).width()+4;
+    	if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+            var _height = $(window).height();
+            //顶部下拉高度控制
+            $('.navbar-toggle').on('click',function(){
+                $('.navbar-collapse').css({'height':_height,'width':windowWidth});
+            });
+            //首页轮播图小点点控制显示
+            $('.computer-circle').remove();
+            $('#swiper1 .swiper-button-prev1,#swiper1 .swiper-button-next1').remove();
+            mySwiper1 = new Swiper('#swiper1',{
+                loop: true,
+                autoplay: 2000,
+                pagination : '.swiper-pagination',
+            });
+            //备受好评的向导滑动
+            $('#swiper2 .swiper-wrapper').removeClass('computer-swiper');
+            swiper2 = new Swiper('#swiper2', {
+                slidesPerView:"auto",
+                //centeredSlides : true,
+                spaceBetween : 10,
+            });
+            //旅行者们的评论
+            mySwiper3 = new Swiper('#swiper3',{
+                loop: true,
+                prevButton:'.swiper-button-prev',
+                nextButton:'.swiper-button-next',
+            });
+            //底部箭头点击
+        }
+        else{
+            //顶部轮播图
+            mySwiper1 = new Swiper('#swiper1',{
+                autoplay: 2000,
+                pagination : '.swiper-pagination',
+                paginationClickable :true,
+                prevButton:'.swiper-button-prev1',
+                nextButton:'.swiper-button-next1',
+            });
+            //banner左右箭头
+            bannerArrow();
+            //banner鼠标移入移出
+            control();
+            //备受好评的向导
+            commentGuide();
+            //尊享品质服务
+            server();
+            //视频
+            guideVideo();
+            //视频下载APP
+            videoApp();
+            //旅行者们的评论
+            mySwiper3 = new Swiper('#swiper3',{
+                loop : true,
+                prevButton:'.swiper-button-prev',
+                nextButton:'.swiper-button-next',
+            });
+        }
+        //电脑端banner箭头
+        function bannerArrow(){
+            $('.banner-arrow').hover(function(){
+                $(this).children().animate({'opacity':1},250);
+            },function(){
+                $(this).children().animate({'opacity':0},250);
+            });
+        }
+        //电脑端鼠标移入控制轮播图
+        function control(){
+            $('#swiper1').hover(function(){
+                mySwiper1.stopAutoplay();
+            },function(){
+                mySwiper1.startAutoplay();
+            });
+        }
+        //电脑端备受好评的向导
+        function commentGuide(){
+            $('.comment-section').hover(function(){
+                $(this).children('p').stop().animate({'bottom':-10},250);
+            },function(){
+                $(this).children('p').stop().animate({'bottom':-54},250);
+            });
+            $('#swiper2 .swiper-slide').each(function(index){
+                if(index%3==2){
+                    $(this).css('margin-right',0);
+                }
+            })
+        }
+        //电脑端尊享品质服务
+        function server(){
+            $('.service-list').hover(function(){
+                $(this).children('.service-title').stop().animate({'opacity':0},250);
+                $(this).children('.service-explain').stop().animate({'opacity':1},250);
+            },function(){
+                $(this).children('.service-title').stop().animate({'opacity':1},250);
+                $(this).children('.service-explain').stop().animate({'opacity':0},250);
+            });
+        }
+        //电脑端视频
+        function guideVideo(){
+            $('.video-box span').on('click',function(){
+                $('.video_main').get(0).play();
+                $(this).hide();
+                $(this).siblings('img').hide();
+            });
+            $('.video_main').on('ended',function(){
+                $('.video-box span').show();
+                $(this).siblings('img').show();
+            });
+            $('.video_main').on('play',function(){
+                $('.video-box span').hide();
+                $(this).children('img').hide();
+            });
+        }
+        //电脑端视频有下角下载APP
+        function videoApp(){
+            $('.video-p strong').hover(function(){
+                $(this).siblings('.video-section').show();
+            },function(){
+                $(this).siblings('.video-section').hide();
+            })
+        }
+    });
+    </script>
+            <!-- 主题 -->
+        }
