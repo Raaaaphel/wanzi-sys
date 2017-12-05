@@ -48,7 +48,7 @@ footer.join_us=Join US
 footer.contact_us=Contact US
 footer.sitemap=Sitemap
 
-footer.newbee=Newbee
+footer.newbie=Newbie
 footer.help_center=Help Center
 footer.service_agreement=Service Agreement
 footer.privacy=Privacy
@@ -63,3 +63,34 @@ footer.become_guider=Become Guider
 
 side.customer_service=Customer Service
 side.backtotop=Top
+
+
+# backend order states 0-3
+guiderorder.CREATING=待支付订单
+guiderorder.PAID=已支付订单
+guiderorder.CONFIRMED=即将开始订单
+guiderorder.INSERVICE=旅行中
+
+# 4-7
+guiderorder.FINISHED=旅行结束
+guiderorder.COMPLETE=订单完成
+
+guiderorder.CANCELLED=订单取消
+guiderorder.EXCEPTION=订单异常
+
+# front end states 0-3
+guiderorder.state.INPROGRESS=进行中订单
+
+# front end states 4-7 
+guiderorder.state.FINISHED=已结束订单
+
+
+# 0 Creating Order (UNPAID)
+# 1 New Order（PAID）
+# 2 Order Confirmed
+# 3 Order in Service
+# 4 Travel Finished （Payment in Process）
+# 5 Order Complete  (after 48 hours )
+
+# 6 Order Cancelled
+# 7 Order Aborted

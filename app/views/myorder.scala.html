@@ -1,7 +1,8 @@
 @(traveller_orders: List[Order], guider_orders: List[Order])
 @headerfooter {
 
-    <link rel="stylesheet" type="text/css" href="/app/statics/css/applys/style.css">
+    <link rel="stylesheet" type="text/css"	  href="/app/statics/css/applys/style.css" >
+	<link rel="stylesheet" href="/app/statics/css/setting.css">
     <div class="container">
         <div class="content">
             <div class="applys clearfix">
@@ -14,39 +15,54 @@
                     </ul>
                 </div>
 
-                <div class="r">
-                    @if(session().get("userType") == AUser.TRAVELLER) {
+                <div class="r r_box">
+
+<!--				  @if(session().get("userType").equals(AUser.GUIDER)){
+					  <div class="serv_p">
+					  <button type="button" class="btn-info">我是导游</button>
+					  </div>
+				  }
+				  -->
+
+<!--
+                  @if(session().get("userType") == AUser.TRAVELLER){
                         <div id="order-astraveller">
-                            <strong>进行中订单</strong>
-                            @for(order <- traveller_orders) {
-                                @if(order.status == "PAID") {
-                                    <div class="col-sm-6 order-paid"> <span>@order.id</span>
+                            <h4>待处理订单</h4>
+                            @for(order <- guider_orders){
+                                @if(order.status == "INSERVICE"){
+                                    <div class="col-sm-12 order-paid"> <span>@order.id</span>
                                         @* <span>目的地 @order.city_and_country</span> *@
                                         <span>导游 @order.guider_name</span>
                                         <span>旅行日期 @order.startDate - @order.endDate </sapn>
-                                            <sapn>金额 ¥ @order.total_price </span>
+                                        <sapn>金额 ¥ @order.total_price </span>
                                         <a type="button" class="btn-info" href="#">取消</a>
-                                        }
-
-                            }
-                        </div>
+                                   </div>
+                                }
+							}
                         </div>
                     }
+-->
+
                     @if(session().get("userType").equals(AUser.GUIDER)) {
-                        <div id="order-asguider">
-                            <strong>待处理订单</strong>
+                        <div id="order-asguider" style="display:block;">
+                            <h4>待处理订单</h4>
                             @for(g_order <- guider_orders) {
                                 @if(g_order.status == "PAID") {
-                                    <div class="col-sm-6 order-paid"> <span>@g_order.id</span>
+                                    <li class="col-sm-12 order-item">
+									  <div class="col-sm-9">
+									  <span>@g_order.id</span>
                                         @* <span>目的地 @g_order.city_and_country</span> *@
-                                        <span>游客 @g_order.guider_name</span>
-                                        <span>旅行日期 @g_order.startDate - @g_order.endDate </sapn>
-                                            <sapn>金额 ¥ @g_order.total_price </span>
-                                        <a type="button" class="btn-info" href="/order/accept/@Html(g_order.id)">接单</a>
-                                        <a type="button" class="btn-info" href="/order/cancel/@Html(g_order.id)">取消</a>
-                                    </div>
-                                }
+                                      <span>游客 @g_order.traveller_name</span>
+                                      <span>旅行日期 @g_order.startDate - @g_order.endDate </sapn>
+                                      <sapn>金额 ¥ @g_order.total_price </span>
+                                      </div>
 
+                                      <div class="col-sm-3">
+										<a type="button" class="btn-info btn" href="/order/accept/@Html(g_order.id)">接单</a>
+                                        <a type="button" class="btn-info btn" href="/order/cancel/@Html(g_order.id)">取消</a>
+									  </div>
+                                    </li>
+                                }
                             }
                         </div>
                     }

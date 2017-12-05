@@ -202,7 +202,7 @@ $(".pay_info").click(function(){
 $(".time").bind("DOMNodeInserted",function(){
     var start_time = $("#start_time").text();
     var end_time = $("#end_time").text();
-    var days = daysBetween(start_time,end_time);
+    var days = daysBetween(formatDateString(start_time),formatDateString(end_time));
 //	    alert(days)
     var person = $(".digital").text();
     var oneperson_oneday = $(".oneperson_oneday").text();

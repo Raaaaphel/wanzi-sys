@@ -48,7 +48,7 @@ footer.join_us=Join US
 footer.contact_us=Contact US
 footer.sitemap=Sitemap
 
-footer.newbee=Newbee
+footer.newbie=Newbie
 footer.help_center=Help Center
 footer.service_agreement=Service Agreement
 footer.privacy=Privacy
@@ -63,3 +63,32 @@ footer.become_guider=Become Guider
 
 side.customer_service=Customer Service
 side.backtotop=Top
+
+
+#backend order state 0-3 
+guiderorder.CREATING=ORDER UNPAID
+guiderorder.PAID=ORDER PAID
+guiderorder.CONFIRMED=ORDER CONFIRMED
+guiderorder.INSERVICE=ORDER IN SERVICE
+
+#bakcend order state 4-7
+guiderorder.FINISHED=TRAVEL FINISHED
+guiderorder.COMPLETE=ORDER COMPLETE
+
+guiderorder.CANCELLED=ORDER CANCELLED
+guiderorder.EXCEPTION=ORDER EXCEPTION
+
+#frontend order state 0-3
+guiderorder.state.INPROGRESS=ORDER IN PROGRESS
+#frontend order state 4-7
+guiderorder.state.FINISHED=ORDER FINISHED
+
+# 0 Creating Order (UNPAID)
+# 1 New Order（PAID）
+# 2 Order Confirmed
+# 3 Order in Service
+# 4 Travel Finished （Payment in Process）
+# 5 Order Complete  (after 48 hours )
+
+# 6 Order Cancelled
+# 7 Order Aborted
