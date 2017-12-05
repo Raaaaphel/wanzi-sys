@@ -1,8 +1,8 @@
 @(traveller_orders: List[Order], guider_orders: List[Order])
 @headerfooter {
 
-    <link rel="stylesheet" type="text/css"	  href="/app/statics/css/applys/style.css" >
-	<link rel="stylesheet" href="/app/statics/css/setting.css">
+    <link rel="stylesheet" type="text/css" href="/app/statics/css/applys/style.css" >
+    <link rel="stylesheet" href="/app/statics/css/setting.css">
     <div class="container">
         <div class="content">
             <div class="applys clearfix">
@@ -16,58 +16,118 @@
                 </div>
 
                 <div class="r r_box">
-
-<!--				  @if(session().get("userType").equals(AUser.GUIDER)){
-					  <div class="serv_p">
-					  <button type="button" class="btn-info">我是导游</button>
-					  </div>
-				  }
-				  -->
-
-<!--
-                  @if(session().get("userType") == AUser.TRAVELLER){
-                        <div id="order-astraveller">
-                            <h4>待处理订单</h4>
-                            @for(order <- guider_orders){
-                                @if(order.status == "INSERVICE"){
-                                    <div class="col-sm-12 order-paid"> <span>@order.id</span>
-                                        @* <span>目的地 @order.city_and_country</span> *@
-                                        <span>导游 @order.guider_name</span>
-                                        <span>旅行日期 @order.startDate - @order.endDate </sapn>
-                                        <sapn>金额 ¥ @order.total_price </span>
-                                        <a type="button" class="btn-info" href="#">取消</a>
-                                   </div>
-                                }
-							}
-                        </div>
-                    }
--->
-
+                    <select id="order-show">
+                        <option value="all-order" onclick="show_all()">@Messages("guiderorder.state.ALL")</option>
+                        <option value="inprogress-order" onclick="show_inprogress()">@Messages("guiderorder.state.INPROGRESS")</option>
+                        <option value="finished-order" onclick="show_finished()">@Messages("guiderorder.state.FINISHED")</option>
+                    </select>
                     @if(session().get("userType").equals(AUser.GUIDER)) {
-                        <div id="order-asguider" style="display:block;">
-                            <h4>待处理订单</h4>
-                            @for(g_order <- guider_orders) {
-                                @if(g_order.status == "PAID") {
-                                    <li class="col-sm-12 order-item">
-									  <div class="col-sm-9">
-									  <span>@g_order.id</span>
-                                        @* <span>目的地 @g_order.city_and_country</span> *@
-                                      <span>游客 @g_order.traveller_name</span>
-                                      <span>旅行日期 @g_order.startDate - @g_order.endDate </sapn>
-                                      <sapn>金额 ¥ @g_order.total_price </span>
-                                      </div>
-
-                                      <div class="col-sm-3">
-										<a type="button" class="btn-info btn" href="/order/accept/@Html(g_order.id)">接单</a>
-                                        <a type="button" class="btn-info btn" href="/order/cancel/@Html(g_order.id)">取消</a>
-									  </div>
-                                    </li>
+                        <div class="serv_p">
+                            <button id="guider-show" type="button" class="btn-info" onclick="guider_show()">我是导游</button>
+                        </div>
+                        <div class="cust_p" style="display: none;">
+                            <button id="traveller-show" type="button" class="btn-info" onclick="traveller_show()">我是游客</button>
+                        </div>
+                        <script>
+                                function guider_show() {
+                                    $("#order-astraveller").css("display", "none");
+                                    $("#order-asguider").css("display", "block");
+                                    $(".serv_p").css("display", "none");
+                                    $(".cust_p").css("display", "block");
                                 }
-                            }
+
+                                function traveller_show() {
+                                    $("#order-astraveller").css("display", "block");
+                                    $("#order-asguider").css("display", "none");
+                                    $(".serv_p").css("display", "block");
+                                    $(".cust_p").css("display", "none");
+                                }
+                        </script>
+
+                        <div id="order-asguider" style="display: none;">
+                        @for(g_order <- guider_orders) {
+                                <div class="col-sm-12 order-item" order-state="@Html(g_order.status)">
+                                    <div class="col-sm-9">
+                                        <span>@g_order.id</span>
+                                        @* <span>目的地 @g_order.city_and_country</span> *@
+                                        <span>游客 @g_order.traveller_name</span>
+                                        <span>旅行日期 @g_order.startDate - @g_order.endDate </sapn>
+                                            <sapn>金额 ¥ @g_order.total_price </span>
+                                        <br><span>订单状态&nbsp;@Messages("guiderorder."+g_order.status)</span>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        @if(g_order.status.equals(Order.PAID)) {
+                                            <a type="button" class="btn-info btn" href="/order/accept/@Html(g_order.id)">
+                                                接单</a>
+                                        }
+                                        <a type="button" class="btn-info btn" href="/order/cancel/@Html(g_order.id)">
+                                            取消</a>
+                                    </div>
+                                </div>
+
+                        }
                         </div>
                     }
+
+                    <div id="order-astraveller">
+                    @for(order <- traveller_orders) {
+                            <div class="col-sm-12 order-item" order-state="@Html(order.status)">
+                                <div class="col-sm-9">
+                                    <span>@order.id</span>
+                                    @* <span>目的地 @g_order.city_and_country</span> *@
+                                    <span>游客 @order.traveller_name</span>
+                                    <span>旅行日期 @order.startDate - @order.endDate </sapn>
+                                        <sapn>金额 ¥ @order.total_price </span>
+                                    <br><span>订单状态&nbsp;@Messages("guiderorder."+order.status)</span>
+                                </div>
+                                <div class="col-sm-3">
+                                    <a type="button" class="btn-info" href="#">取消</a>
+                                </div>
+                            </div>
+                    }
+                    </div>
+
                 </div>
             </div>
         </div>
     </div>
+    <script>
+        $("#order-show").change(function () {
+            var selected = $(this).val();
+            if (selected == "all-order")
+                show_all();
+            else if (selected == "inprogress-order")
+                show_inprogress();
+            else if (selected == "finished-order")
+                show_finished();
+        });
+        function show_all() {
+            $('div[order-state="@Html(Order.UNPAID)"]').show();
+            $('div[order-state="@Html(Order.PAID)"]').show();
+            $('div[order-state="@Html(Order.INSERVICE)"]').show();
+
+            $('div[order-state="@Html(Order.CANCELED)"]').show();
+            $('div[order-state="@Html(Order.COMPLETE)"]').show();
+            $('div[order-state="@Html(Order.USERCONFIRMED)"]').show();
+        }
+        function show_inprogress() {
+            $('div[order-state="@Html(Order.UNPAID)"]').show();
+            $('div[order-state="@Html(Order.PAID)"]').show();
+            $('div[order-state="@Html(Order.INSERVICE)"]').show();
+
+            $('div[order-state="@Html(Order.CANCELED)"]').hide();
+            $('div[order-state="@Html(Order.COMPLETE)"]').hide();
+            $('div[order-state="@Html(Order.USERCONFIRMED)"]').hide();
+        }
+        function show_finished() {
+            $('div[order-state="@Html(Order.UNPAID)"]').hide();
+            $('div[order-state="@Html(Order.PAID)"]').hide();
+            $('div[order-state="@Html(Order.INSERVICE)"]').hide();
+
+            $('div[order-state="@Html(Order.CANCELED)"]').show();
+            $('div[order-state="@Html(Order.COMPLETE)"]').show();
+            $('div[order-state="@Html(Order.USERCONFIRMED)"]').show();
+
+        }
+    </script>
 }

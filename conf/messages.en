@@ -66,7 +66,7 @@ side.backtotop=Top
 
 
 #backend order state 0-3 
-guiderorder.CREATING=ORDER UNPAID
+guiderorder.UNPAID=ORDER UNPAID
 guiderorder.PAID=ORDER PAID
 guiderorder.CONFIRMED=ORDER CONFIRMED
 guiderorder.INSERVICE=ORDER IN SERVICE
@@ -78,6 +78,7 @@ guiderorder.COMPLETE=ORDER COMPLETE
 guiderorder.CANCELLED=ORDER CANCELLED
 guiderorder.EXCEPTION=ORDER EXCEPTION
 
+guiderorder.state.ALL=ALL ORDERS
 #frontend order state 0-3
 guiderorder.state.INPROGRESS=ORDER IN PROGRESS
 #frontend order state 4-7

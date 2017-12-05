@@ -174,12 +174,12 @@ public class RegisterGuiderController extends Controller {
         return ok("{\"code\":1000}");
     }
 
-    public static Result applyPrice() {
+    /*public static Result applyPrice() {
         AUser u = AUser.getUserById(session("userId"));
         if (u == null) return RegisterController.onLogout("请登录!");
         if (!u.type.equals(AUser.GUIDER)) return RegisterController.onLogout("请先注册导游！");
         return ok(views.html.applyprice.render(u));
-    }
+    }*/
 
 
     public static Result onApplyPrice() {

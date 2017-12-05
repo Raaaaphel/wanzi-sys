@@ -70,8 +70,8 @@ public class Order {
 	    return coll.findOne(DBQuery.and(DBQuery.is("traveller_id", customerId), DBQuery.is("guider_id", guiderId),DBQuery.is("status", CREATING)));
     }
     public static List<Order> getGuiderOrders(String guiderId){
-	    return  coll.find(DBQuery.and(DBQuery.is("guider_id", guiderId),DBQuery.is("status", PAID))).toArray();
+	    return  coll.find(DBQuery.and(DBQuery.is("guider_id", guiderId),DBQuery.notEquals("status",Order.CREATING))).toArray();
     }public static List<Order> getCustomerOrders(String travellerId){
-	    return  coll.find(DBQuery.and(DBQuery.is("traveller_id", travellerId),DBQuery.is("status", PAID))).toArray();
+	    return  coll.find(DBQuery.and(DBQuery.is("traveller_id", travellerId),DBQuery.notEquals("status",Order.CREATING))).toArray();
     }
 }

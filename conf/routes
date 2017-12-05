@@ -31,7 +31,7 @@ GET         /site/applysPic                               controllers.RegisterGu
 POST        /applys/setApplysUser                         controllers.RegisterGuiderController.onApplyPic()
 GET         /site/applysService                           controllers.RegisterGuiderController.applyService()
 POST        /applys/setApplysService                      controllers.RegisterGuiderController.onApplyService()
-GET         /site/setApplyPrice                           controllers.RegisterGuiderController.applyPrice()
+#GET         /site/setApplyPrice                           controllers.RegisterGuiderController.applyPrice()
 POST        /applys/applyPrice                            controllers.RegisterGuiderController.onApplyPrice()
 
 #GET 	/public/getSearch       controllers.SearchController.getSearch()
@@ -82,4 +82,5 @@ POST        /pay/WxPaidNotify                             controllers.PayControl
 
 GET         /setting/myorders                             controllers.SettingController.getMyOrders()
 GET         /setting/refer                                controllers.SettingController.refer()
+
 
