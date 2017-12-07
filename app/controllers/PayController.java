@@ -51,7 +51,7 @@ public class PayController extends Controller {
             map.put("body", order.serviceType);//订单标题
             map.put("out_trade_no", out_trade_no);//订单ID
             //map.put("total_fee", order.total_price); //需支付金额
-            map.put("total_fee", 1);//订单需要支付的金额
+            map.put("total_fee", order.total_price * 110);//订单需要支付的金额
             map.put("spbill_create_ip", ip);
             map.put("trade_type", trade_type);
             map.put("notify_url", notify_url);//notify_url 支付成功之后 微信会进行异步回调的地址
