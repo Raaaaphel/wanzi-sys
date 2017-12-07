@@ -78,8 +78,9 @@
                 } else {
                     <p><span>服务费用合计</span><span class="all_price">RMB&nbsp;&nbsp;<i class="the_all_price">@order.total_price</i></span></p>
                     <!--<p><span>优惠券</span><span class="colorlan discount" data="50">50元优惠券</span></p>-->
+                    <p><span>平台手续费</span><span class="last_price">RMB&nbsp;&nbsp;<i class="the_last_price">@order.platform_fee</i></span></p>
                     <p><span>待支付费用</span><span class="last_price">RMB&nbsp;&nbsp;<i class="the_last_price">
-                    @order.total_price</i></span></p>
+                    @(order.total_price+order.platform_fee)</i></span></p>
                 }
             </div>
                 <!--各类费用结束-->

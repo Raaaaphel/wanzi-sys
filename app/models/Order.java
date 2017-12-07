@@ -33,6 +33,7 @@ public class Order {
     //	public HashMap serviceitems<String, int>; // (String service_name, int per_pirce, int quote, int item_price) // service_name=(GUIDER, CAR, PIACKUP)
                                                   // 服务名称（导游，带车导游，接送机），单价，服务数量（天数），小记＝单价＊天数
     public Double total_price;  //服务总价
+    public Double platform_fee; //平台手续费
     public String payment_timestamp; //DateTime
     public String status;  //订单状态
     public String comment;  //暂时空置

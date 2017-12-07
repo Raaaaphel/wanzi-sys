@@ -214,6 +214,7 @@ public class OrderController extends Controller {
         order.guider_name = guider.name;
         order.status = Order.CREATING;
         order.total_price = totalPrice;
+        order.platform_fee = totalPrice * 0.1;
         order.traveller_id = traveller.id;
         order.traveller_name = traveller.name;
         order.policy = Order.POLICY_MIDIUM;
