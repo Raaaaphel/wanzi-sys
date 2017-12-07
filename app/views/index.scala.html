@@ -1,17 +1,42 @@
 @(front_guiders:List[AUser]=null)
+@import play.i18n._
 @import helper._
 @import java.lang.String; val chatserviceport="http://test.zouzouyouyou.info:9000"; val testid="999999999999999999999999"; val botid="ffffffffffffffffffffffff";
 
-<!-- add shade layer for tutorial -->
-@views.html.shade.render();
+
+
+<script type="text/javascript" src="/app/statics/js/jquery-1.8.3.min.js" />
+<script type="text/javascript">
+	var userLang = navigator.language ||  navigator.userLanguage;
+    var prefix = "https://www.triposo.com/static/website/img/2016/";
+
+    if (userLang == "zh-cn" ){
+	  i = 1;
+	  $(".swiper-slide").each( function (){
+		  var pic = prefix + "HOME00" + i.toString() + ".jpg";
+		  alert(pic);
+		  $(this).css({"background-image":"url(" + pic +  ")"});
+		  i = i+1;
+	});
+	}
   
+</script>
+
+
+<!-- add shade layer for tutorial -->
+@**
+@if(session.get("userId") != ""){
+@views.html.shade.render();
+}
+**@
+
 @headerfooter{
     <!-- 主题 -->
 	<link rel="stylesheet" href="app/statics/css/index.css">
     <!-- banner -->
     <div class="swiper-container" id="swiper1">
-        <div class="swiper-wrapper">
-                            <div class="swiper-slide banner-slide" style="background-image:url(app/statics/images/ching2.datu.jpg)" rel="site/detail/id/56c1f1a0422cb.html">
+        <div class="swiper-wrapper"> <!-- ching2.datu.jpg -->
+                            <div class="swiper-slide banner-slide" style="background-image:url(app/statics/images/chang2.datu.jpg)" rel="site/detail/id/56c1f1a0422cb.html">
                     <div class="banner-bottom">
                         <div class="container">
                             <div class="row">
@@ -26,12 +51,13 @@
                         </div>
                     </div>
                 </div>
+							<!-- jaq1.datu.jpg -->
                             <div class="swiper-slide banner-slide" style="background-image:url(app/statics/images/jaq1.datu.jpg)" rel="site/detail/id/5830fed1e54ac.html">
                     <div class="banner-bottom">
                         <div class="container">
                             <div class="row">
                                 <div class="col-sm-8 col-xs-12">
-                                    <h2 class="text-left text-color5 font-size6">置身于风景秀美的澳洲</h2>
+                                    <h2 class="text-left text-color5 font-size6">置身于风景秀美的澳洲 @Messages.get(Lang.forCode("zh-cn"), "header.login")</h2>
                                     <p class="text-left text-color5">天蓝蓝、水绿绿，满目青翠，绿树成荫，百花争艳，感受悉尼繁华市区的车水马龙，去墨尔本海边吹吹清风，尽情地欣赏天边夕阳勾勒出的那一抹靓丽的红晕，更会飘逸着罗曼蒂克的浪漫情怀。</p>      
                                 </div>
                                 <div class="col-sm-4 col-xs-4 text-right">
@@ -42,6 +68,7 @@
                     </div>
                 </div>
 
+							<!-- shangda2.datu.jpg -->
                             <div class="swiper-slide banner-slide" style="background-image:url(app/statics/images/shangda2.datu.jpg)" rel="site/detail/id/5765d805dea19.html">
                     <div class="banner-bottom">
                         <div class="container">
