@@ -20,14 +20,7 @@ public class Application extends Controller {
 	static Form<Task> taskForm = Form.form(Task.class); 
 
 
-	public static Result index_en(String refer){
-		Context ctx = Context.current();
-		ctx().changeLang("zh-cn");
 
-		List<AUser> starGuiders = AUser.getStarGuiders(refer);
-		
-		return ok( views.html.index_en.render(starGuiders) );
-	}
 	
 	public static Result index(String refer) {
 
