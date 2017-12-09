@@ -20,7 +20,16 @@
         <script src="/app/statics/js/common.js" type="text/javascript" charset="utf-8"></script>
         <script type="text/javascript" src="/app/statics/js/zepto.min.js"></script>
         <script type="text/javascript" src="/app/statics/js/datepicker.js"></script>
+        <script type="text/javascript" src="/app/statics/js/qrcode.js"></script>
     </head>
+    <style type="text/css">
+            .mask {
+                position: absolute;
+                margin: auto;
+                background-color: #777;
+                opacity:0.5; -moz-opacity:0.5;
+            }
+    </style>
     
         <header class="title_header clearfix">
             <div class="back fl"></div>
@@ -35,7 +44,7 @@
             <div class="onfoot_time_titlt pay_sum">
                 <div>
                     <span class="fl">待支付</span>
-                    <span class="fr mar016">RMB&nbsp;<span class="fontsize05 the_last_price">@order.total_price</span></span>
+                    <span class="fr mar016">RMB&nbsp;<span class="fontsize05 the_last_price">@(order.total_price+order.platform_fee)</span></span>
                 </div>
             </div>
                 <!--添加服务类型开始-->
@@ -46,6 +55,9 @@
                 </div>
             </div>
         </div>
+    <div id="pay-qrcode" class="mask">
+        <p>扫码完成支付</p>
+    </div>
             <!--内容部分结束-->
 
 
@@ -60,7 +72,17 @@
                     data: _post_data,
                     type: "POST",
                     success: function (data) {
-                        location.href = data.mweb_url;
+                        if (data.client_type == "mobile") {
+                            location.href = data.mweb_url;
+                        }else if (data.client_type == "pc"){
+                            var pay_qrcode = new QRCode(document.getElementById('pay-qrcode'), {
+                                text: data.code_url,
+                                colorDark : '#000000',
+                                colorLight : '#ffffff',
+                                correctLevel : QRCode.CorrectLevel.H
+                            });
+                            showMask();
+                        }
                     }
                 });
             }
@@ -72,7 +94,17 @@
 }
 var price = getQueryString('sum_price');
 $(".the_last_price").html(price);*/
-</script>
+            function showMask(){
+                $("#mask").css("height",$(document).height());
+                $("#mask").css("width",$(document).width());
+                $("#mask").show();
+            }
+            //隐藏遮罩层
+            function hideMask(){
+
+                $("#mask").hide();
+            }
+        </script>
 
 </html>
 }

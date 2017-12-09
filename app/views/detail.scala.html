@@ -1452,7 +1452,7 @@
 
 
 				$("#b-book").click(function(){
-											  @views.html.loginPage.t.loginPop.render();
+											  @views.html.loginPage.t.login.render("");
 				});
 											  
 //				$(".main-white").remove();
@@ -1491,8 +1491,9 @@
                 }
                 //向导资料当地推荐模态框
                 $('#swiper1 .swiper-slide').on('click',function(){
+                    var _data = {'id':$(this).attr('rel')};
                     $().loading();
-                    $.getJSON('/point/getPoint',{'id':$(this).attr('rel')},function(result){
+                    $.getJSON('/point/getPoint',_data,function(result){
                         $().unload();
                         if(result.code==1000){
                             $('.guide-recommend .modal-body').html('<p class="text-center"><img src="'+result.result.pt_face+'" alt=""></p>\n\

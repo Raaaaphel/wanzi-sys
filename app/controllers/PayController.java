@@ -11,13 +11,13 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.Map;
-
 import org.w3c.dom.Document;
 import play.libs.Json;
 import play.libs.XPath;
 import play.mvc.Controller;
 import play.mvc.Result;
 
+import util.CheckClient;
 import util.payment.HttpRequest;
 import util.payment.PayUtil;
 import util.payment.XMLParser;
@@ -33,12 +33,17 @@ public class PayController extends Controller {
 
     public static Result submitPayWx() {
         Map<String, String[]> formData = request().body().asFormUrlEncoded();
+        String userAgent = request().getHeader("User-Agent");
         String ip = getIpAddr();
         String out_trade_no = formData.get("orderId")[0];
         Order order = Order.get(out_trade_no);
+        boolean isMobile = CheckClient.isMobileClient(userAgent);
         try {
             String nonce_str = PayUtil.getRandomStringByLength(16);//生成随机数，可直接用系统提供的方法
-            String trade_type = "MWEB";
+            String trade_type = "NATIVE";
+            if (isMobile) {
+                trade_type = "MWEB";
+            }
             String appid = "wx806bf0ac9a8bd94e";
             String mch_id = "1491635342";
             String notify_url = "http://test.izouzou.cc/pay/WxPaidNotify";
@@ -51,8 +56,8 @@ public class PayController extends Controller {
             map.put("body", order.serviceType);//订单标题
             map.put("out_trade_no", out_trade_no);//订单ID
             //map.put("total_fee", order.total_price); //需支付金额
-            map.put("total_fee", (order.total_price + order.platform_fee) * 100);//订单需要支付的金额
-            map.put("spbill_create_ip", ip);
+            map.put("total_fee", Double.valueOf((order.total_price + order.platform_fee) * 100).intValue());//订单需要支付的金额
+            map.put("spbill_create_ip", "122.234.158.216");
             map.put("trade_type", trade_type);
             map.put("notify_url", notify_url);//notify_url 支付成功之后 微信会进行异步回调的地址
             map.put("scene_info", scene_info); //场景信息
@@ -67,9 +72,18 @@ public class PayController extends Controller {
                 order.status = Order.UNPAID;
                 Order.update(order);
                 String prepay_id = cbMap.get("prepay_id") + "";//这就是预支付id
-                String mwebUrl = cbMap.get("mweb_url") + ""; //拉起微信客户端的跳转url
+                String url = ""; //拉起微信客户端的跳转url
                 Map<String, Object> result = new HashMap<>();
-                result.put("mweb_url", mwebUrl);
+
+                if (isMobile){
+                   url = cbMap.get("mweb_url") + "";
+                    result.put("mweb_url", url);
+                    result.put("client_type","mobile");
+                } else {
+                    url = cbMap.get("code_url") + "";
+                    result.put("code_url", url);
+                    result.put("client_type", "pc");
+                }
                 return ok(Json.toJson(result));
             }
         } catch (Exception e) {
