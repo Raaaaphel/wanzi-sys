@@ -10,6 +10,8 @@ ref_link='http://www.izouzou.cc/register?refer=@session.get("userId")'; *@
 
 <script src="/app/statics/js/qrcode.js"></script>
 
+@views.html.pop.referPop.render();
+
 <div class="applys clearfix">
   <div class="l">
 	<ul class="fix_left">
@@ -32,7 +34,7 @@ ref_link='http://www.izouzou.cc/register?refer=@session.get("userId")'; *@
 		</div>
 
 		
-		<div class="col-sm-12">	<p>打印二维码 放到您所在的城市的酒店机场，游客扫码会在导游首页和搜索页看到您哦！</p>		</div>
+		<div class="col-sm-12">	<p>打印二维码 放到您所在的城市的酒店机场，游客扫码会在导游首页和搜索页看到您哦！</p></div>
 	
 		  @if(session().get("userType") == "GUIDER"){
 
@@ -41,8 +43,8 @@ ref_link='http://www.izouzou.cc/register?refer=@session.get("userId")'; *@
 		  <div id="user-refer-qrcode" class="qrcode col-sm-10">
 		  </div>
 
-		  <div class="col-sm-2" style="">
-			<button class="btn btn-info btn-right">分享</button>
+		  <div class="col-sm-2" style="" >
+			<button class="btn btn-info btn-right" id="_share">分享</button>
 		  </div>
 		
 		  <div class="col-sm-12">
@@ -53,16 +55,16 @@ ref_link='http://www.izouzou.cc/register?refer=@session.get("userId")'; *@
   </div>
 </div>
 
-	<script>
-		var host_name = window.location.host;
-			var qrcode1 = new QRCode(document.getElementById('index-refer-qrcode'), {
-				text: 'http://'+host_name+'/index?refer='+'@Html(guider.id)',
-				colorDark : '#000000',
-				colorLight : '#ffffff',
-				correctLevel : QRCode.CorrectLevel.H
-			});
-			var qrcode2 = new QRCode(document.getElementById('user-refer-qrcode'), {
-				text: 'http://'+host_name+'/site1/detail/id/'+'@Html(guider.id)',
+<script>
+  var host_name = window.location.host;
+  var qrcode1 = new QRCode(document.getElementById('index-refer-qrcode'), {
+      text: 'http://'+host_name+'/index?refer='+'@Html(guider.id)',
+      colorDark : '#000000',
+      colorLight : '#ffffff',
+      correctLevel : QRCode.CorrectLevel.H
+  });
+            var qrcode2 = new QRCode(document.getElementById('user-refer-qrcode'), {
+                text: 'http://'+host_name+'/site1/detail/id/'+'@Html(guider.id)',
 				colorDark : '#000000',
 				colorLight : '#ffffff',
 				correctLevel : QRCode.CorrectLevel.H
@@ -71,6 +73,11 @@ ref_link='http://www.izouzou.cc/register?refer=@session.get("userId")'; *@
 //				$(".qrcode img").addClass("img-85");
 				$(".qrcode img").css({"height":"85px","width": "85px"});
 			});
+  
+
+	  $("#_share").click(function(){
+	      $(".shade").show();
+	  });
 	</script>
 
 }

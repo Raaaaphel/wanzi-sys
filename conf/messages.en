@@ -100,3 +100,8 @@ guiderorder.state.FINISHED=ORDER FINISHED
 
 # 6 Order Cancelled
 # 7 Order Aborted
+
+promotion_msg=Register now and get ¥100 traveling coupons!
+button.close=Close	   
+refer.email=Your friends' email
+button.send=Send

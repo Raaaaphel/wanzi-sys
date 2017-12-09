@@ -1,5 +1,6 @@
 package controllers;
 
+import play.mvc.Http.Context;
 import play.mvc.*;
 import play.data.*;
 
@@ -18,9 +19,17 @@ public class Application extends Controller {
 	*/
 	static Form<Task> taskForm = Form.form(Task.class); 
 
+
+	public static Result index_en(String refer){
+		Context ctx = Context.current();
+		ctx().changeLang("zh-cn");
+
+		List<AUser> starGuiders = AUser.getStarGuiders(refer);
+		
+		return ok( views.html.index_en.render(starGuiders) );
+	}
 	
 	public static Result index(String refer) {
-	    //		return ok(	  views.html.index.render());
 
 		if (session("userId") == null){
 			String newUserId = "999999999999999999999999";  //init session user id for new user

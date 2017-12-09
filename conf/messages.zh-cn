@@ -102,3 +102,7 @@ guiderorder.state.FINISHED=已结束订单
 
 # 6 Order Cancelled
 # 7 Order Aborted
+
+promotion_msg=现在注册即送 ¥100 旅游金
+button.close=关闭
+refer.email=好友Email
