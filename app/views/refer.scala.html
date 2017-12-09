@@ -9,6 +9,7 @@ ref_link='http://www.izouzou.cc/register?refer=@session.get("userId")'; *@
 <link rel="stylesheet" type="text/css" href="/app/statics/css/setting.css">
 
 <script src="/app/statics/js/qrcode.js"></script>
+<script src="/app/statics/js/jspdf.min.js"></script>
 
 @views.html.pop.referPop.render();
 
@@ -30,7 +31,7 @@ ref_link='http://www.izouzou.cc/register?refer=@session.get("userId")'; *@
 		</div>
 	
 		<div class="col-sm-2" style="height:100px">
-		    <button type="button" class="btn btn-info btn-right" style="">打印</button> 
+		    <button type="button" class="btn btn-info btn-right" style="" onclick="printPDF()">打印</button>
 		</div>
 
 		
@@ -38,7 +39,7 @@ ref_link='http://www.izouzou.cc/register?refer=@session.get("userId")'; *@
 	
 		  @if(session().get("userType") == "GUIDER"){
 
-		  <div class"col-sm-12"> <h4>分享链接</h4> </div>
+		  <div class="col-sm-12"> <h4>分享链接</h4> </div>
 
 		  <div id="user-refer-qrcode" class="qrcode col-sm-10">
 		  </div>
@@ -78,6 +79,12 @@ ref_link='http://www.izouzou.cc/register?refer=@session.get("userId")'; *@
 	  $("#_share").click(function(){
 	      $(".shade").show();
 	  });
+	  function printPDF() {
+		  var image_data = $("#index-refer-qrcode img").attr("src");
+		  var doc = new jsPDF();
+		  doc.addImage(image_data, 'PNG', 15, 40, 180, 180);
+		  doc.save('推广二维码.pdf');
+	  }
 	</script>
 
 }

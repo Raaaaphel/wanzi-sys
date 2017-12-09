@@ -1,4 +1,7 @@
 @(guider:AUser, priceType:String)
+@if(session().get("userType") == null){
+    @views.html.pop.loginPop.render();
+}
 @views.html.headerfooter{ 
 <!DOCTYPE html>
 <html>

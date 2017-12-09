@@ -1,4 +1,7 @@
 @(guider:AUser, order:Order)
+@if(session().get("userType") == null){
+    @views.html.pop.loginPop.render();
+}
 @views.html.headerfooter{
 <!DOCTYPE html>
 <html>

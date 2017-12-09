@@ -1,6 +1,9 @@
 
 @import helper._
 @(u : AUser)
+    @if(session().get("userType") == null){
+        @views.html.pop.loginPop.render();
+    }
 @headerfooter {
     <link rel="stylesheet" type="text/css" href="/app/statics/js/applys/datetimepicker/css/bootstrap-datetimepicker.min.css">
     <link rel="stylesheet" type="text/css" href="/app/statics/css/applys/style.css">
