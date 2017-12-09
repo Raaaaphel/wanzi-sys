@@ -44,7 +44,7 @@
                     font-size2"><a style="color: white"
                     href="@play.Play.application().configuration().getString("chatserviceport")/room?conversationId=@session().get("userId")@guider.id&userId=@session().get("userId")&anotherId=@guider.id">
                     我要咨询</a></p>
-					<p id="#" class="text-color5 main-bg
+					<p id="b-book" class="text-color5 main-bg
 					font-size2"><a style="color:white" href="/m/order/beforeBooking/@guider.id" >我要预定</a></p>
                 </div>
                 @if(!guider.img_validate.equals("")) {
@@ -1449,11 +1449,16 @@
                     window.location.href='../../detailGuideRemark/id/560a4f004719d/name/%e5%bc%a0%e8%8b%8f.html';
                 });
 
+
+
+				$("#b-book").click(function(){
+											  @views.html.loginPage.t.loginPop.render();
+				});
+											  
 //				$(".main-white").remove();
 //				$(".btn-ask").appendTo($(".main-white"));
 //				$(".btn-ask").css({"position":"fixed","bottom":"10px","z-index":"1029","left":"10px"});
 
-				// mobilestyle();
             }
             else{
                 //左侧向导标签
@@ -1674,11 +1679,6 @@
                    // $('.guide-r').css({'padding-left':'272px','width':'970px'});
                 }
             }
-
-			function mobilestyle(){
-				alert("hello");
-				$(".guide-l").css({"position":"fixed","top":10px,'z-index':'1029'});
-			}
 
             //右侧视频
             function guideVideo(){

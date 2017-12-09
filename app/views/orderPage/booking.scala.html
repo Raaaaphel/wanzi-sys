@@ -1,4 +1,5 @@
 @(guider:AUser, order:Order)
+@views.html.headerfooter{
 <!DOCTYPE html>
 <html>
     <head>
@@ -11,12 +12,12 @@
         <meta name="App-Config" content="fullscreen=yes,useHistoryState=yes,transition=yes"/>
         <title>预定</title>
         <link href="/app/statics/css/mui.min.css" rel="stylesheet"/>
-        <link rel="stylesheet" href="/app/statics/css/zouzou.css" />
+        <link rel="stylesheet" href="/app/statics/css/order.css" />
+		<link rel="stylesheet" href="/app/statics/css/order-m.css" />
         <script src="/app/statics/js/jquery-2.1.0.js" type="text/javascript" charset="utf-8"></script>
         <script src="/app/statics/js/mui.min.js"></script>
         <script src="/app/statics/js/common.js" type="text/javascript" charset="utf-8"></script>
     </head>
-    <body>
         <header class="title_header clearfix">
             <div class="back fl"></div>
             <h2 class="fl">预定</h2>
@@ -36,7 +37,7 @@
                     <p><span>@Html(guider.name)</span><span>@Html(guider.city_and_country)</span></p>
                     <p>
                         <span>@Html(guider.jobtitle)</span>
-                        <span>
+<!--                        <span>
                             <img src="/app/statics/images/star.svg" />
                             <img src="/app/statics/images/star.svg" />
                             <img src="/app/statics/images/star.svg" />
@@ -44,7 +45,7 @@
                             <img src="/app/statics/images/star.svg" />
                             30
                         </span>
-                    </p>
+-->                    </p>
                 </div>
             </div>
                 <!--顶部个人信息结束-->
@@ -147,5 +148,5 @@ $(".foot_next_btn").click(function(){
 
 </script>
 
-    </body>
 </html>
+}

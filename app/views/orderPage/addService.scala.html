@@ -1,5 +1,7 @@
 @(guider:AUser)
 <!DOCTYPE html>
+
+@views.html.headerfooter{
 <html>
     <head>
         <meta charset="utf-8">
@@ -11,9 +13,10 @@
         <meta name="App-Config" content="fullscreen=yes,useHistoryState=yes,transition=yes"/>
         <title>添加服务类型</title>
         <link href="/app/statics/css/mui.min.css" rel="stylesheet"/>
-        <link rel="stylesheet" href="/app/statics/css/zouzou.css" />
+        <link rel="stylesheet" href="/app/statics/css/order-m.css" />
+		<link rel="stylesheet" href="/app/statics/css/order.css" />
         <script src="/app/statics/js/jquery-2.1.0.js" type="text/javascript" charset="utf-8"></script>
-        <script src="/app/statics/js/mui.min.js"></script>
+		<script src="/app/statics/js/mui.min.js"></script>
         <script src="/app/statics/js/common.js" type="text/javascript" charset="utf-8"></script>
         <script src="/app/statics/layer/layer.js" type="text/javascript"></script>
     </head>
@@ -32,7 +35,8 @@
             <p class="add_service_title">向导服务</p>
             <ul class="add_service_info">
                 <li onclick="javascript:window.location.href='/m/order/wizardService/@Html(guider.id)/guider_price'">
-                    <p>徒步&nbsp;RMB&nbsp;@Html(guider.guider_price)/天</p>
+                    <p>徒步
+                    &nbsp;RMB&nbsp;@Html(guider.guider_price)/天</p>
                     <br />
                     <p class="pay_description"><span>费用说明</span></p>
                     <img src="/app/statics/images/right.svg"/>
@@ -68,7 +72,7 @@
 
 
 
-        <script>
+<script>
 //	业务说明弹框
 $(".pay_description span").click(function(){
     layer.open({
@@ -85,3 +89,4 @@ $(".pay_description span").click(function(){
 
     </body>
 </html>
+}
