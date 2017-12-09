@@ -1,8 +1,12 @@
 @(order:Order)
-@if(session().get("userType") == null){
     @views.html.pop.loginPop.render();
-}
-@views.html.headerfooter{ 
+
+@views.html.headerfooter{
+    @if(session().get("userType") == null){
+        <script>
+                $(".shade").css("display","block");
+        </script>
+    }
 <!DOCTYPE html>
 <html>
     <head>
