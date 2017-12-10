@@ -230,13 +230,18 @@
                         <div class="right">
                             <p><strong class="service-title">向导服务</strong><strong class="main-color service-modal">费用说明</strong></p>
                             <div class="row">
-                                <div class="col-sm-6 col-xs-12">
-                                    <p><sapn class="text-color1">徒步：</sapn><span>CNY<strong>@(guider.guider_price)</strong>/天</span></p>
-                                </div>
-                                <div class="col-sm-6 col-xs-12">
-                                    <p><sapn class="text-color1">五座车：</sapn><span>CNY<strong>@(guider.guiderdrive_price)</strong>/天</span></p>
-                                </div>
-
+                                @if(guider.guider_price != "") {
+                                    <div class="col-sm-6 col-xs-12">
+                                        <p><sapn class="text-color1">徒步：</sapn><span>CNY<strong>@(guider.guider_price)</strong>
+                                            /天</span></p>
+                                    </div>
+                                }
+                                @if(guider.guiderdrive_price != "") {
+                                    <div class="col-sm-6 col-xs-12">
+                                        <p><sapn class="text-color1">五座车：</sapn><span>
+                                            CNY<strong>@(guider.guiderdrive_price)</strong>/天</span></p>
+                                    </div>
+                                }
                             </div>
                         </div>
                     </div>
@@ -245,9 +250,12 @@
                         <div class="right service-plane">
                             <p><strong class="service-title">接送机服务</strong><strong class="main-color service-modal1">费用说明</strong></p>
                             <div class="row">
-                                <div class="col-sm-6 col-xs-12">
-                                    <p><sapn class="text-color1">五座车：</sapn><span>CNY<strong>@(guider.guiderpickup_price)</strong>/次</span></p>
-                                </div>
+                                @if(guider.guiderpickup_price != "") {
+                                    <div class="col-sm-6 col-xs-12">
+                                        <p><sapn class="text-color1">五座车：</sapn><span>
+                                            CNY<strong>@(guider.guiderpickup_price)</strong>/次</span></p>
+                                    </div>
+                                }
                             </div>
                         </div>
                     </div>
@@ -1451,9 +1459,7 @@
 
 
 
-				$("#b-book").click(function(){
-					  @views.html.pop.loginPop.render();
-				});
+
 											  
 //				$(".main-white").remove();
 //				$(".btn-ask").appendTo($(".main-white"));
