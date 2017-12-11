@@ -32,7 +32,7 @@ GET         /site/applysPic                               controllers.RegisterGu
 POST        /applys/setApplysUser                         controllers.RegisterGuiderController.onApplyPic()
 GET         /site/applysService                           controllers.RegisterGuiderController.applyService()
 POST        /applys/setApplysService                      controllers.RegisterGuiderController.onApplyService()
-#GET         /site/setApplyPrice                           controllers.RegisterGuiderController.applyPrice()
+GET         /site/setApplyPrice                           controllers.RegisterGuiderController.applyPrice()
 POST        /applys/applyPrice                            controllers.RegisterGuiderController.onApplyPrice()
 
 #GET 	/public/getSearch       controllers.SearchController.getSearch()
@@ -51,7 +51,9 @@ POST        /service/getServiceList                       controllers.SearchCont
 #GET 		 /site/loginPage/t/1.html controllers.RegisterController.register()
 #GET	     /site/loginPage/t/2.html controllers.RegisterController.login()
 
-GET         /site1/detail/id/*uid                         controllers.SearchController.getGuiderDetail(uid:String)
+GET         /site1/detail/id/*uid						controllers.SearchController.getGuiderDetail(uid:String)
+GET 		/site1/detail/moreinfo/*uid					controllers.SearchController.getGuiderDetailMore(uid:String)
+
 POST        /getComments                                  controllers.SearchController.getComments()
 POST        /setLocation                                  controllers.SearchController.setLocation()
 

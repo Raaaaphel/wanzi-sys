@@ -5,17 +5,21 @@
 <!-- add shade layer for tutorial -->
 @**
 @if(session.get("userId") != ""){
-@views.html.shade.render();
+@views.html.tutorial.render();
 }
 **@
 
-@headerfooter_en{
+@*
+views.html.pop.msgPop.render("Register now and get ¥100 traveling coupons! ");
+@views.html.pop.loginPop.render(); *@
+
+@headerfooter{
     <!-- 主题 -->
 	<link rel="stylesheet" href="app/statics/css/index.css">
     <!-- banner -->
     <div class="swiper-container" id="swiper1">
         <div class="swiper-wrapper">
-                            <div class="swiper-slide banner-slide" style="background-image:url(app/statics/images/ching2.datu.jpg)" rel="site/detail/id/56c1f1a0422cb.html">
+                            <div class="swiper-slide banner-slide" style="background-image:url(app/statics/images/ching2.datu.jpg)" rel="/site1/detail/id/5a2dec49e4b050b8bd5d3510">
                     <div class="banner-bottom">
                         <div class="container">
                             <div class="row">
@@ -30,7 +34,7 @@
                         </div>
                     </div>
                 </div>
-                            <div class="swiper-slide banner-slide" style="background-image:url(app/statics/images/jaq1.datu.jpg)" rel="site/detail/id/5830fed1e54ac.html">
+                            <div class="swiper-slide banner-slide" style="background-image:url(app/statics/images/jaq1.datu.jpg)" rel="/site1/detail/id/5a2def19e4b050b8bd5d3511">
                     <div class="banner-bottom">
                         <div class="container">
                             <div class="row">
@@ -45,8 +49,8 @@
                         </div>
                     </div>
                 </div>
-
-                            <div class="swiper-slide banner-slide" style="background-image:url(app/statics/images/shangda2.datu.jpg)" rel="site/detail/id/5765d805dea19.html">
+@*
+                            <div class="swiper-slide banner-slide" style="background-image:url(/app/statics/images/shangda2.datu.jpg)" rel="/site1/detail/id/5a23d5f1e4b089138b66dadf">
                     <div class="banner-bottom">
                         <div class="container">
                             <div class="row">
@@ -61,6 +65,7 @@
                         </div>
                     </div>
                 </div>
+*@
         </div>
         <div class="container circle-container">
             <div class="row">
@@ -238,12 +243,21 @@
 								  </p>
 								  <p><span><i class="lit"></i>@guider.city_and_country</span></p>
 								  <p class="font-size1 text-color2 text-overflow">
+									@if(guider.guider_price != ""){
 									<span class="guide-tag">徒步向导</span>
+									}
+									@if(guider.guiderdrive_price != ""){
 									<span class="guide-tag">带车向导</span>
+									}
+									@if(guider.guiderpickup_price != ""){
 									<span class="guide-tag">带车接送机</span>
-								  </p>
+									}
+									@if(guider.personal_price != ""){
+											<span class="guide-tag">@{guider.personal_service}</span>
+									}
+                                   </p>
 								</a>
-								                </div>
+							  </div>
 							  }
 							  
                 <!--<div class="swiper-slide">-->

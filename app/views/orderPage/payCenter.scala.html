@@ -29,14 +29,6 @@
         <script type="text/javascript" src="/app/statics/js/datepicker.js"></script>
         <script type="text/javascript" src="/app/statics/js/qrcode.js"></script>
     </head>
-    <style type="text/css">
-            .mask {
-                position: absolute;
-                margin: auto;
-                background-color: #777;
-                opacity:0.5; -moz-opacity:0.5;
-            }
-    </style>
     
         <header class="title_header clearfix">
             <div class="back fl"></div>
@@ -53,6 +45,10 @@
                     <span class="fl">待支付</span>
                     <span class="fr mar016">RMB&nbsp;<span class="fontsize05 the_last_price">@(order.total_price+order.platform_fee)</span></span>
                 </div>
+				<div class="bar_label">
+<!--	  					<sapn id="" class="fl">扫码完成 --
+  --支付</span> -->
+                </div>
             </div>
                 <!--添加服务类型开始-->
             <div class="wechat_pay_btn">
@@ -61,16 +57,23 @@
                     <span>微信支付</span>
                 </div>
             </div>
+
+			<div  class="mask ">
+			  <div class="onfoot_time_titlt">
+				<div>
+				<sapn id="" class="fl">扫码完成支付</span>
+                </div>
+
+               <div id="pay-qrcode">
+			   </div>
+            </div>
         </div>
-    <div id="pay-qrcode" class="mask">
-        <p>扫码完成支付</p>
-    </div>
-            <!--内容部分结束-->
+        <!--内容部分结束-->
 
 
 
         <script type="text/javascript">
-            function pay_submit() {
+		  function pay_submit() {
                 var _post_data = new Object();
                 _post_data.orderId = '@Html(order.id)';
                 $.ajax({
@@ -82,7 +85,9 @@
                         if (data.client_type == "mobile") {
                             location.href = data.mweb_url;
                         }else if (data.client_type == "pc"){
-                            var pay_qrcode = new QRCode(document.getElementById('pay-qrcode'), {
+
+		  
+		                        var pay_qrcode = new QRCode(document.getElementById('pay-qrcode'), {
                                 text: data.code_url,
                                 colorDark : '#000000',
                                 colorLight : '#ffffff',
@@ -93,23 +98,20 @@
                     }
                 });
             }
+		  
 //获取最后的总价
 /*function getQueryString(name) {
     var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
     var r = window.location.search.substr(1).match(reg);
     if (r != null) return unescape(r[2]); return null;
-}
-var price = getQueryString('sum_price');
-$(".the_last_price").html(price);*/
-            function showMask(){
-                $("#mask").css("height",$(document).height());
-                $("#mask").css("width",$(document).width());
-                $("#mask").show();
-            }
-            //隐藏遮罩层
-            function hideMask(){
+}		  
+		  var price = getQueryString('sum_price');
+		  $(".the_last_price").html(price);*/
 
-                $("#mask").hide();
+
+		  function showMask(){
+		        $(".wechat_pay_btn").remove();
+                $(".mask").show();
             }
         </script>
 

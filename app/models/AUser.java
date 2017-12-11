@@ -92,10 +92,12 @@ public class AUser {
 	AUser g2 = AUser.coll.findOneById("5a1108b2e4b0e90f7d037dcd");
 	AUser g3 = AUser.coll.findOneById("5a11109ee4b0e90f7d037dce");
 
-	guiders.add(g1);
-	guiders.add(g2);
-	guiders.add(g3);
-
+	AUser g4 = AUser.coll.findOneById("5a04fa5fe4b074b5155881a8");
+	AUser g5 = AUser.coll.findOneById("5a2d06b5e4b077daed649707");
+	AUser g6 = AUser.coll.findOneById("5a23d5f1e4b089138b66dadf");
+	
+	guiders.add(g1);	guiders.add(g2);	guiders.add(g3);
+	guiders.add(g4);    guiders.add(g5);    guiders.add(g6);
 	return guiders;
     }
 
@@ -145,7 +147,9 @@ public class AUser {
     public String guider_price = ""; //徒步旅行收费
     public String guiderdrive_price = ""; //五座车收费
     public String guiderpickup_price = ""; //五座车接机收费
-
+	public String personal_service = "";
+	public String personal_price = "" ; //自定义价格
+	
     public String userQrcodeUrl = "";
     public String indexQrcodeUrl = "";
 

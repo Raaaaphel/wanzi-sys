@@ -35,9 +35,10 @@ label input,label input:focus{
         <div class="col-md-8" style="background:#fff; margin:20px 0 20px;">
 <!--            <form style="margin:20px;">-->
 @form(action=routes.RegisterController.onLogin(), '_style->"margin:20px;"){
-<legend>用户登录</legend>
+<legend>@Messages("header.login")</legend>
                 <div class="row">
                     <div class="col-md-2"></div>
+<!--
                     <div class="col-md-3">
                         <p>
                             <select class="form-control" id="phone_prefix">
@@ -235,8 +236,9 @@ label input,label input:focus{
                             </select>
                         </p>
                     </div>
-                    <div class="col-md-5">
-                        <p><input type="text" class="form-control" placeholder="邮箱" name="email"></p>
+country option -->
+                    <div class="col-md-8">
+                        <p><input type="text" class="form-control" placeholder="@Messages("footer.email")" name="email"></p>
                     </div>
 
                 <div class="col-md-2"></div>
@@ -245,11 +247,11 @@ label input,label input:focus{
                     <div class="col-md-2"></div>
                     <div class="col-md-8">
                         <p>
-                            <input type="password" class="form-control" placeholder="密码" name="password">
+                            <input type="password" class="form-control" placeholder="@Messages("reg.password")" name="password">
                         </p>
-                        <div style="text-align:right;padding:10px 0 10px;"><a href="3.html">忘记密码</a></div>
+                        <div style="text-align:right;padding:10px 0 10px;"><a href="3.html">@Messages("login.forget_pass")</a></div>
                         <p>
-                            <button type="submit" class="btn btn-info btn-lg btn-block" id="user_login">登录</button>
+                            <button type="submit" class="btn btn-info btn-lg btn-block" id="user_login">@Messages("header.login")</button>
                         </p>
                     </div>
                     <div class="col-md-2"></div>

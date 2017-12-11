@@ -8,16 +8,16 @@ header.become_guider=成为向导
 
 header.register=注册
 header.login=登录
-header.hello=您好,
+header.hello=您好
 header.message=消息
 
 header.account=我的账户
 header.orders=我的订单
 header.setting=用户设置
-header.referral=推荐有奖
+header.referral=推广有奖
 header.logout=退出登录
 
-header.menu.helplist=帮助中心
+header.menu.help_center=帮助中心
 header.menu.how_order_guider=如何预订向导
 header.menu.how_personalized_travel=如何定制旅行服务
 header.menu.how_starguider=如何成为一名优秀的向导
@@ -38,6 +38,8 @@ index.personalized_travel=定制旅行
 index.personalized_travel_p=向导生活在各个国家学习工作生活多年，对所在地区自然景色和人文特色有深入，可以为您提供如预约德国乘坐滑翔机，私人游艇出海，希腊环岛自驾，迈阿密州天体海滩赏金发美女等等独特的定制旅行项目
 index.secure_care=保障服务
 index.secure_care_p=出境游最重要的是安全，走走旅游为您提供全球救援服务。我们在每一个服务区域，都有当地的导游协会、学联、地接社等，应对可能出现的突发情况，为您的境外旅行保驾护航。
+
+index.partners=合作伙伴
 
 ### footer menu ###
 footer.company_name=® 杭州观海听涛信息科技有限公司
@@ -106,3 +108,18 @@ guiderorder.state.FINISHED=已结束订单
 promotion_msg=现在注册即送 ¥100 旅游金
 button.close=关闭
 refer.email=好友Email
+
+reg.full_name=姓名
+reg.password=密码
+reg.password_repeat=再次输入密码
+
+login.forget_pass=忘记密码
+
+
+#print.title=iZouzou－爱走走
+#print.subtitle=帮你找导游
+#print.company=© Guanhaitingtao Tech
+#print.website=http://www.izouzou.cc     
+
+
+reg.guider.service_name=自定义服务

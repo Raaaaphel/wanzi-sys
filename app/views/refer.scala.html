@@ -11,7 +11,7 @@ ref_link='http://www.izouzou.cc/register?refer=@session.get("userId")'; *@
 <script src="/app/statics/js/qrcode.js"></script>
 <script src="/app/statics/js/jspdf.min.js"></script>
 
-@views.html.pop.referPop.render();
+@views.html.pop.referPop.render()
 
 <div class="applys clearfix">
   <div class="l">
@@ -25,7 +25,7 @@ ref_link='http://www.izouzou.cc/register?refer=@session.get("userId")'; *@
 
   <div class="r r_box">
 
-		<div class="col-sm-12"><h4>二维码推广</h4></div>
+		<div class="col-sm-12"><h4>推广有奖</h4></div>
 
 		<div id="index-refer-qrcode" class="qrcode col-sm-10">
 		</div>
@@ -82,8 +82,23 @@ ref_link='http://www.izouzou.cc/register?refer=@session.get("userId")'; *@
 	  function printPDF() {
 		  var image_data = $("#index-refer-qrcode img").attr("src");
 		  var doc = new jsPDF();
-		  doc.addImage(image_data, 'PNG', 15, 40, 180, 180);
-		  doc.save('推广二维码.pdf');
+
+		  doc.setTextColor('#6ccff7');
+		  doc.setFont('times');
+		  doc.setFontType('italic')
+
+		  doc.text(15, 15, '@Messages("print.title")');
+
+		  doc.text(20, 30, '@Messages("print.subtitle")');
+
+		  doc.addImage(image_data, 'PNG', 15, 35, 85, 85);
+
+		  doc.setTextColor('#000000');
+		  doc.setFontSize('9');
+		  doc.setFont('courier');
+		  doc.setFontType('italic');
+		  doc.text(25, 125, '@Messages("print.website")   @Messages("print.company") ');
+          doc.save('barcode.pdf');
 	  }
 	</script>
 

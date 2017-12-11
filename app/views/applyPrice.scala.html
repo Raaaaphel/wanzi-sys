@@ -14,16 +14,22 @@
 		    <li><a href="/site/applysService" class="font5">自我介绍<span></span></a></li>
 		    <li><a href="/site/setApplyPrice" class="font5 action">服务价格<span></span></a></li>
 		</ul>
-		    </div>
+		</div>
 		
             <div class="r" style="background: #fff;">
                 <div class="col-md-12 intr_box" >
-                    <div class="applys_name"><span>徒步导游价格／天</span></div>
+				  
+                  <div class="applys_name"><span>徒步导游价格／天</span></div>
                     <input type="text" class="form-control" id="guider_price" style="width: 228px;" placeholder="¥" value="@Html(user.guider_price)">
                     <div class="applys_name"><span>带车导游价格／天</span></div>
                     <input type="text" class="form-control" id="guiderdrive_price" style="width: 228px;" placeholder="¥" value="@Html(user.guiderdrive_price)">
                     <div class="applys_name"><span>接送机价格／次</span></div>
                     <input type="text" class="form-control" id="guiderpickup_price" style="width: 228px;" placeholder="¥" value="@Html(user.guiderpickup_price)">
+
+		            <div class="applys_name"><span>自定义服务／次</span></div>
+		            <input type="text" class="form-control" id="personal_service" style="width: 228px;" placeholder="@Messages("reg.guider.service_name")" value="@Html(user.personal_service)">
+		            <input type="text" class="form-control" id="personal_price" style="width: 228px;" placeholder="¥" value="@Html(user.personal_price)">
+					<p><span class="font-size1"> * 不提供的服务项，无需填写</span></p>
 		            <p class=" serv_p">
 					  <a href="/site/applysService" class="pre"><i></i>上一步</a>
 					  <button class="" type="submit" onclick="doSubmit()" style="">下一步</button>
