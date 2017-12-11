@@ -75,41 +75,45 @@ public class AUser {
                 Pattern.CASE_INSENSITIVE))).limit(limit).skip(limit * (page - 1)).toArray();
     }
 
-    public static List<AUser> getStarGuiders(String refer)
-    {
-	List<AUser> guiders = new ArrayList<>();
-	/*
+    public static List<AUser> getStarGuiders(String refer) {
+        List<AUser> guiders = new ArrayList<>();
+    /*
 	AUser g1 = AUser.coll.findOneById("59febdfae4b0321df4d111f8");
 	AUser g2 = AUser.coll.findOneById("111111111111111111111111");
 	AUser g3 = AUser.coll.findOneById("10c8d3518be761e8fdbf2e5a");
 	*/
-	if (refer != null){
-	    AUser g = coll.findOneById(refer);
-	    if (g != null)
-	        guiders.add(g);
-    }
-	AUser g1 = AUser.coll.findOneById("5a045a17e4b05602646333dd");
-	AUser g2 = AUser.coll.findOneById("5a1108b2e4b0e90f7d037dcd");
-	AUser g3 = AUser.coll.findOneById("5a11109ee4b0e90f7d037dce");
+        if (refer != null) {
+            AUser g = coll.findOneById(refer);
+            if (g != null)
+                guiders.add(g);
+        }
+        AUser g1 = AUser.coll.findOneById("5a045a17e4b05602646333dd");
+        AUser g2 = AUser.coll.findOneById("5a1108b2e4b0e90f7d037dcd");
+        AUser g3 = AUser.coll.findOneById("5a11109ee4b0e90f7d037dce");
 
-	AUser g4 = AUser.coll.findOneById("5a04fa5fe4b074b5155881a8");
-	AUser g5 = AUser.coll.findOneById("5a2d06b5e4b077daed649707");
-	AUser g6 = AUser.coll.findOneById("5a23d5f1e4b089138b66dadf");
-	
-	guiders.add(g1);	guiders.add(g2);	guiders.add(g3);
-	guiders.add(g4);    guiders.add(g5);    guiders.add(g6);
-	return guiders;
+        AUser g4 = AUser.coll.findOneById("5a04fa5fe4b074b5155881a8");
+        AUser g5 = AUser.coll.findOneById("5a2d06b5e4b077daed649707");
+        AUser g6 = AUser.coll.findOneById("5a23d5f1e4b089138b66dadf");
+
+        guiders.add(g1);
+        guiders.add(g2);
+        guiders.add(g3);
+        guiders.add(g4);
+        guiders.add(g5);
+        guiders.add(g6);
+        guiders.removeAll(Collections.singleton(null));
+        return guiders;
     }
 
     @Id
     @ObjectId
     public String id;
     public String name;
-    
+
 
     public String email;
     public String password;
-    public Double balance=0.0;
+    public Double balance = 0.0;
 
 
     public String type = ""; //GUIDER or TRAVELLER
@@ -147,13 +151,14 @@ public class AUser {
     public String guider_price = ""; //徒步旅行收费
     public String guiderdrive_price = ""; //五座车收费
     public String guiderpickup_price = ""; //五座车接机收费
-	public String personal_service = "";
-	public String personal_price = "" ; //自定义价格
-	
+    public String personal_service = "";
+    public String personal_price = ""; //自定义价格
+
     public String userQrcodeUrl = "";
     public String indexQrcodeUrl = "";
 
     public List<Comment> comments = new ArrayList<>();
+    public Double rating = 5.0;
 
 
     public static String GUIDER = "GUIDER";

@@ -22,12 +22,16 @@
                 <p class="text-center"><img src="@(imgUri)@guider.img_profile" alt="" class="guide-img"></p>
                 <p class="text-center font-size2 guide-name">@(guider.name)</p>
                 <p class="text-center">
-                    <i class="start3"></i>
-                    <i class="start3"></i>
-                    <i class="start3"></i>
-                    <i class="start3"></i>
-                    <i class="start3"></i>
-                    <span>4</span>
+                    @for(i <- 1 to guider.rating.intValue()){
+                        <i class="start3"></i>
+                    }
+                    @if(guider.rating - guider.rating.intValue() > 0){
+                        <i class="start2"></i>
+                    }
+                    @if(4 - guider.rating.intValue() > 0){
+                        <i class="start1"></i>
+                    }
+                    <span>@guider.rating</span>
                 </p>
                 <p class="text-center"><span><i class="lit"></i>@(guider.city_and_country)</span></p>
                 <div class="text-center guide-tag font-size1 text-color1 guide-tag1">
@@ -118,12 +122,16 @@
             <div class="guide-message">
                 <p class="text-center font-size3">@(guider.name)</p>
                 <p class="text-center guide-start">
-                    <i class="start3"></i>
-                    <i class="start3"></i>
-                    <i class="start3"></i>
-                    <i class="start3"></i>
-                    <i class="start3"></i>
-                    <span>27</span>
+                    @for(i <- 1 to guider.rating.intValue()){
+                        <i class="start3"></i>
+                    }
+                    @if(guider.rating - guider.rating.intValue() > 0){
+                        <i class="start2"></i>
+                    }
+                    @if(4 - guider.rating.intValue() > 0){
+                        <i class="start1"></i>
+                    }
+                    <span>@guider.rating</span>
                 </p>
                 <p class="text-center guide-start"><span><i class="lit"></i>@(guider.city_and_country)</span></p>
                 <p class="text-center guide-tag font-size1 text-color1">
@@ -989,7 +997,7 @@
     </div>
         <!-- 向导详细资料模态框 -->
         <!-- 个人简介模态框 -->
-        <div class="modal common-modal guide-brief" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal common-modal guide-brief in" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -1459,13 +1467,16 @@
                 $('.service-modal1').on('click',function(){
                     window.location.href='../../detailGuidePrice/pc/1/id/560a4f004719d.html';
                 });
-                $('.more-btn').click(function(){
+                /*$('.more-btn').click(function(){
                     window.location.href='/site1/detail/id/@guider.id/more';
-                });
+                });*/
                 //评论
                 $('.more-comment').click(function(){
                     window.location.href='../../detailGuideRemark/id/560a4f004719d/name/%e5%bc%a0%e8%8b%8f.html';
                 });
+                /*$('.close span').on("click",function () {
+                    $(".modal div").hide();
+                })*/
 
 
 											  
@@ -1569,7 +1580,7 @@
 
                 //右侧个人介绍查看全部内容
                 $('.more-btn span').on('click',function(){
-                    $('.guide-brief').show();
+                    $('.guide-brief').modal("show");
                 });
                 //右侧查看相册
                 $('#swiper2').on('click','.swiper-slide',function(){

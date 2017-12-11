@@ -61,7 +61,7 @@ public class SearchController extends Controller {
 	public static Result getGuiderDetailMore(String userId)
 	{
 		AUser guider = AUser.getUserById(userId);
-		return ok(views.html.detail_all.render(guider));
+		return ok(views.html.pop.detailPop.render(guider));
 	}
 
 	

@@ -234,11 +234,16 @@ views.html.pop.msgPop.render("Register now and get ¥100 traveling coupons! ");
 								  <p>
 									<span class="text-overflow">专业向导</span>
 									<span class="text-overflow text-right start-section">
-									  <i class="start3"></i>
-									  <i class="start3"></i>
-									  <i class="start3"></i>
-									  <i class="start3"></i>
-									  <span>2</span>
+                                        @for(i <- 1 to guider.rating.intValue()){
+                                        <i class="start3"></i>
+                                    }
+                                        @if(guider.rating - guider.rating.intValue() > 0){
+                                            <i class="start2"></i>
+                                        }
+                                        @if(4 - guider.rating.intValue() > 0){
+                                            <i class="start1"></i>
+                                        }
+									  <span>@guider.rating</span>
 									</span>
 								  </p>
 								  <p><span><i class="lit"></i>@guider.city_and_country</span></p>
