@@ -200,6 +200,15 @@ public class RegisterGuiderController extends Controller {
         return ok(resultJson);
     }
 
+    public static Result applyCalender()
+    {
+	AUser u = AUser.getUserById(session().get("userId"));
+	if (u == null) {
+            return RegisterController.onLogout("Login please");
+	}
+
+	return ok(views.html.calender.render(u));
+    }
 
 }
 

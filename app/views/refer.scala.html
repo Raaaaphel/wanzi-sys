@@ -14,43 +14,47 @@ ref_link='http://www.izouzou.cc/register?refer=@session.get("userId")'; *@
 @views.html.pop.referPop.render()
 
 <div class="applys clearfix">
-  <div class="l">
+
+  @views.html.menul_setting.render() 
+<!--  
+<div class="l">
 	<ul class="fix_left">
-		<li><a class="font5"> <span> 我的帐户</a></span> </li>
-		<li><a class="font5"> <span> 我的订单</a></span> </li>
-		<li><a class="font5 action"><span> 推荐有奖 </a></span></li>
-		<li><a class="font5"><span> 用户设置 </a></span></li>
+		<li><a class="font5" href="/setting/myaccount"> <span> 我的帐户</a></span> </li>
+		<li><a class="font5" href="/setting/myorders"> <span> 我的订单</a></span> </li>
+		<li><a class="font5 action" href="/setting/refer"><span> 推荐有奖 </a></span></li>
+		<li><a class="font5" href="/setting/setting"><span> 用户设置 </a></span></li>
 	</ul>
-  </div>
+</div>
+-->
 
   <div class="r r_box">
 
-		<div class="col-sm-12"><h4>推广有奖</h4></div>
+		<div class="col-sm-12"><h4>@Messages("refer.promotion")</h4></div>
 
 		<div id="index-refer-qrcode" class="qrcode col-sm-10">
 		</div>
 	
 		<div class="col-sm-2" style="height:100px">
-		    <button type="button" class="btn btn-info btn-right" style="" onclick="printPDF()">打印</button>
+		    <button type="button" class="btn btn-info btn-right" style="" onclick="printPDF()">@Messages("button.print")</button>
 		</div>
 
 		
-		<div class="col-sm-12">	<p>打印二维码 放到您所在的城市的酒店机场，游客扫码会在导游首页和搜索页看到您哦！</p></div>
+		<div class="col-sm-12">	<p>@Messages("refer.promotion_msg")</p></div>
 	
 		  @if(session().get("userType") == "GUIDER"){
 
-		  <div class="col-sm-12"> <h4>分享链接</h4> </div>
+		  <div class="col-sm-12"> <h4>@Messages("refer.sharelink")</h4> </div>
 
 		  <div id="user-refer-qrcode" class="qrcode col-sm-10">
 		  </div>
 
 		  <div class="col-sm-2" style="" >
-			<button class="btn btn-info btn-right" id="_share">分享</button>
+			<button class="btn btn-info btn-right" id="_share">@Messages("button.share")</button>
 		  </div>
 		
 		  <div class="col-sm-12">
 			<p>http://www.izouzou.cc/register?refer=@session().get("userId")</p>
-			<p>邀请好友通过以上链接注册，您和您的好友都会得到¥ 100 旅游金 <a href="#">旅游金使用规则</a></p>
+			<p>@Messages("refer.sharelink_msg") <a href="#">@Messages("refer.terms")</a></p>
 		  </div>
 		  }
   </div>
@@ -79,6 +83,18 @@ ref_link='http://www.izouzou.cc/register?refer=@session.get("userId")'; *@
 	  $("#_share").click(function(){
 	      $(".shade").show();
 	  });
+
+@*
+  function ImagetoPrint(source) {
+  return "<style type='text/css'>#img_profile{height:85px;width:85px;}</style>"+
+            "<html><head><script>function step1(){\n" +
+            "setTimeout('step2()', 10);}\n" +
+            "function step2(){window.print();window.close()}\n" +
+            "</script></head><body onload='step1()'>\n" +
+            "<img id='img_profile' src='" + source + "' />" +
+            "</body></html>";
+  }
+*@
 	  function printPDF() {
 		  var image_data = $("#index-refer-qrcode img").attr("src");
 		  var doc = new jsPDF();
@@ -98,7 +114,21 @@ ref_link='http://www.izouzou.cc/register?refer=@session.get("userId")'; *@
 		  doc.setFont('courier');
 		  doc.setFontType('italic');
 		  doc.text(25, 125, '@Messages("print.website")   @Messages("print.company") ');
-          doc.save('barcode.pdf');
+                  doc.save('barcode.pdf');
+@*
+    Pagelink = "about:blank";
+    source='/public/upload/images/@{guider.id}.avatar.cut.png';
+
+    var pwa = window.open(Pagelink, "_new");
+    pwa.document.open();
+    pwa.document.write(ImagetoPrint(source));
+    pwa.document.close();
+
+                  popup = window.open();
+                  popup.document.write(ImagetoPrint('/public/upload/images/@{guider.id}.avatar.cut.png'));
+                  popup.focus(); //required for IE
+                  popup.print();
+*@
 	  }
 	</script>
 

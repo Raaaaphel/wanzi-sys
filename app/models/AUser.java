@@ -160,7 +160,9 @@ public class AUser {
     public List<Comment> comments = new ArrayList<>();
     public Double rating = 5.0;
 
-
+    public List<Notification> notifications = new ArrayList<>();
+    
+    
     public static String GUIDER = "GUIDER";
     public static String TRAVELLER = "TRAVELLER";
 

@@ -1,4 +1,5 @@
 @(content: Html)
+@import java.lang.String; val newUserId="999999999999999999999999"; 
 <!DOCTYPE html>
 <html lang="zh-CN">
 
@@ -131,15 +132,15 @@
                             <li class="help-center" style="">
                                 <a href="#">@Messages("header.hello"), @session().get("username")<i></i></a>
 								<ul>
-								  <li><a href="#">@Messages("header.account")</a></li>
-								  <li><a href="/setting/myorder">@Messages("header.orders")</a></li>
+								  <li><a href="/setting/myaccount">@Messages("header.account")</a></li>
+								  <li><a href="/setting/myorders">@Messages("header.orders")</a></li>
 								  <li><a href="/setting/refer">@Messages("header.referral") </a><span class="font-size1" style="color:red">new</span> </li>
-								  <li><a href="/setting/setting">@Messages("header.setting")</a></li>
+								  <li><a href="/setting/preference">@Messages("header.preference")</a></li>
 								  <li><a href="/logout"  style="display: inline">@Messages("header.logout")</a></li>
 								</ul>
                             </li>
                         }
-						<li>	<a href="#"	> @Messages("header.message") (0) </a> </li>
+						<li>	<a href="#" id="_message"> @Messages("header.message") (0) </a> </li>
 
                         </ul>
                 </div>
@@ -252,6 +253,21 @@
 *@
 		
         <script>
+	  //show conversation
+	  var uId = '@session.get("userId")';
+	  var newUserId = '@newUserId';
+	  $("#_message").click(function(){
+	      if(uId != newUserId){
+         	  window.location.href = "@play.Play.application().configuration().getString("chatserviceport")/room?conversationId=" + uId + newUserId + "&userId=" + uId + "&anotherId=" + newUserId; 
+	      }
+	      else{
+	          alert('@Messages("alert.login")');
+	          window.location.href = "/login";
+	      }
+	  });
+	  
+
+	  //show balance
                 function getBalance() {
                     $.ajax({
                         url:"/getBalance",

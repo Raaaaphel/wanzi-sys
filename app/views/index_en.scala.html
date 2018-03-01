@@ -3,20 +3,19 @@
 @import java.lang.String; val chatserviceport="http://test.zouzouyouyou.info:9000"; val testid="999999999999999999999999"; val botid="ffffffffffffffffffffffff";
 
 <!-- add shade layer for tutorial -->
-@**
-@if(session.get("userId") != ""){
-@views.html.tutorial.render();
-}
-**@
-
 @*
-views.html.pop.msgPop.render("Register now and get ¥100 traveling coupons! ");
-@views.html.pop.loginPop.render(); *@
-
+@if(session.get("userId") == testid){
+	@views.html.tutorial.render()
+}
+*@
+@*
+@views.html.pop.msgPop.render( "注册即送 ¥50 旅游金！快来一起旅游吧" )
+*@
 @headerfooter{
     <!-- 主题 -->
 	<link rel="stylesheet" href="app/statics/css/index.css">
-    <!-- banner -->
+	<link rel="icon" href="/app/statics/images/favicon.ico">
+	<!-- banner -->
     <div class="swiper-container" id="swiper1">
         <div class="swiper-wrapper">
                             <div class="swiper-slide banner-slide" style="background-image:url(app/statics/images/ching2.datu.jpg)" rel="/site1/detail/id/5a2dec49e4b050b8bd5d3510">
@@ -34,7 +33,7 @@ views.html.pop.msgPop.render("Register now and get ¥100 traveling coupons! ");
                         </div>
                     </div>
                 </div>
-                            <div class="swiper-slide banner-slide" style="background-image:url(app/statics/images/jaq1.datu.jpg)" rel="/site1/detail/id/5a2def19e4b050b8bd5d3511">
+        <div class="swiper-slide banner-slide" style="background-image:url(app/statics/images/jaq1.datu.jpg)" rel="/site1/detail/id/5a2def19e4b050b8bd5d3511">
                     <div class="banner-bottom">
                         <div class="container">
                             <div class="row">
@@ -470,7 +469,7 @@ views.html.pop.msgPop.render("Register now and get ¥100 traveling coupons! ");
 <!--                      <img src="app/statics/images/car.jpg" alt="" class="img-responsive">-->
 					  <img src="app/statics/images/teslacar.jpg" alt="" class="img-responsive">
                         <div class="service-title text-center font-size3">
-                            <p>"@Messages("index.pickup_service")"</p>
+                            <p>@Messages("index.pickup_service")</p>
                         </div>
                         <div class="service-explain">
                             <p class="text-color5 text-center font-size4"><strong>@Messages("index.pickup_service")</strong></p>
@@ -889,7 +888,26 @@ views.html.pop.msgPop.render("Register now and get ¥100 traveling coupons! ");
                 $(this).siblings('.video-section').hide();
             })
         }
-    });
+      });
     </script>
+
+@*
+	<script type="text/javascript">
+		function sleep(milliseconds) {
+			var start = new Date().getTime();
+			for (var i = 0; i < 1e7; i++) {
+				if ((new Date().getTime() -
+					 start) > milliseconds){
+					break;
+				}
+			}
+		}
+
+	sleep(50000);
+
+	$(".shade").show();
+	
+	</script>
+*@	
             <!-- 主题 -->
-        }
+}

@@ -8,16 +8,26 @@
 	<div class="">
 	<img id="img-icon" src="/app/statics/images/favicon.ico">
 	</div>
+
+	<div class="div-close">
+        <img id="img-close" src="/app/statics/images/close.ico">
+	</div>
 	
     <div class="row">
-      <p><input type="text" class="form-control"      placeholder="@Messages("refer_email")" name="email"></p>
+      <p><input type="text" class="form-control" placeholder="@Messages("refer_email")" name="email"></p>
     </div>
 	
-	<div class="row">
+    <div class="row">
       <p><a type="submit" id="_send" class="btn btn-info btn-block" href="" >@Messages("发送")</a></p>
-	</div>
+    </div>
   </div>	
 </div>
+
+<script type="text/javascript">
+  $("#img-close").click(function(){
+  $(".shade").hide();
+});
+</script>
 
 @*
 <style>

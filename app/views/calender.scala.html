@@ -1,0 +1,33 @@
+@import helper._
+@(u : AUser)
+@if(session().get("userType") == null){
+        @views.html.pop.loginPop.render();
+}
+
+<link rel="stylesheet" type="text/css" href="http://static.izouzou.cc/app/statics/css/applys/style.css">
+<link rel="stylesheet" type="text/css" href="http://static.izouzou.cc/app/statics/css/setting.css">
+<link rel="stylesheet" type="text/css" href="http://static.izouzou.cc/app/statics/js/applys/datetimepicker/css/bootstrap-datetimepicker.min.css">
+
+@headerfooter{
+
+    <div class="applys clearfix">
+      @views.html.menul_guider()
+      <div class="r r_box" style="height:50%">
+	<div class="col-sm-6">	@views.html.dropdown_calender()  
+	</div>
+	<div class="col-sm-6"> <button type="button" class="btn btn-info">@Messages("time.month")</button> <button class="btn">@Messages("time.year") </button>
+	</div>
+	<div class="col-sm-12 font-size2">
+	  <ul class="spanst-layout clearfix"><span>Sun</span><span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span></ul>
+	</div>
+      </div>
+    </div>
+
+}
+
+
+<style type="text/css">
+span{
+width:10%;
+}
+</style>

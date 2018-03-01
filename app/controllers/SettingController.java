@@ -13,8 +13,14 @@ import java.util.*;
  * to the application's home page.
  */
 public class SettingController extends Controller {
-    public static Result getSetting() {
-        return ok(views.html.setting.render());
+    
+    public static Result myaccount(){
+	AUser guider = AUser.getUserById(session("userId"));
+	return ok(views.html.myaccount.render(guider));
+    }
+
+    public static Result getPreference() {
+        return ok(views.html.preference.render());
     }
 
     public static Result getMyOrders() {

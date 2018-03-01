@@ -1,9 +1,8 @@
-
 @import helper._
 @(u : AUser)
-    @if(session().get("userType") == null){
+@if(session().get("userType") == null){
         @views.html.pop.loginPop.render();
-    }
+}
 @headerfooter {
     <link rel="stylesheet" type="text/css" href="/app/statics/js/applys/datetimepicker/css/bootstrap-datetimepicker.min.css">
     <link rel="stylesheet" type="text/css" href="/app/statics/css/applys/style.css">
@@ -32,17 +31,16 @@
             })
     </script>
     <div class="applys clearfix">
-        <div class="l">
-            <ul class="fix_left">
-              <!-- <li><a href="/site/applysUser" class="font5 action">个人信息<span class="correct"></span></a></li>
-				   <li><a href="/site/applysPic" class="font5">个人照片<span class="error"></span></a></li> -->
-                <!--<li><a href="/site/applysStep" class="font5 applys_back">返回</a></li>-->
-                <li><a href="/registerguider" class="font5 action">个人信息<span></span></a></li>
-                <li><a href="/site/applysPic" class="font5">个人照片<span></span></a></li>
-                <li><a href="/site/applysService" class="font5">自我介绍<span></span></a></li>
-				<li><a href="/site/setApplyPrice" class="font5">服务价格<span></span></a></li>
-            </ul>
-        </div>
+		<div class="l">
+		  <ul class="fix_left">
+			<!--<li><a href="/site/applysStep" class="font5 applys_back">返回</a></li>-->
+			<li><a href="/registerguider" class="font5 action">个人信息<span></span></a></li>
+			<li><a href="/site/applysPic" class="font5">个人照片<span></span></a></li>
+			<li><a href="/site/applysService" class="font5">自我介绍<span></span></a></li>
+			<li><a href="/site/setApplyPrice" class="font5">服务价格<span></span></a></li>
+		  </ul>
+		</div>
+
         <div class="r">
                 <!--<form action="" id="main-form"> -->
             @form(action = routes.RegisterGuiderController.onRegisterGuider(), 'id -> "main-form") {

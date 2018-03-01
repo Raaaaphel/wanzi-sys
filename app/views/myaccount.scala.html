@@ -1,0 +1,31 @@
+@(guider:AUser)
+@headerfooter{
+
+<link rel="stylesheet" type="text/css" href="/app/statics/css/applys/style.css" >
+<link rel="stylesheet" type="text/css" href="/app/statics/css/setting.css">
+
+<script src="/app/statics/js/qrcode.js"></script>
+<script src="/app/statics/js/jspdf.min.js"></script>
+
+
+<div class="applys clearfix">
+  @views.html.menul_setting()
+
+  <div class="r r_box">
+    <div class="col-sm-8"> <span> @guider.name</span> </div>    <div class="col-sm-2"> <span> <img src="@guider.img_profile"  class="img-85"></img></span></div>
+	<br>
+	<br>
+    <div class="col-sm-4"> <span> @Messages("user.age")</span></div> <div class="col-sm-6"><input class="form-control" placeholder="@guider.age" value="@guider.age"/> </div>
+    <div class="col-sm-4"> <span> @Messages("user.gender")</span></div> <div class="col-sm-6"><input class="form-control" placeholder="@guider.gender" value="@guider.gender"/></div>
+    <div class="col-sm-4"> <span>
+    @Messages("user.birth_day")</span></div><div class="col-sm-6">
+    <input class="form-control" placeholder="@guider.birth_day" value="@guider.birth_day" /></div>
+    <div class="col-sm-4"> <span>@Messages("user.city_and_country") </span></div> <div class="col-sm-6"><input class="form-control" placeholder="@guider.city_and_country" value="@guider.city_and_country"/> </div>
+
+    <div class="col-sm-4"> <span>@Messages("user.jobtitle")</span></div> <div class="col-sm-6"><input class="form-control" placeholder="@guider.jobtitle" value="@guider.jobtitle"/> </div>
+
+    <div class="col-sm-12 bottom"><p class="submit_ser"> <button class="btn btn-info">@Messages("button.save")</button> </p></div>
+
+</div>
+</div>
+}

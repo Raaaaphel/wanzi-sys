@@ -13,7 +13,7 @@ header.message=Message
 
 header.account=Account
 header.orders=Orders
-header.setting=Setting
+header.preference=Preference
 header.referral=Referral
 header.logout=Logout
 
@@ -61,7 +61,7 @@ footer.service_agreement=Service Agreement
 footer.privacy=Privacy
 footer.disclaim=Disclaim
 footer.user_policy=User Policy
-footer.guarentee_plan=Gurantee Plan Items
+footer.guarentee_plan=Guarantee Plan
 
 footer.for_guider=For Guider
 footer.why_guider=Why Guider
@@ -105,11 +105,21 @@ promotion_msg=Register now and get ¥100 traveling coupons!
 button.close=Close	   
 refer.email=Your friends' email
 button.send=Send
+button.print=Print
+button.share=Share
+
+refer.promotion=Promotion
+refer.promotion_msg=Print your barcode, put it on the hotel or airport to help traveler can find you easily!
+refer.sharelink=Share Link
+refer.sharelink_msg=Invite your friends to register, both of you will get ¥100 traveling coupons
+refer.terms=Terms
 
 reg.user_registration=User Registration
 reg.full_name=Full Name
 reg.password=Password
 reg.password_repeat=Confirm Password
+
+reg.guider.service_name=Your Service Name
 
 login.forget_pass=Forget Password
 
@@ -118,13 +128,45 @@ print.subtitle=Help You Find Local Guiders!
 print.company=© iZouzou Tech
 print.website=http://www.izouzou.cc
 
-
+#setting/refer
 refer.barcode_promotion=Print Barcode to Promote
 refer.remark_promotion=Put the barcode to hotels or airport to promote yourself!
-
 refer.share=Share to Friends
 refer.rmark_share=Invite your friend to join, you both get traveling coupons!
-
 refer.print=Print
 
-reg.guider.service_name="Your Service Name"
+
+
+
+alert.login=Login Please!
+
+#guider menul
+guider.menul.personal=Personal Info
+guider.menul.intro=Personal Introduction
+guider.menul.photo=Personal Photos
+guider.menul.price=Service Price
+guider.menul.calender=Calender
+
+#setting menul
+setting.menul.myaccount=My Account
+setting.menul.myorders=My Orders
+setting.menul.referral=Promotion Award
+setting.menul.preference=Preference
+
+
+setting.prefer.msg_notification=Message Notification
+setting.prefer.order_notification=Order Notification
+
+#Time
+time.year=Year
+time.month=Month
+
+button.save=Save
+
+#user
+user.name=Full Name
+user.age=Age
+user.gender=Gender
+user.city_and_country=Location
+user.jobtitle=Job Title
+user.birth_day=Birth Date

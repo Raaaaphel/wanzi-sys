@@ -6,7 +6,7 @@
 GET         /index.html                                   controllers.Application.index(refer:String?=null)
 GET         /                                             controllers.Application.index(refer:String?=null)
 GET         /index                                        controllers.Application.index(refer:String?=null)
-GET 		/en 										  controllers.Application.index_en(refer:String?=null)
+GET 	    /en 					  controllers.Application.index_en(refer:String?=null)
 
 GET         /assets/*file                                 controllers.Assets.at(path="/public", file)
 POST        /assets/*file                                 controllers.Assets.at(path="/public", file)
@@ -34,6 +34,9 @@ GET         /site/applysService                           controllers.RegisterGu
 POST        /applys/setApplysService                      controllers.RegisterGuiderController.onApplyService()
 GET         /site/setApplyPrice                           controllers.RegisterGuiderController.applyPrice()
 POST        /applys/applyPrice                            controllers.RegisterGuiderController.onApplyPrice()
+GET	    /site/applyCalender				  controllers.RegisterGuiderController.applyCalender()
+
+
 
 #GET 	/public/getSearch       controllers.SearchController.getSearch()
 #POST	/public/getSearch		controllers.SearchController.getSearch()
@@ -82,8 +85,8 @@ GET         /order/cancel/*orderId                        controllers.OrderContr
 POST        /pay/submitPayWx                              controllers.PayController.submitPayWx()
 POST        /pay/WxPaidNotify                             controllers.PayController.payCallback()
 
+GET 	    /setting/myaccount				  controllers.SettingController.myaccount()
 GET         /setting/myorders                             controllers.SettingController.getMyOrders()
 GET         /setting/refer                                controllers.SettingController.refer()
-GET         /setting/setting                              controllers.SettingController.getSetting()
-
+GET         /setting/preference                              controllers.SettingController.getPreference()
 

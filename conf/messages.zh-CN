@@ -108,6 +108,15 @@ guiderorder.state.FINISHED=已结束订单
 promotion_msg=现在注册即送 ¥100 旅游金
 button.close=关闭
 refer.email=好友Email
+button.send=发送
+button.print=打印
+button.share=分享
+
+refer.promotion=打印推广
+refer.promotion_msg=打印二维码 放到您所在的城市的酒店机场，游客扫码会在导游首页和搜索页看到您哦！
+refer.sharelink=分享链接
+refer.sharelink_msg=邀请好友通过以上链接注册，您和您的好友都会得到¥ 100 旅游金
+refer.term=旅游金使用规则
 
 reg.full_name=姓名
 reg.password=密码
@@ -123,3 +132,9 @@ login.forget_pass=忘记密码
 
 
 reg.guider.service_name=自定义服务
+
+
+
+guider.fullname=姓名
+izouzou.claim=走走旅游是一个以真实身份为基础的旅游社区
+guider.birthdate=出生年月
